@@ -5,7 +5,7 @@
 </script>
 
 <h1
-	class={cn("w-full font-heading text-2xl text-slate-700 dark:text-slate-100 lg:text-3xl", classes)}
+	class={cn("font-heading w-full text-2xl text-slate-700 lg:text-3xl dark:text-slate-100", classes)}
 >
 	<slot />
 </h1>

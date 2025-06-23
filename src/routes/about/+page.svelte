@@ -21,7 +21,7 @@
 <article class="mx-auto flex max-w-prose flex-col items-center gap-4 px-4 md:px-6 lg:px-8">
 	<img src={me} alt="Me" class="h-52 w-52 rounded-full" />
 	<Title>Hi, I'm Thiago Temple</Title>
-	<div class="flex flex-col gap-y-4 text-slate-600 dark:text-slate-300 lg:gap-y-6">
+	<div class="flex flex-col gap-y-4 text-slate-600 lg:gap-y-6 dark:text-slate-300">
 		<p>
 			Hello, I'm Thiago Temple, a Brazilian currently residing and working in Ottawa, Canada. You
 			can reach me on{" "}

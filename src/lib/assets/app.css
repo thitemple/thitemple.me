@@ -2,69 +2,69 @@
 layer(base);
 
 /* Write your global styles here, in PostCSS syntax */
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/typography';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-*: initial;
-  --color-transparent: transparent;
-  --color-current: currentColor;
-  --color-white: #fff;
+	--color-*: initial;
+	--color-transparent: transparent;
+	--color-current: currentColor;
+	--color-white: #fff;
 
-  --color-zinc-50: #fafafa;
-  --color-zinc-100: #f4f4f5;
-  --color-zinc-200: #e4e4e7;
-  --color-zinc-300: #d4d4d8;
-  --color-zinc-400: #a1a1aa;
-  --color-zinc-500: #71717a;
-  --color-zinc-600: #52525b;
-  --color-zinc-700: #3f3f46;
-  --color-zinc-800: #27272a;
-  --color-zinc-900: #18181b;
-  --color-zinc-950: #09090b;
+	--color-zinc-50: #fafafa;
+	--color-zinc-100: #f4f4f5;
+	--color-zinc-200: #e4e4e7;
+	--color-zinc-300: #d4d4d8;
+	--color-zinc-400: #a1a1aa;
+	--color-zinc-500: #71717a;
+	--color-zinc-600: #52525b;
+	--color-zinc-700: #3f3f46;
+	--color-zinc-800: #27272a;
+	--color-zinc-900: #18181b;
+	--color-zinc-950: #09090b;
 
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-300: #cbd5e1;
-  --color-slate-400: #94a3b8;
-  --color-slate-500: #64748b;
-  --color-slate-600: #475569;
-  --color-slate-700: #334155;
-  --color-slate-800: #1e293b;
-  --color-slate-900: #0f172a;
-  --color-slate-950: #020617;
+	--color-slate-50: #f8fafc;
+	--color-slate-100: #f1f5f9;
+	--color-slate-200: #e2e8f0;
+	--color-slate-300: #cbd5e1;
+	--color-slate-400: #94a3b8;
+	--color-slate-500: #64748b;
+	--color-slate-600: #475569;
+	--color-slate-700: #334155;
+	--color-slate-800: #1e293b;
+	--color-slate-900: #0f172a;
+	--color-slate-950: #020617;
 
-  --color-violet-100: #d1b3f0;
-  --color-violet-200: #a376d0;
-  --color-violet-300: #965ace;
-  --color-violet-400: #7535b6;
-  --color-violet-500: #6120a1;
-  --color-violet-600: #4f1a84;
-  --color-violet-700: #451773;
-  --color-violet-800: #361259;
-  --color-violet-900: #210b37;
+	--color-violet-100: #d1b3f0;
+	--color-violet-200: #a376d0;
+	--color-violet-300: #965ace;
+	--color-violet-400: #7535b6;
+	--color-violet-500: #6120a1;
+	--color-violet-600: #4f1a84;
+	--color-violet-700: #451773;
+	--color-violet-800: #361259;
+	--color-violet-900: #210b37;
 
-  --color-fuchsia-300: #a02279;
-  --color-fuchsia-500: #841c64;
-  --color-fuchsia-600: #691650;
+	--color-fuchsia-300: #a02279;
+	--color-fuchsia-500: #841c64;
+	--color-fuchsia-600: #691650;
 
-  --color-pink-100: #f5c6e3;
-  --color-pink-200: #f0a8d4;
-  --color-pink-300: #e97cbe;
-  --color-pink-400: #da449f;
-  --color-pink-500: #c42786;
-  --color-pink-600: #ae2377;
-  --color-pink-700: #7b1955;
-  --color-pink-800: #921d64;
-  --color-pink-900: #661446;
+	--color-pink-100: #f5c6e3;
+	--color-pink-200: #f0a8d4;
+	--color-pink-300: #e97cbe;
+	--color-pink-400: #da449f;
+	--color-pink-500: #c42786;
+	--color-pink-600: #ae2377;
+	--color-pink-700: #7b1955;
+	--color-pink-800: #921d64;
+	--color-pink-900: #661446;
 
-  --font-*: initial;
-  --font-sans: IBM Plex Sans, sans-serif;
-  --font-heading: IBM Plex Sans Condensed, sans-serif;
+	--font-*: initial;
+	--font-sans: IBM Plex Sans, sans-serif;
+	--font-heading: IBM Plex Sans Condensed, sans-serif;
 }
 
 /*
@@ -76,13 +76,13 @@ layer(base);
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
 }
 
 .prose :is(img, iframe) {

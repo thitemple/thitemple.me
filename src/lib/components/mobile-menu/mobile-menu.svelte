@@ -21,7 +21,7 @@
 	bind:this={dialog}
 	on:click|self={handleClose}
 	on:close={() => (open = false)}
-	class="backdrop:bg-gray-900/50 z-50 w-5/6 rounded-2xl bg-slate-100 px-4 py-6 backdrop:backdrop-blur-xs dark:bg-violet-700"
+	class="z-50 w-5/6 rounded-2xl bg-slate-100 px-4 py-6 backdrop:bg-gray-900/50 backdrop:backdrop-blur-xs dark:bg-violet-700"
 >
 	<div>
 		<header class="flex justify-between text-slate-500 dark:text-slate-200">

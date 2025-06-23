@@ -7,7 +7,7 @@
 
 <section class="grid gap-6 lg:grid-cols-2">
 	<h2 class="font-heading text-2xl text-slate-700 dark:text-slate-200">Experience</h2>
-	<p class="text-slate-600 dark:text-slate-300 lg:col-start-1">
+	<p class="text-slate-600 lg:col-start-1 dark:text-slate-300">
 		I'm a seasoned Staff Software Developer at Shopify, skilled in TypeScript, Elm, JavaScript, and
 		React. With a career spanning over two decades, I've led impactful projects, pioneered the
 		adoption of TypeScript at SurveyMonkey, and developed innovative web and mobile applications.

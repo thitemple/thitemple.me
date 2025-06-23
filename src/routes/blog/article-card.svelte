@@ -15,7 +15,7 @@
 
 <div
 	class={cn(
-		"flex flex-col gap-x-6 gap-y-4 py-4 md:rounded-md md:border md:border-slate-200 md:p-6 md:py-8 dark:md:border-pink-300/40 lg:px-8",
+		"flex flex-col gap-x-6 gap-y-4 py-4 md:rounded-md md:border md:border-slate-200 md:p-6 md:py-8 lg:px-8 dark:md:border-pink-300/40",
 		{
 			"lg:first:col-span-2": featured
 		}
@@ -27,7 +27,7 @@
 				{post.title}
 			</h2>
 		</a>
-		<p class="text-sm text-slate-500 dark:text-slate-400 lg:mt-2">
+		<p class="text-sm text-slate-500 lg:mt-2 dark:text-slate-400">
 			<PostMeta date={post.date} readTime={post.readTime} />
 		</p>
 	</div>
@@ -45,7 +45,7 @@
 			class="aspect-auto object-cover opacity-90 lg:pr-4"
 		/>
 	{/if}
-	<p class="flex-1 text-slate-600 dark:text-slate-300 lg:mt-4">
+	<p class="flex-1 text-slate-600 lg:mt-4 dark:text-slate-300">
 		{post.summary}
 	</p>
 	<p class="md:self-center lg:self-start">

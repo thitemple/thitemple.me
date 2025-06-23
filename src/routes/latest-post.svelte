@@ -22,10 +22,10 @@
 			class="aspect-video w-full opacity-90 lg:col-start-1 lg:row-span-5 lg:row-start-1 lg:pr-4"
 		/>
 	{/if}
-	<p class="text-slate-600 dark:text-slate-300 lg:col-start-2 lg:row-span-2 lg:row-start-3 lg:mt-4">
+	<p class="text-slate-600 lg:col-start-2 lg:row-span-2 lg:row-start-3 lg:mt-4 dark:text-slate-300">
 		{post.summary}
 	</p>
-	<p class="text-sm text-slate-600 dark:text-slate-300 lg:col-start-2 lg:mt-2">
+	<p class="text-sm text-slate-600 lg:col-start-2 lg:mt-2 dark:text-slate-300">
 		<PostMeta date={post.date} readTime={post.readTime} />
 	</p>
 	<OutlineLink href={postLink}>

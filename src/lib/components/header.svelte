@@ -40,7 +40,7 @@
 	</div>
 	<button
 		title="Toggle mobile menu"
-		class="bg-transparent text-slate-800 dark:text-slate-200 lg:hidden"
+		class="bg-transparent text-slate-800 lg:hidden dark:text-slate-200"
 		on:click={() => (dialogOpened = true)}
 	>
 		<Menu size={32} />
