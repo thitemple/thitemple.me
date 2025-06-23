@@ -10,7 +10,7 @@
 <li>
 	{#if activeUrl}
 		<span
-			class="text-slate-400 hover:cursor-default hover:text-slate-400 hover:no-underline dark:text-slate-500 hover:dark:text-slate-500"
+			class="text-slate-400 hover:cursor-default hover:text-slate-400 hover:no-underline dark:text-slate-500 dark:hover:text-slate-500"
 		>
 			<slot />
 		</span>

@@ -12,7 +12,7 @@
 		{href}
 		{target}
 		class={cn("transition-colors duration-300 ", {
-			"group-hover:dark:text-slate-400": !activeUrl
+			"dark:group-hover:text-slate-400": !activeUrl
 		})}
 	>
 		<slot />
@@ -20,7 +20,7 @@
 	<div
 		class={cn("h-[2px] w-full bg-transparent transition-colors duration-300 ", {
 			"bg-violet-700 dark:bg-pink-100": activeUrl,
-			"group-hover:bg-violet-300 group-hover:dark:bg-pink-400": !activeUrl
+			"group-hover:bg-violet-300 dark:group-hover:bg-pink-400": !activeUrl
 		})}
 	></div>
 </li>
