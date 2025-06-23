@@ -56,8 +56,8 @@
 		<OutlineLink href={postUrl}>
 			Read more
 			{#snippet icon()}
-						<ArrowRight  />
-					{/snippet}
+				<ArrowRight />
+			{/snippet}
 		</OutlineLink>
 	</p>
 </div>

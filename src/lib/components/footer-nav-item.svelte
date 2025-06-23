@@ -5,16 +5,13 @@
 		exact?: boolean;
 		href: string;
 		target?: HTMLAttributeAnchorTarget | undefined;
-		children?: import('svelte').Snippet;
+		children?: import("svelte").Snippet;
 	}
 
-	let {
-		exact = true,
-		href,
-		target = undefined,
-		children
-	}: Props = $props();
-	let activeUrl = $derived(exact && $page.url.pathname === href ? $page.url.pathname.startsWith(href) : false);
+	let { exact = true, href, target = undefined, children }: Props = $props();
+	let activeUrl = $derived(
+		exact && $page.url.pathname === href ? $page.url.pathname.startsWith(href) : false
+	);
 </script>
 
 <li>

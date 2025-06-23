@@ -35,7 +35,7 @@
 	<OutlineLink href={postLink}>
 		Read more
 		{#snippet icon()}
-				<ArrowRight  />
-			{/snippet}
+			<ArrowRight />
+		{/snippet}
 	</OutlineLink>
 </section>

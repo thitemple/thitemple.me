@@ -5,7 +5,7 @@
 	interface Props {
 		href: string;
 		target?: HTMLAttributeAnchorTarget | undefined;
-		children?: import('svelte').Snippet;
+		children?: import("svelte").Snippet;
 	}
 
 	let { href, target = undefined, children }: Props = $props();

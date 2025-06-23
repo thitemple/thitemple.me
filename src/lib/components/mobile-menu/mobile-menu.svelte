@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { run, self } from 'svelte/legacy';
+	import { run, self } from "svelte/legacy";
 
 	import Toggle from "../toggle.svelte";
 	import MobileNavItem from "./mobile-nav-item.svelte";

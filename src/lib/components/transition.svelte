@@ -3,7 +3,7 @@
 
 	interface Props {
 		url?: string;
-		children?: import('svelte').Snippet;
+		children?: import("svelte").Snippet;
 	}
 
 	let { url = "", children }: Props = $props();

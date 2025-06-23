@@ -1,8 +1,8 @@
 <script lang="ts">
 	interface Props {
 		href: string;
-		children?: import('svelte').Snippet;
-		icon?: import('svelte').Snippet;
+		children?: import("svelte").Snippet;
+		icon?: import("svelte").Snippet;
 	}
 
 	let { href, children, icon }: Props = $props();

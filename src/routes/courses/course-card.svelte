@@ -8,12 +8,7 @@
 		url: string;
 	}
 
-	let {
-		image,
-		title,
-		description,
-		url
-	}: Props = $props();
+	let { image, title, description, url }: Props = $props();
 </script>
 
 <div
@@ -25,7 +20,7 @@
 	<OutlineLink href={url}>
 		Enroll
 		{#snippet icon()}
-				<ArrowRight  />
-			{/snippet}
+			<ArrowRight />
+		{/snippet}
 	</OutlineLink>
 </div>
