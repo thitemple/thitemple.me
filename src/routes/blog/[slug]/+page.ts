@@ -7,7 +7,7 @@ export async function load({ params }) {
 		const post = await import(`../../../posts/${params.slug}/index.md`);
 
 		if (!post.metadata) {
-			throw error(404, `Could not find post: ${params.slug}`);
+			error(404, `Could not find post: ${params.slug}`);
 		}
 
 		const url = `${config.url}/blog/${params.slug}`;
@@ -23,6 +23,6 @@ export async function load({ params }) {
 		};
 	} catch (e) {
 		console.error("Error getting the post", e);
-		throw error(404, `Could not find post ${params.slug}`);
+		error(404, `Could not find post ${params.slug}`);
 	}
 }
