@@ -1,10 +1,20 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import type { HTMLAttributeAnchorTarget } from "svelte/elements";
-	export let exact = true;
-	export let href: string;
-	export let target: HTMLAttributeAnchorTarget | undefined = undefined;
-	$: activeUrl = exact && $page.url.pathname === href ? $page.url.pathname.startsWith(href) : false;
+	interface Props {
+		exact?: boolean;
+		href: string;
+		target?: HTMLAttributeAnchorTarget | undefined;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		exact = true,
+		href,
+		target = undefined,
+		children
+	}: Props = $props();
+	let activeUrl = $derived(exact && $page.url.pathname === href ? $page.url.pathname.startsWith(href) : false);
 </script>
 
 <li>
@@ -12,12 +22,12 @@
 		<span
 			class="text-slate-400 hover:cursor-default hover:text-slate-400 hover:no-underline dark:text-slate-500 dark:hover:text-slate-500"
 		>
-			<slot />
+			{@render children?.()}
 		</span>
 	{:else}
 		<a
 			{href}
-			on:click={(e) => {
+			onclick={(e) => {
 				if (activeUrl) {
 					e.preventDefault();
 				}
@@ -26,7 +36,7 @@
 			aria-disabled={activeUrl}
 			class="text-slate-700 hover:text-violet-500 hover:underline dark:text-slate-200 dark:hover:text-pink-300"
 		>
-			<slot />
+			{@render children?.()}
 		</a>
 	{/if}
 </li>

@@ -2,9 +2,14 @@
 	import { page } from "$app/stores";
 	import { cn } from "$lib/utils";
 	import type { HTMLAttributeAnchorTarget } from "svelte/elements";
-	export let href: string;
-	export let target: HTMLAttributeAnchorTarget | undefined = undefined;
-	$: activeUrl = $page.url.pathname.startsWith(href);
+	interface Props {
+		href: string;
+		target?: HTMLAttributeAnchorTarget | undefined;
+		children?: import('svelte').Snippet;
+	}
+
+	let { href, target = undefined, children }: Props = $props();
+	let activeUrl = $derived($page.url.pathname.startsWith(href));
 </script>
 
 <li class="group flex flex-col">
@@ -15,7 +20,7 @@
 			"dark:group-hover:text-slate-400": !activeUrl
 		})}
 	>
-		<slot />
+		{@render children?.()}
 	</a>
 	<div
 		class={cn("h-[2px] w-full bg-transparent transition-colors duration-300 ", {

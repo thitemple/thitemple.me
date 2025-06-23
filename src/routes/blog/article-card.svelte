@@ -5,8 +5,12 @@
 	import { cn } from "$lib/utils";
 	import { ArrowRight } from "lucide-svelte";
 
-	export let post: Post;
-	export let featured = false;
+	interface Props {
+		post: Post;
+		featured?: boolean;
+	}
+
+	let { post, featured = false }: Props = $props();
 
 	const shouldShowBanner = post.cover && !featured;
 	const hasFeaturedBanner = post.cover && featured;
@@ -51,7 +55,9 @@
 	<p class="md:self-center lg:self-start">
 		<OutlineLink href={postUrl}>
 			Read more
-			<ArrowRight slot="icon" />
+			{#snippet icon()}
+						<ArrowRight  />
+					{/snippet}
 		</OutlineLink>
 	</p>
 </div>

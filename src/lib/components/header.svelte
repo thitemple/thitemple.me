@@ -8,7 +8,7 @@
 	import MobileMenu from "./mobile-menu";
 	import NavItem from "./nav-item.svelte";
 
-	let dialogOpened = false;
+	let dialogOpened = $state(false);
 </script>
 
 <nav class="relative flex items-center justify-between py-5 lg:py-8">
@@ -41,7 +41,7 @@
 	<button
 		title="Toggle mobile menu"
 		class="bg-transparent text-slate-800 lg:hidden dark:text-slate-200"
-		on:click={() => (dialogOpened = true)}
+		onclick={() => (dialogOpened = true)}
 	>
 		<Menu size={32} />
 	</button>

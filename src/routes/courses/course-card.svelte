@@ -1,10 +1,19 @@
 <script lang="ts">
 	import { ArrowRight } from "lucide-svelte";
 	import OutlineLink from "$lib/components/outline-link.svelte";
-	export let image: string;
-	export let title: string;
-	export let description: string;
-	export let url: string;
+	interface Props {
+		image: string;
+		title: string;
+		description: string;
+		url: string;
+	}
+
+	let {
+		image,
+		title,
+		description,
+		url
+	}: Props = $props();
 </script>
 
 <div
@@ -15,6 +24,8 @@
 	<p class="flex-1">{description}</p>
 	<OutlineLink href={url}>
 		Enroll
-		<ArrowRight slot="icon" />
+		{#snippet icon()}
+				<ArrowRight  />
+			{/snippet}
 	</OutlineLink>
 </div>

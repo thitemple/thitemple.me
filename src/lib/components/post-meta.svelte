@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { formatDate } from "$lib/utils";
 
-	export let date: string;
-	export let readTime: number;
+	interface Props {
+		date: string;
+		readTime: number;
+	}
+
+	let { date, readTime }: Props = $props();
 </script>
 
 <span>

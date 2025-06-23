@@ -4,7 +4,7 @@
 	import Experience from "./experience.svelte";
 	import Hero from "./hero.svelte";
 	import LatestPost from "./latest-post.svelte";
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>

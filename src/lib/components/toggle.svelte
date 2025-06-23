@@ -4,7 +4,7 @@
 	import { theme, toggleTheme } from "$lib/stores/theme";
 </script>
 
-<button on:click={toggleTheme} aria-label="Toggle theme" class="text-slate-700 dark:text-slate-300">
+<button onclick={toggleTheme} aria-label="Toggle theme" class="text-slate-700 dark:text-slate-300">
 	{#if $theme === "dark"}
 		<div in:fly={{ y: 10 }} class="flex gap-2">
 			<Sun />

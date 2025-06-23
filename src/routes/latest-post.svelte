@@ -4,7 +4,11 @@
 	import type { Post } from "$lib/types";
 	import OutlineLink from "$lib/components/outline-link.svelte";
 
-	export let post: Post;
+	interface Props {
+		post: Post;
+	}
+
+	let { post }: Props = $props();
 
 	let postLink = `/blog/${post.slug}`;
 </script>
@@ -30,6 +34,8 @@
 	</p>
 	<OutlineLink href={postLink}>
 		Read more
-		<ArrowRight slot="icon" />
+		{#snippet icon()}
+				<ArrowRight  />
+			{/snippet}
 	</OutlineLink>
 </section>

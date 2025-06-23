@@ -1,32 +1,40 @@
 <script lang="ts">
+	import { run, self } from 'svelte/legacy';
+
 	import Toggle from "../toggle.svelte";
 	import MobileNavItem from "./mobile-nav-item.svelte";
 
-	export let open = false;
-
-	let dialog: HTMLDialogElement;
-
-	$: if (dialog && open) {
-		dialog.showModal();
+	interface Props {
+		open?: boolean;
 	}
+
+	let { open = $bindable(false) }: Props = $props();
+
+	let dialog: HTMLDialogElement = $state();
+
+	run(() => {
+		if (dialog && open) {
+			dialog.showModal();
+		}
+	});
 
 	function handleClose() {
 		dialog.close();
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <dialog
 	bind:this={dialog}
-	on:click|self={handleClose}
-	on:close={() => (open = false)}
+	onclick={self(handleClose)}
+	onclose={() => (open = false)}
 	class="z-50 w-5/6 rounded-2xl bg-slate-100 px-4 py-6 backdrop:bg-gray-900/50 backdrop:backdrop-blur-xs dark:bg-violet-700"
 >
 	<div>
 		<header class="flex justify-between text-slate-500 dark:text-slate-200">
 			<h2>Navigation</h2>
-			<button on:click={handleClose}>
+			<button onclick={handleClose}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"

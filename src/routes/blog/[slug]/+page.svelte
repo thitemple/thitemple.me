@@ -3,7 +3,7 @@
 	import Title from "$lib/components/title.svelte";
 	import { formatDate } from "$lib/utils.js";
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -50,6 +50,6 @@
 	</div>
 
 	<div class="prose prose-slate dark:prose-invert overflow-hidden">
-		<svelte:component this={data.content} />
+		<data.content />
 	</div>
 </article>

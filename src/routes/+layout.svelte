@@ -6,7 +6,7 @@
 	import Footer from "$lib/components/footer.svelte";
 	import PageTransition from "$lib/components/transition.svelte";
 
-	export let data;
+	let { data, children } = $props();
 </script>
 
 <svelte:head>
@@ -19,7 +19,7 @@
 	<Header />
 	<main class="my-2 lg:my-16">
 		<PageTransition url={data.url}>
-			<slot />
+			{@render children?.()}
 		</PageTransition>
 	</main>
 	<Footer />

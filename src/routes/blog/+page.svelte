@@ -6,7 +6,7 @@
 	import ArticleCard from "./article-card.svelte";
 	import { cn } from "$lib/utils";
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <svelte:head>
