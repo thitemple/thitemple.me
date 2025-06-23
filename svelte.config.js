@@ -1,13 +1,17 @@
 import adapter from "@sveltejs/adapter-vercel";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 
 import { mdsvex } from "mdsvex";
 // import { mdsvex, escapeSvelte } from "mdsvex";
 // import shiki from "shiki";
-import remarkUnwrapImages from "remark-unwrap-images";
 import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import relativeImages from "mdsvex-relative-images";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('mdsvex').MdsvexCompileOptions} */
 const mdsxvexOptions = {
@@ -20,10 +24,10 @@ const mdsxvexOptions = {
 	// 	}
 	// },
 	layout: {
-		_: "./src/mdsvex.svelte"
+		_: resolve(__dirname, "src/mdsvex.svelte")
 	},
-	remarkPlugins: [remarkUnwrapImages, [remarkToc, { tight: true }], relativeImages],
-	rehypePlugins: [rehypeSlug]
+	remarkPlugins: [[remarkToc, { tight: true }], relativeImages],
+	rehypePlugins: [rehypeSlug, rehypeUnwrapImages]
 };
 
 /** @type {import('@sveltejs/kit').Config} */

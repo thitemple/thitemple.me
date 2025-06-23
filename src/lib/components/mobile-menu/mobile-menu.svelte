@@ -10,7 +10,7 @@
 
 	let { open = $bindable(false) }: Props = $props();
 
-	let dialog: HTMLDialogElement = $state();
+	let dialog: HTMLDialogElement | undefined = $state();
 
 	run(() => {
 		if (dialog && open) {
@@ -19,7 +19,9 @@
 	});
 
 	function handleClose() {
-		dialog.close();
+		if (dialog) {
+			dialog.close();
+		}
 	}
 </script>
 
@@ -34,7 +36,7 @@
 	<div>
 		<header class="flex justify-between text-slate-500 dark:text-slate-200">
 			<h2>Navigation</h2>
-			<button onclick={handleClose}>
+			<button onclick={handleClose} aria-label="Close navigation menu">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -48,10 +50,10 @@
 			</button>
 		</header>
 		<ul class="mt-6 flex flex-col text-lg text-slate-600 dark:text-slate-200">
-			<MobileNavItem on:click={handleClose} to="/">Home</MobileNavItem>
-			<MobileNavItem on:click={handleClose} to="/blog">Blog</MobileNavItem>
-			<MobileNavItem on:click={handleClose} to="/courses">Courses</MobileNavItem>
-			<MobileNavItem on:click={handleClose} to="/about">About</MobileNavItem>
+			<MobileNavItem onclick={handleClose} to="/">Home</MobileNavItem>
+			<MobileNavItem onclick={handleClose} to="/blog">Blog</MobileNavItem>
+			<MobileNavItem onclick={handleClose} to="/courses">Courses</MobileNavItem>
+			<MobileNavItem onclick={handleClose} to="/about">About</MobileNavItem>
 			<li
 				class="border-b border-slate-200 py-4 last:border-0 focus:bg-slate-300 dark:focus:bg-violet-500"
 			>
