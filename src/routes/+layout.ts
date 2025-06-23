@@ -1,7 +1,7 @@
 import { dev } from "$app/environment";
-import { inject } from "@vercel/analytics";
+import { injectAnalytics } from "@vercel/analytics/sveltekit";
 
-inject({ mode: dev ? "development" : "production" });
+injectAnalytics({ mode: dev ? "development" : "production" });
 
 export async function load({ url }) {
 	return {
