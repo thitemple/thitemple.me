@@ -1,0 +1,68 @@
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "The Coding Temple logo":
+    - /url: /
+    - img "The Coding Temple logo"
+  - list:
+    - listitem:
+      - link "Blog":
+        - /url: /blog
+    - listitem:
+      - link "Courses":
+        - /url: /courses
+    - listitem:
+      - link "About":
+        - /url: /about
+  - button "Toggle theme":
+    - img
+    - text: Light
+- main:
+  - heading "Hi, I'm Thiago Temple. I love building products, writing code and learning through it." [level=1]
+  - paragraph: I'm a web-loving staff developer, driven by curiosity and a passion for learning. I'm eager to share my knowledge and always up for new challenges. With a friendly and open-minded approach, I embrace the ever-evolving world of web technologies, staying ahead of the game and inspiring others along the way.
+  - link "Real Immutable Types With TypeScript":
+    - /url: /blog/real-immutable-types-with-typescript
+    - heading "Real Immutable Types With TypeScript" [level=2]
+  - img "Thumbnail for Real Immutable Types With TypeScript"
+  - paragraph: "Discover a simple, library-free method to create immutable objects in TypeScript. Learn about the `Immutable` type, its advantages over the built-in Readonly type, and its limitations at runtime."
+  - paragraph: Mar 7, 2020 • 2 mins read
+  - link "Read more":
+    - /url: /blog/real-immutable-types-with-typescript
+    - text: Read more
+    - img
+  - heading "Experience" [level=2]
+  - paragraph: I'm a seasoned Staff Software Developer at Shopify, skilled in TypeScript, Elm, JavaScript, and React. With a career spanning over two decades, I've led impactful projects, pioneered the adoption of TypeScript at SurveyMonkey, and developed innovative web and mobile applications. I'm a tech-savvy problem solver and a relentless learner.
+  - list:
+    - listitem:
+      - img "Shopify logo"
+      - text: Shopify Staff Developer 2022 - now
+    - listitem:
+      - img "SurveyMonkey logo"
+      - text: SurveyMonkey Senior Developer 2019 - 2022
+    - listitem:
+      - img "Wyhn logo"
+      - text: Wyhn Senior Developer 2018 - 2018
+    - listitem:
+      - img "Kinaxis logo"
+      - text: Kinaxis Advisory Developer 2017 - 2018
+  - heading "About" [level=2]
+  - img "Thiago Temple"
+  - paragraph: As a software engineer based in Ottawa, Canada, I'm passionate about web and mobile technologies. I've always been captivated by the ever-evolving world of tech, and I love sharing my learning journey on my blog. When I'm not immersed in code, you'll find me enjoying board games, diving into a good book, or spending quality time with my family. It's all about balance!
+  - heading "Passions" [level=2]
+  - img "Board game collection"
+  - paragraph: Outside of the tech world, I have a deep love for board games and have been building a growing collection. I'm also a fan of various TV shows and always have at least one book on the go. But above all, spending time with my family is my favorite pastime. Life's all about enjoying these simple pleasures!
+- contentinfo:
+  - list:
+    - listitem: Home
+    - listitem:
+      - link "Blog":
+        - /url: /blog
+    - listitem:
+      - link "Courses":
+        - /url: /courses
+    - listitem:
+      - link "About":
+        - /url: /about
+  - paragraph: The Coding Temple © 2025
+```
