@@ -2,7 +2,7 @@ import { getPosts } from "$lib/posts";
 
 export const prerender = true;
 
-const BASE_URL = "thecodingtemple.dev";
+const BASE_URL = "https://thitemple.me";
 const navbar = [
 	{ to: "/blog", text: "Blog" },
 	{ to: "/courses", text: "Courses" },

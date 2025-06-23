@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://thecodingtemple.dev/sitemap.xml
+Sitemap: https://thitemple.me/sitemap.xml
