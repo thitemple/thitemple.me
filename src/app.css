@@ -1,0 +1,63 @@
+/* ── Fonts ────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Tailwind v4 core ─────────────────────────────────────────────── */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ── Design-tokens pulled from the prototype ──────────────────────── */
+:root {
+  /* core gradient (logo / text highlights) */
+  --grad-1: #667eea;   /* indigo-400  */
+  --grad-2: #764ba2;   /* purple-600  */
+  --grad-3: #f093fb;   /* fuchsia-300 */
+
+  /* accent (borders / secondary button / hover) */
+  --accent: #a855f7;   /* purple-500 */
+
+  /* button rainbow stops */
+  --btn-1: #7c3aed;    /* violet-600  */
+  --btn-2: #3b82f6;    /* blue-500    */
+  --btn-3: #8b5cf6;    /* violet-500  */
+  --btn-4: #ec4899;    /* rose-500    */
+
+  /* backgrounds */
+  --bg-deep: #0f172a;  /* slate-950   */
+  
+  /* font families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-grotesk: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Helpers & small components ───────────────────────────────────── */
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-[var(--grad-1)] via-[var(--grad-2)] to-[var(--grad-3)]
+           bg-clip-text text-transparent;
+  }
+
+  .card-glass {
+    @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-xl rounded-3xl;
+  }
+
+  .btn-primary {
+    background-image: linear-gradient(135deg,
+      var(--btn-1) 0%, var(--btn-2) 25%, var(--btn-3) 50%, var(--btn-4) 75%, var(--btn-1) 100%);
+    @apply inline-block px-8 py-4 rounded-xl font-semibold text-lg text-white shadow-lg
+           transition-transform hover:-translate-y-0.5;
+  }
+}
+
+/* ── Base styles ──────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-sans);
+}
+
+.font-grotesk {
+  font-family: var(--font-grotesk) !important;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}

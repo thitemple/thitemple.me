@@ -1,4 +1,3 @@
-import { error } from "@sveltejs/kit";
 import type { PaginatedPosts } from "./api/posts/types.js";
 
 export async function load({ fetch }) {
@@ -9,5 +8,5 @@ export async function load({ fetch }) {
 		return { post: posts.data[0] };
 	}
 
-	return error(404, "No posts found");
+	return { post: null };
 }

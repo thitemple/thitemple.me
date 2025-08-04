@@ -3,9 +3,8 @@ import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { fileURLToPath } from "url";
 import { dirname, resolve } from "path";
 
-import { mdsvex } from "mdsvex";
-// import { mdsvex, escapeSvelte } from "mdsvex";
-// import shiki from "shiki";
+import { mdsvex, escapeSvelte } from "mdsvex";
+import { createHighlighter } from "shiki";
 import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeUnwrapImages from "rehype-unwrap-images";
@@ -16,13 +15,19 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 /** @type {import('mdsvex').MdsvexCompileOptions} */
 const mdsxvexOptions = {
 	extensions: [".md"],
-	// highlight: {
-	// 	highlighter: async (code, lang = "text") => {
-	// 		const highlighter = await shiki.getHighlighter({ theme: "dracula" });
-	// 		const html = escapeSvelte(highlighter.codeToHtml(code, { lang }));
-	// 		return `{@html \`${html}\`}`;
-	// 	}
-	// },
+	highlight: {
+		highlighter: async (code, lang = "text") => {
+			const highlighter = await createHighlighter({ 
+				themes: ["dracula"],
+				langs: [lang]
+			});
+			const html = escapeSvelte(highlighter.codeToHtml(code, { 
+				lang,
+				theme: "dracula"
+			}));
+			return `{@html \`${html}\`}`;
+		}
+	},
 	layout: {
 		_: resolve(__dirname, "src/mdsvex.svelte")
 	},
