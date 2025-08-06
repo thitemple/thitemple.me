@@ -52,7 +52,6 @@
 		<ul class="mt-6 flex flex-col text-lg text-slate-600 dark:text-slate-200">
 			<MobileNavItem onclick={handleClose} to="/">Home</MobileNavItem>
 			<MobileNavItem onclick={handleClose} to="/blog">Blog</MobileNavItem>
-			<MobileNavItem onclick={handleClose} to="/courses">Courses</MobileNavItem>
 			<MobileNavItem onclick={handleClose} to="/about">About</MobileNavItem>
 			<li
 				class="border-b border-slate-200 py-4 last:border-0 focus:bg-slate-300 dark:focus:bg-violet-500"

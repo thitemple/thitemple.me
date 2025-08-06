@@ -7,6 +7,16 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	interface Window {
+		ml?: {
+			(command: string, type: string, options?: any): void;
+			fn?: {
+				renderEmbeddedForm?: (data: any) => void;
+				jsonpRequest?: (url: string, callback: (data: any) => void) => void;
+			};
+		};
+	}
 }
 
 export {};

@@ -5,7 +5,6 @@ export const prerender = true;
 const BASE_URL = "https://thitemple.me";
 const navbar = [
 	{ to: "/blog", text: "Blog" },
-	{ to: "/courses", text: "Courses" },
 	{ to: "/about", text: "About" }
 ];
 

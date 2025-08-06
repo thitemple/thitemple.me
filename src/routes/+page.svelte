@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MailerLiteForm from "$lib/components/MailerLiteForm.svelte";
 	import bggLogo from "$lib/assets/img/bgg-rankings-logo.png";
 	import partyayLogo from "$lib/assets/img/partyay-logo.png";
 </script>
@@ -30,15 +31,15 @@
 
 	<!-- Profile card -->
 	<aside class="card-glass w-full max-w-sm flex-1 p-10 text-center">
-		<div
+		<img
+			src="/thiago-temple.jpeg"
+			alt="Thiago Temple"
 			class="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full border-4 border-white/10
              bg-[linear-gradient(135deg,var(--grad-1)_0%,var(--grad-2)_25%,var(--grad-3)_50%,#8b5cf6_75%,#ec4899_100%)]
              text-5xl font-extrabold shadow-md"
-		>
-			TT
-		</div>
+		/>
+
 		<h3 class="font-grotesk text-2xl font-bold">Thiago Temple</h3>
-		<p class="mt-1 font-medium text-[var(--accent)]">Staff Developer @ Shopify</p>
 
 		<blockquote class="mt-5 leading-relaxed text-slate-300 italic">
 			"After 25+ years in development, I've learned that perfect solutions don't exist — but smart
@@ -95,7 +96,7 @@
 </section>
 
 <!-- ─── Newsletter Section ─────────────────────────────────────────── -->
-<section id="newsletter" class="py-16 md:py-32">
+<section id="newsletter" class="py-16 md:py-28">
 	<div class="mx-auto max-w-7xl px-6">
 		<div class="mx-auto max-w-2xl text-center">
 			<h2 class="gradient-text font-grotesk mb-6 text-4xl font-extrabold lg:text-5xl">
@@ -107,14 +108,14 @@
 
 			<div class="card-glass mx-auto max-w-md p-4 md:p-8">
 				<!-- MailerLite embedded form -->
-				<div class="ml-embedded" data-form="N9q1vl"></div>
+				<MailerLiteForm formId="N9q1vl" />
 			</div>
 		</div>
 	</div>
 </section>
 
 <!-- ─── Projects Section ───────────────────────────────────────────── -->
-<section id="work" class="py-16 md:py-32">
+<section id="work" class="py-16 md:py-28">
 	<div class="mx-auto max-w-7xl px-6">
 		<h2 class="gradient-text font-grotesk mb-16 text-center text-5xl font-extrabold lg:text-6xl">
 			Recent Projects
