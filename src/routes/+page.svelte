@@ -2,6 +2,15 @@
 	import MailerLiteForm from "$lib/components/MailerLiteForm.svelte";
 	import bggLogo from "$lib/assets/img/bgg-rankings-logo.png";
 	import partyayLogo from "$lib/assets/img/partyay-logo.png";
+	import { afterNavigate } from '$app/navigation';
+	
+	// Create a key that changes after navigation
+	let componentKey = Date.now();
+	
+	afterNavigate(() => {
+		// Force component to remount after navigation
+		componentKey = Date.now();
+	});
 </script>
 
 <!-- ─── Hero ──────────────────────────────────────────────────────── -->
@@ -11,13 +20,12 @@
 	<!-- Copy (kept exactly as prototype) -->
 	<div class="max-w-xl flex-1 space-y-12 text-center lg:text-left">
 		<p class="text-4xl leading-snug font-medium text-slate-100 lg:text-5xl">
-			I help busy developers build <span class="gradient-text">meaningful solutions</span>
-			efficiently.<br />
-			No midnight oil required.
+			I'm figuring out how to build meaningful stuff while juggling work, family, and life. Come
+			along.
 		</p>
 
 		<div class="flex flex-col gap-6 sm:flex-row sm:justify-center lg:justify-start">
-			<a href="/blog" class="btn-primary">Start Reading</a>
+			<a href="/blog" class="btn-primary">Read the blog</a>
 			<a
 				href="#work"
 				class="inline-block rounded-xl border-2 border-[var(--accent)] px-8 py-4 text-lg
@@ -42,8 +50,8 @@
 		<h3 class="font-grotesk text-2xl font-bold">Thiago Temple</h3>
 
 		<blockquote class="mt-5 leading-relaxed text-slate-300 italic">
-			"After 25+ years in development, I've learned that perfect solutions don't exist — but smart
-			trade-offs do."
+			"25+ years in, and I'm still learning something new every project. Turns out that's the best
+			part."
 		</blockquote>
 	</aside>
 
@@ -70,16 +78,14 @@
 
 		<div class="mx-auto max-w-4xl text-center">
 			<p class="mb-8 text-xl leading-relaxed text-slate-300">
-				I'm a Brazilian-Canadian full-stack developer, father of three, and Staff Developer at
-				Shopify. After 25+ years in tech, I've learned that <strong class="font-semibold text-white"
-					>perfect solutions don't exist</strong
-				>
-				— but smart trade-offs do.
+				I’m a Canada‑based developer and dad of three. After 25+ years in tech, I’ve learned that <strong
+					class="font-semibold text-white">perfect solutions don’t exist</strong
+				> — but smart trade‑offs do.
 			</p>
 
 			<p class="mb-12 text-xl leading-relaxed text-slate-300">
-				I share practical insights about AI-augmented development, rapid prototyping, and building
-				meaningful solutions when you can't burn the midnight oil anymore.
+				I’m learning in public: AI-assisted development, rapid prototyping, and shipping small,
+				useful things in a few hours a week.
 			</p>
 
 			<div
@@ -87,8 +93,8 @@
 			>
 				<h4 class="mb-4 font-mono text-2xl font-bold text-white">My Mission</h4>
 				<p class="text-lg leading-relaxed text-slate-300">
-					Help developers build meaningful solutions efficiently by sharing lessons learned from
-					real projects with real constraints.
+					Share what I’m learning from real projects with real constraints—so you can skip a
+					mistake, try an idea sooner, and I can look back proud of the path.
 				</p>
 			</div>
 		</div>
@@ -103,12 +109,14 @@
 				Stay Connected
 			</h2>
 			<p class="mb-12 text-xl leading-relaxed text-slate-300">
-				No spam, just updates and thoughts from my corner of the internet.
+				A short update every other week with the latest post and what I’m tinkering with. No spam.
 			</p>
 
 			<div class="card-glass mx-auto max-w-md p-4 md:p-8">
 				<!-- MailerLite embedded form -->
-				<MailerLiteForm formId="N9q1vl" />
+				{#key componentKey}
+					<MailerLiteForm />
+				{/key}
 			</div>
 		</div>
 	</div>
@@ -118,7 +126,7 @@
 <section id="work" class="py-16 md:py-28">
 	<div class="mx-auto max-w-7xl px-6">
 		<h2 class="gradient-text font-grotesk mb-16 text-center text-5xl font-extrabold lg:text-6xl">
-			Recent Projects
+			Projects
 		</h2>
 
 		<div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-2">
@@ -127,62 +135,63 @@
 				href="https://www.bggrankings.app"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-8 transition-all hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
+				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
 			>
-				<div
-					class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-fuchsia-600/8 to-violet-600/8 opacity-0 transition-opacity group-hover:opacity-100"
-				></div>
-				<div
-					class="relative z-10 mb-6 flex h-32 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600/40 via-pink-600/40 to-fuchsia-600/40 p-6 shadow-[0_0_30px_rgba(103,126,234,0.3)]"
-				>
-					<img src={bggLogo} alt="BGG Rankings logo" class="h-full w-full object-contain" />
-				</div>
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">BGG Rankings</h3>
-				<p class="mb-6 leading-relaxed text-slate-400">
-					Built in 30 days for the solo gaming community. A ranking app using SvelteKit and
-					Postgres.
-				</p>
-				<div class="flex flex-wrap gap-2">
-					<span
-						class="rounded-full bg-[var(--accent)]/20 px-4 py-1.5 text-sm font-medium text-purple-300"
-					>
-						SvelteKit
-					</span>
-					<span
-						class="rounded-full bg-[var(--accent)]/20 px-4 py-1.5 text-sm font-medium text-purple-300"
-					>
-						Postgres
-					</span>
-					<span class="rounded-full bg-blue-600/20 px-4 py-1.5 text-sm font-medium text-blue-300">
-						Live
-					</span>
+				<div class="relative flex h-full flex-col overflow-hidden rounded-xl">
+					<div class="relative">
+						<img
+							src={bggLogo}
+							alt="BGG Rankings"
+							class="aspect-[16/9] w-full object-cover object-center opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+						/>
+					</div>
+
+					<div class="flex flex-1 flex-col p-6">
+						<h3 class="font-grotesk mb-2 text-2xl font-bold text-white">BGG Rankings</h3>
+						<p class="mb-4 text-slate-300">
+							Explore BoardGameGeek rankings with clean visuals and practical insights.
+						</p>
+
+						<div class="mt-auto flex items-center gap-3">
+							<span
+								class="inline-flex items-center rounded-full bg-[var(--accent)]/10 px-3 py-1 text-sm font-medium text-[var(--accent)]"
+								>Live</span
+							>
+						</div>
+					</div>
 				</div>
 			</a>
 
 			<!-- Project Card 2 - Partyay -->
 			<a
-				href="https://partyay.com"
+				href="https://www.partyay.app"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-8 transition-all hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
+				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
 			>
-				<div
-					class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-blue-600/8 to-violet-600/8 opacity-0 transition-opacity group-hover:opacity-100"
-				></div>
-				<div
-					class="relative z-10 mb-6 flex h-32 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent)]/40 via-blue-500/40 to-violet-500/40 p-6 shadow-[0_0_30px_rgba(168,85,247,0.3)]"
-				>
-					<img src={partyayLogo} alt="Partyay logo" class="h-full w-full object-contain" />
-				</div>
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Partyay</h3>
-				<p class="mb-6 leading-relaxed text-slate-400">
-					A fun party planning and event management platform. Making celebrations easier and more
-					memorable.
-				</p>
-				<div class="flex flex-wrap gap-2">
-					<span class="rounded-full bg-blue-600/20 px-4 py-1.5 text-sm font-medium text-blue-300">
-						In Progress
-					</span>
+				<div class="relative flex h-full flex-col overflow-hidden rounded-xl">
+					<div class="relative">
+						<img
+							src={partyayLogo}
+							alt="Partyay"
+							class="aspect-[16/9] w-full object-cover object-center opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+						/>
+					</div>
+
+					<div class="flex flex-1 flex-col p-6">
+						<h3 class="font-grotesk mb-2 text-2xl font-bold text-white">Partyay</h3>
+						<p class="mb-4 text-slate-300">
+							A fun party planning and event management platform. Making celebrations easier and
+							more memorable.
+						</p>
+
+						<div class="mt-auto flex items-center gap-3">
+							<span
+								class="inline-flex items-center rounded-full bg-[var(--accent)]/10 px-3 py-1 text-sm font-medium text-[var(--accent)]"
+								>Live</span
+							>
+						</div>
+					</div>
 				</div>
 			</a>
 		</div>

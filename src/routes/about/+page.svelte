@@ -23,7 +23,7 @@
 		<div class="mx-auto max-w-4xl text-center">
 			<h1 class="gradient-text font-grotesk mb-8 text-5xl font-extrabold lg:text-6xl">About Me</h1>
 			<p class="text-xl leading-relaxed text-slate-300">
-				Learn more about my journey, what drives me, and what I do beyond code.
+				The longer version of who I am and why I'm documenting this journey.
 			</p>
 		</div>
 	</div>
@@ -40,61 +40,65 @@
 				class="mx-auto mb-8 h-48 w-48 rounded-full border-4 border-[var(--accent)]/20 shadow-2xl"
 			/>
 			<h2 class="font-grotesk mb-4 text-3xl font-bold text-white">Hi, I'm Thiago Temple</h2>
-			<p class="text-lg text-slate-300">
-				A Brazilian currently residing and working in Ottawa, Canada. You can reach me on
-				<a href="https://twitter.com/ThiagoTemple" class="text-[var(--accent)] hover:underline"
-					>Twitter</a
-				>
-				or via
-				<a href="mailto:thitemple@gmail.com" class="text-[var(--accent)] hover:underline">email</a>.
-			</p>
+			<p class="text-lg text-slate-300">A Brazilian living in Ottawa, Canada with my family.</p>
 		</div>
 
 		<!-- Content Sections -->
 		<div class="space-y-12">
 			<!-- What I do -->
 			<div class="rounded-2xl border border-white/10 bg-black/30 p-8">
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">What I do?</h3>
+				<h3 class="mb-4 font-mono text-2xl font-bold text-white">What I do</h3>
 				<p class="text-lg leading-relaxed text-slate-300">
-					I am a staff developer at <a
+					I'm a staff developer at <a
 						href="http://shopify.com"
 						class="text-[var(--accent)] hover:underline">Shopify</a
-					>, primarily focused on programming with web-related technologies.
+					>, building web things during the day. After 25+ years of writing code, I'm still finding
+					new ways to break things and (hopefully) fix them better the second time around.
 				</p>
 			</div>
 
 			<!-- Why I do it -->
 			<div class="rounded-2xl border border-white/10 bg-black/30 p-8">
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Why I do it?</h3>
-				<p class="text-lg leading-relaxed text-slate-300">
-					My fascination with computers dates back to the 90s, even before my family purchased our
-					first computer. At the age of 13, I would utilize my neighbor's computer. Today, I am
-					passionate about the art of software development and thrive on the challenge of staying
-					updated with the latest technologies. The constant evolution of technology is a major
-					driving force for me, along with the knowledge that the software I help build contributes
-					to enhancing people's productivity.
-				</p>
+				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Why I do it</h3>
+				<div class="space-y-4 text-lg leading-relaxed text-slate-300">
+					<p>
+						Started messing around with computers in the 90s when I was 13, using my neighbor's
+						machine because we couldn't afford one yet. Something about making the computer do what
+						I wanted just clicked.
+					</p>
+					<p>
+						These days, I love that the stuff I build actually helps people get things done. Sure,
+						staying current with technology keeps me busy, but honestly? I'm just curious about how
+						things work and how to make them work better.
+					</p>
+				</div>
 			</div>
 
 			<!-- Why this blog -->
 			<div class="rounded-2xl border border-white/10 bg-black/30 p-8">
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Why this blog?</h3>
-				<p class="text-lg leading-relaxed text-slate-300">
-					This blog serves as an opportunity for me to practice and reinforce what I am learning. As
-					the saying goes, teaching others is one of the most effective ways to solidify one's
-					understanding. Or even if I am not teaching anyone, I am documenting for my future self.
-					Additionally, I am eager to share the new things I learn and contribute to the community
-					by sharing my experiences.
-				</p>
+				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Why this blog</h3>
+				<div class="space-y-4 text-lg leading-relaxed text-slate-300">
+					<p>
+						Writing things down helps me think. Always has. If I can explain something clearly
+						enough for you to understand, then I probably understand it myself.
+					</p>
+					<p>
+						Plus, future me will thank current me for documenting what I learned and why I made
+						certain decisions. And if someone else benefits from my mistakes along the way, even
+						better.
+					</p>
+				</div>
 			</div>
 
 			<!-- What I do for fun -->
 			<div class="rounded-2xl border border-white/10 bg-black/30 p-8">
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">What I do for fun?</h3>
+				<h3 class="mb-4 font-mono text-2xl font-bold text-white">What I do for fun</h3>
 				<div class="space-y-4 text-lg leading-relaxed text-slate-300">
 					<p>
-						Living in Canada, I have discovered a new passion due to its harsh winters: board games.
-						I now thoroughly enjoy them and have been steadily growing my collection.
+						Canadian winters got me into board games. Who knew? My <a
+							href="https://boardgamegeek.com/user/vintem"
+							class="text-[var(--accent)] hover:underline">collection</a
+						> keeps growing, and I'm okay with that.
 					</p>
 
 					<div class="my-6">
@@ -108,19 +112,14 @@
 					</div>
 
 					<p>
-						Additionally, I indulge in watching a few
-						<a
+						I watch <a
 							href="https://www.tvtime.com/en/user/13947508/profile"
 							class="text-[var(--accent)] hover:underline"
 						>
-							TV shows
+							some TV shows
 						</a>
-						and always have at least one book on the go.
-					</p>
-
-					<p>
-						However, one thing I cherish the most is spending quality time with my family. I am
-						married and a proud father of three kids, as well as the owner of two cuddly greyhounds.
+						and always have a book going. But mostly I hang out with my family—my wife, three kids, and
+						our two greyhounds who think they're lap dogs.
 					</p>
 				</div>
 			</div>
@@ -132,7 +131,7 @@
 		>
 			<h3 class="mb-4 font-mono text-2xl font-bold text-white">Let's Connect!</h3>
 			<p class="mb-6 text-lg text-slate-300">
-				I'm always happy to connect with fellow developers and tech enthusiasts.
+				Always up for chatting with other developers who are figuring things out too.
 			</p>
 
 			<!-- Social Links -->
