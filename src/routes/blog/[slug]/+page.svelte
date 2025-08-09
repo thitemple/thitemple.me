@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as config from "$lib/config";
 	import { formatDate } from "$lib/utils/date-format";
-	import me from "$lib/assets/img/me.jpg";
 
 	let { data } = $props();
 
@@ -15,7 +14,7 @@
 	<meta property="description" content={data.meta.summary} />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
-	<meta property="og:url" content={data.meta.url} />
+	<meta property="og:url" content={`${config.url}${data.url}`} />
 	<meta property="og:description" content={data.meta.summary} />
 	{#if data.cover}
 		<meta property="og:image" content={`${config.url}${data.cover}`} />
@@ -95,7 +94,7 @@
 		{/if}
 
 		<!-- Prose Content -->
-		<div class="prose prose-lg prose-invert mx-auto max-w-none">
+		<div class="mx-auto prose prose-lg max-w-none prose-invert">
 			<data.content />
 		</div>
 	</div>
@@ -109,7 +108,7 @@
 		>
 			<!-- Avatar -->
 			<img
-				src={me}
+				src="/thiago-temple.jpeg"
 				alt="Thiago Temple"
 				class="h-20 w-20 rounded-full border-2 border-[var(--accent)]/20 shadow-xl"
 			/>

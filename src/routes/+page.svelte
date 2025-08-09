@@ -2,11 +2,11 @@
 	import MailerLiteForm from "$lib/components/MailerLiteForm.svelte";
 	import bggLogo from "$lib/assets/img/bgg-rankings-logo.png";
 	import partyayLogo from "$lib/assets/img/partyay-logo.png";
-	import { afterNavigate } from '$app/navigation';
-	
+	import { afterNavigate } from "$app/navigation";
+
 	// Create a key that changes after navigation
 	let componentKey = Date.now();
-	
+
 	afterNavigate(() => {
 		// Force component to remount after navigation
 		componentKey = Date.now();

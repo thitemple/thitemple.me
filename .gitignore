@@ -9,3 +9,12 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vercel
+
+# Testing
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+performance-results.json
+playwright-report/
+vitest.config.*.timestamp-*
