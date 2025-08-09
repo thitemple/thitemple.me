@@ -62,7 +62,7 @@ export default [
 			"@typescript-eslint/no-unused-expressions": "off"
 		}
 	},
-	// TypeScript files in src/ (with project reference)
+	// TypeScript files in src/ (with project reference for type-aware linting)
 	{
 		files: ["src/**/*.ts"],
 		languageOptions: {
@@ -92,7 +92,9 @@ export default [
 			parser: svelteParser,
 			parserOptions: {
 				parser: tsParser,
-				extraFileExtensions: [".svelte"]
+				extraFileExtensions: [".svelte"],
+				sourceType: "module",
+				ecmaVersion: 2020
 			},
 			globals: {
 				...globals.browser,

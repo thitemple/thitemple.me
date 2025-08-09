@@ -10,10 +10,10 @@ declare global {
 
 	interface Window {
 		ml?: {
-			(command: string, type: string, options?: any): void;
+			(command: string, type: string, options?: Record<string, unknown>): void;
 			fn?: {
-				renderEmbeddedForm?: (data: any) => void;
-				jsonpRequest?: (url: string, callback: (data: any) => void) => void;
+				renderEmbeddedForm?: (data: Record<string, unknown>) => void;
+				jsonpRequest?: (url: string, callback: (data: Record<string, unknown>) => void) => void;
 			};
 		};
 	}

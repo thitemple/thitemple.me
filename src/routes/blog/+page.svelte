@@ -8,7 +8,7 @@
 	const postEmojis = ["🚀", "⚡", "🎲", "⚙️", "👨‍👩‍👧‍👦", "🧠", "💡", "🔧", "📱", "🎯"];
 
 	function getPostEmoji(index: number): string {
-		return postEmojis[index % postEmojis.length];
+		return postEmojis[index % postEmojis.length] || "📝";
 	}
 
 	function getReadTime(readTime: number): string {

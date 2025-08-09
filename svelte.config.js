@@ -17,14 +17,16 @@ const mdsxvexOptions = {
 	extensions: [".md"],
 	highlight: {
 		highlighter: async (code, lang = "text") => {
-			const highlighter = await createHighlighter({ 
+			const highlighter = await createHighlighter({
 				themes: ["dracula"],
 				langs: [lang]
 			});
-			const html = escapeSvelte(highlighter.codeToHtml(code, { 
-				lang,
-				theme: "dracula"
-			}));
+			const html = escapeSvelte(
+				highlighter.codeToHtml(code, {
+					lang,
+					theme: "dracula"
+				})
+			);
 			return `{@html \`${html}\`}`;
 		}
 	},
