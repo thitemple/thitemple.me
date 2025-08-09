@@ -138,11 +138,11 @@
 				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
 			>
 				<div class="relative flex h-full flex-col overflow-hidden rounded-xl">
-					<div class="relative">
+					<div class="relative flex aspect-[16/9] items-center justify-center bg-slate-900/50">
 						<img
 							src={bggLogo}
 							alt="BGG Rankings"
-							class="aspect-[16/9] w-full object-cover object-center opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+							class="h-32 w-auto object-contain opacity-90 transition-opacity duration-500 group-hover:opacity-100"
 						/>
 					</div>
 
@@ -170,11 +170,11 @@
 				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
 			>
 				<div class="relative flex h-full flex-col overflow-hidden rounded-xl">
-					<div class="relative">
+					<div class="relative flex aspect-[16/9] items-center justify-center bg-slate-900/50">
 						<img
 							src={partyayLogo}
 							alt="Partyay"
-							class="aspect-[16/9] w-full object-cover object-center opacity-90 transition-opacity duration-500 group-hover:opacity-100"
+							class="h-32 w-auto object-contain opacity-90 transition-opacity duration-500 group-hover:opacity-100"
 						/>
 					</div>
 
