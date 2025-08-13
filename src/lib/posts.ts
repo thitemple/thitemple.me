@@ -3,7 +3,7 @@ import type { Post } from "./types";
 type File = {
 	metadata: Omit<Post, "slug" | "readTime" | "cover">;
 	default: { [key: string]: unknown }; // Svelte 5 component
-	cover?: string;
+	cover?: string; // Cover image exported from the markdown module
 };
 
 export async function getPosts() {

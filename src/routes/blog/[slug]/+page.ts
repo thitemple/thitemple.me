@@ -6,6 +6,7 @@ import type { Component } from "svelte";
 interface PostModule {
 	metadata: Omit<Post, "slug"> & { readTime?: number };
 	default: Component;
+	cover?: string;
 }
 
 export const load: PageLoad = async ({ params, url }) => {
@@ -36,7 +37,7 @@ export const load: PageLoad = async ({ params, url }) => {
 		return {
 			content: matchedPost.default,
 			meta,
-			cover: matchedPost.metadata.cover,
+			cover: matchedPost.cover,
 			url: url.pathname
 		};
 	} catch {

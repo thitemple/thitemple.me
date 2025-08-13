@@ -48,7 +48,7 @@
 </section>
 
 <!-- Blog Posts Section -->
-<section class="pb-32">
+<section class="pt-8 pb-32">
 	<div class="mx-auto max-w-7xl px-6">
 		{#if data.posts.length === 0}
 			<!-- No Posts Message -->
@@ -65,74 +65,75 @@
 			<!-- Posts Grid -->
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 				{#each data.posts as post, idx}
-					<article
-						class="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl"
-					>
-						<!-- Gradient overlay on hover -->
-						<div
-							class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-						></div>
-
-						<!-- Post Image or Emoji -->
-						{#if post.cover}
-							<div class="relative h-48 overflow-hidden">
-								<img
-									src={post.cover}
-									alt={`Cover for ${post.title}`}
-									class="h-full w-full object-cover transition-transform group-hover:scale-105"
-								/>
-							</div>
-						{:else}
+					<a href={`/blog/${post.slug}`} class="group block">
+						<article
+							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl"
+						>
+							<!-- Gradient overlay on hover -->
 							<div
-								class="relative flex h-48 items-center justify-center bg-gradient-to-br from-purple-600/30 via-[var(--accent)]/30 to-transparent text-6xl"
-							>
-								{getPostEmoji(idx)}
-							</div>
-						{/if}
+								class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+							></div>
 
-						<!-- Post Content -->
-						<div class="relative z-10 p-6">
-							<!-- Meta Info -->
-							<div class="mb-4 flex items-center justify-between gap-3 text-sm">
-								<time class="font-mono text-slate-400">{formatDate(post.date)}</time>
-								<span class="font-medium text-[var(--accent)]">{getReadTime(post.readTime)}</span>
-							</div>
-
-							<!-- Title -->
-							<h2 class="font-grotesk mb-3 text-2xl leading-tight font-bold text-white">
-								<a href={`/blog/${post.slug}`} class="transition-colors hover:text-[var(--accent)]">
-									{post.title}
-								</a>
-							</h2>
-
-							<!-- Excerpt -->
-							<p class="mb-5 line-clamp-3 text-base leading-relaxed text-slate-300">
-								{post.summary}
-							</p>
-
-							<!-- Tags -->
-							{#if post.categories && post.categories.length > 0}
-								<div class="mb-5 flex flex-wrap gap-2">
-									{#each post.categories.slice(0, 3) as category}
-										<span
-											class="rounded-full bg-[var(--accent)]/20 px-3 py-1 text-xs font-medium text-purple-300"
-										>
-											{category}
-										</span>
-									{/each}
+							<!-- Post Image or Emoji -->
+							{#if post.cover}
+								<div class="relative h-48 overflow-hidden">
+									<img
+										src={post.cover}
+										alt={`Cover for ${post.title}`}
+										class="h-full w-full object-cover transition-transform group-hover:scale-105"
+									/>
+								</div>
+							{:else}
+								<div
+									class="relative flex h-48 items-center justify-center bg-gradient-to-br from-purple-600/30 via-[var(--accent)]/30 to-transparent text-6xl"
+								>
+									{getPostEmoji(idx)}
 								</div>
 							{/if}
 
-							<!-- Read More Link -->
-							<a
-								href={`/blog/${post.slug}`}
-								class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-colors hover:text-purple-300"
-							>
-								Read full post
-								<span class="transition-transform group-hover:translate-x-1">→</span>
-							</a>
-						</div>
-					</article>
+							<!-- Post Content -->
+							<div class="relative z-10 p-6">
+								<!-- Meta Info -->
+								<div class="mb-4 flex items-center justify-between gap-3 text-sm">
+									<time class="font-mono text-slate-400">{formatDate(post.date)}</time>
+									<span class="font-medium text-[var(--accent)]">{getReadTime(post.readTime)}</span>
+								</div>
+
+								<!-- Title -->
+								<h2
+									class="font-grotesk mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
+								>
+									{post.title}
+								</h2>
+
+								<!-- Excerpt -->
+								<p class="mb-5 line-clamp-3 text-base leading-relaxed text-slate-300">
+									{post.summary}
+								</p>
+
+								<!-- Tags -->
+								{#if post.categories && post.categories.length > 0}
+									<div class="mb-5 flex flex-wrap gap-2">
+										{#each post.categories.slice(0, 3) as category}
+											<span
+												class="rounded-full bg-[var(--accent)]/20 px-3 py-1 text-xs font-medium text-purple-300"
+											>
+												{category}
+											</span>
+										{/each}
+									</div>
+								{/if}
+
+								<!-- Read More Link -->
+								<span
+									class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-colors group-hover:text-purple-300"
+								>
+									Read full post
+									<span class="transition-transform group-hover:translate-x-1">→</span>
+								</span>
+							</div>
+						</article>
+					</a>
 				{/each}
 			</div>
 		{/if}

@@ -3,14 +3,17 @@
 	import bggLogo from "$lib/assets/img/bgg-rankings-logo.png";
 	import partyayLogo from "$lib/assets/img/partyay-logo.png";
 	import { afterNavigate } from "$app/navigation";
+	import { formatDate } from "$lib/utils/date-format";
 
 	// Create a key that changes after navigation
-	let componentKey = Date.now();
+	let componentKey = $state(Date.now());
 
 	afterNavigate(() => {
 		// Force component to remount after navigation
 		componentKey = Date.now();
 	});
+
+	let { data } = $props();
 </script>
 
 <!-- ─── Hero ──────────────────────────────────────────────────────── -->
@@ -100,6 +103,72 @@
 		</div>
 	</div>
 </section>
+
+<!-- ─── Blog Section ────────────────────────────────────────────────── -->
+{#if data.post}
+	<section id="blog" class="py-16 md:py-28">
+		<div class="mx-auto max-w-7xl px-6">
+			<h2 class="gradient-text font-grotesk mb-12 text-center text-5xl font-extrabold lg:text-6xl">
+				Latest Post
+			</h2>
+
+			<!-- Blog Card - Fully Clickable -->
+			<a
+				href={`/blog/${data.post.slug}`}
+				class="group mx-auto block max-w-3xl overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl"
+			>
+				<!-- Gradient overlay on hover -->
+				<div
+					class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+				></div>
+
+				<!-- Post Image or Default Banner -->
+				{#if data.post.cover}
+					<div class="relative h-64 overflow-hidden">
+						<img
+							src={data.post.cover}
+							alt={`Cover for ${data.post.title}`}
+							class="h-full w-full object-cover transition-transform group-hover:scale-105"
+						/>
+					</div>
+				{:else}
+					<div
+						class="relative flex h-64 items-center justify-center bg-gradient-to-br from-purple-600/30 via-[var(--accent)]/30 to-transparent text-6xl"
+					>
+						🚀
+					</div>
+				{/if}
+
+				<!-- Post Content -->
+				<div class="relative z-10 p-8">
+					<!-- Meta Info -->
+					<div class="mb-4 flex items-center justify-between gap-3 text-sm">
+						<time class="font-mono text-slate-400">{formatDate(data.post.date)}</time>
+						<span class="font-medium text-[var(--accent)]">{data.post.readTime} min read</span>
+					</div>
+
+					<!-- Title -->
+					<h3 class="font-grotesk mb-4 text-3xl leading-tight font-bold text-white">
+						{data.post.title}
+					</h3>
+
+					<!-- Excerpt -->
+					<p class="mb-6 text-lg leading-relaxed text-slate-300">
+						{data.post.summary}
+					</p>
+
+					<!-- Read More Link -->
+					<span
+						class="inline-flex items-center gap-2 text-base font-semibold text-[var(--accent)] transition-colors group-hover:text-purple-300"
+					>
+						Read full post
+						<span class="transition-transform group-hover:translate-x-1">→</span>
+					</span>
+				</div>
+			</a>
+		</div>
+	</section>
+{/if}
 
 <!-- ─── Newsletter Section ─────────────────────────────────────────── -->
 <section id="newsletter" class="py-16 md:py-28">

@@ -65,3 +65,22 @@ body {
 .font-mono {
 	font-family: var(--font-mono) !important;
 }
+
+/* ── Prose image overrides ────────────────────────────────────────── */
+.prose div:has(img[data-zoomable]) {
+	@apply mx-auto my-8;
+	width: 50%;
+}
+
+.prose div > img {
+	@apply shadow-xl;
+}
+
+/* ── Medium zoom overrides ────────────────────────────────────────── */
+.medium-zoom-overlay {
+	background: rgba(0, 0, 0, 0.95) !important;
+}
+
+.medium-zoom-image--opened {
+	object-fit: contain !important;
+}

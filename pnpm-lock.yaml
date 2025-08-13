@@ -20,6 +20,9 @@ importers:
       mdsvex-relative-images:
         specifier: ^2.0.0
         version: 2.0.0
+      medium-zoom:
+        specifier: ^1.1.0
+        version: 1.1.0
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1754,6 +1757,9 @@ packages:
     resolution: {integrity: sha512-pupx2gzWh3hDtm/iDW4WuCpljmyHbHi34r7ktOqpPGvyiM4MyfNgdJ3qMizXdgCErmvYC9Nn/qyjePy+4ss9Wg==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
+
+  medium-zoom@1.1.0:
+    resolution: {integrity: sha512-ewyDsp7k4InCUp3jRmwHBRFGyjBimKps/AJLjRSox+2q/2H4p/PNpQf+pwONWlJiOudkBXtbdmVbFjqyybfTmQ==}
 
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -4131,6 +4137,8 @@ snapshots:
       svelte: 5.37.3
       unist-util-visit: 2.0.3
       vfile-message: 2.0.4
+
+  medium-zoom@1.1.0: {}
 
   merge2@1.4.1: {}
 

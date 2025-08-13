@@ -1,12 +1,28 @@
 <script lang="ts">
 	import * as config from "$lib/config";
 	import { formatDate } from "$lib/utils/date-format";
+	import { onMount } from "svelte";
+	import mediumZoom from "medium-zoom";
 
 	let { data } = $props();
 
 	function getReadTime(readTime: number): string {
 		return `${readTime} min read`;
 	}
+
+	onMount(() => {
+		// Initialize medium-zoom for all images with data-zoomable attribute
+		const zoom = mediumZoom("[data-zoomable]", {
+			margin: 24,
+			background: "rgba(0, 0, 0, 0.9)",
+			scrollOffset: 0
+		});
+
+		// Cleanup on component destroy
+		return () => {
+			zoom.detach();
+		};
+	});
 </script>
 
 <svelte:head>
@@ -76,23 +92,18 @@
 			{data.meta.title}
 		</h1>
 
-		<!-- Subtitle/Summary -->
-		<p class="text-xl leading-relaxed text-slate-300 lg:text-2xl">
-			{data.meta.summary}
-		</p>
+		<!-- Cover Image in Hero -->
+		{#if data.cover}
+			<div class="mt-8 overflow-hidden rounded-2xl shadow-2xl">
+				<img src={data.cover} alt={`Cover for ${data.meta.title}`} class="w-full object-cover" />
+			</div>
+		{/if}
 	</div>
 </section>
 
 <!-- Article Content -->
-<article class="pb-20">
+<article class="pt-8 pb-20">
 	<div class="mx-auto max-w-3xl px-6">
-		<!-- Cover Image -->
-		{#if data.cover}
-			<div class="mb-12 overflow-hidden rounded-2xl">
-				<img src={data.cover} alt={`Cover for ${data.meta.title}`} class="w-full object-cover" />
-			</div>
-		{/if}
-
 		<!-- Prose Content -->
 		<div class="mx-auto prose prose-lg max-w-none prose-invert">
 			<data.content />
