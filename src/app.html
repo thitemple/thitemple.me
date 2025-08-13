@@ -3,8 +3,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#0a0a0f" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 		<link rel="alternate" href="/rss.xml" type="application/rss+xml" title="RSS" />
+		<link rel="manifest" href="/manifest.json" />
 		%sveltekit.head%
 		<script type="module">
 			const theme = localStorage.getItem("color-scheme");

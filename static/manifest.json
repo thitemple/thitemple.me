@@ -1,0 +1,17 @@
+{
+	"name": "Thiago Temple - Full-Stack Developer",
+	"short_name": "Thiago Temple",
+	"description": "Building meaningful stuff while juggling work, family, and life. 25+ years in tech, learning in public.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#0a0a0f",
+	"theme_color": "#0a0a0f",
+	"orientation": "portrait-primary",
+	"icons": [
+		{
+			"src": "/favicon.png",
+			"sizes": "32x32",
+			"type": "image/png"
+		}
+	]
+}
