@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MailerLiteForm from "$lib/components/MailerLiteForm.svelte";
+	import NewsletterForm from "$lib/components/NewsletterForm.svelte";
 	import bggLogo from "$lib/assets/img/bgg-rankings-logo.png";
 	import partyayLogo from "$lib/assets/img/partyay-logo.png";
 	import { afterNavigate } from "$app/navigation";
@@ -184,7 +184,7 @@
 			<div class="card-glass mx-auto max-w-md p-4 md:p-8">
 				<!-- MailerLite embedded form -->
 				{#key componentKey}
-					<MailerLiteForm />
+					<NewsletterForm />
 				{/key}
 			</div>
 		</div>

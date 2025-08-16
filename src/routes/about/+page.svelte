@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as config from "$lib/config";
 	import { Github, Linkedin, Instagram, Rss, BookOpen } from "lucide-svelte";
-	import MailerLiteForm from "$lib/components/MailerLiteForm.svelte";
+	import NewsletterForm from "$lib/components/NewsletterForm.svelte";
 </script>
 
 <svelte:head>
@@ -132,7 +132,7 @@
 			<!-- Newsletter Section - Primary -->
 			<div class="mb-8 text-center">
 				<div class="mx-auto mb-3 max-w-md">
-					<MailerLiteForm />
+					<NewsletterForm />
 				</div>
 				<p class="text-xs text-slate-400">No spam, unsubscribe anytime</p>
 			</div>
