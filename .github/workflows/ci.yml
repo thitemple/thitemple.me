@@ -43,6 +43,8 @@ jobs:
         run: pnpm validate
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
+          MAILER_LITE_TOKEN: "dummy-token-for-ci"
+          MAILER_LITE_GROUP_ID: "dummy-group-id-for-ci"
 
       - name: Upload test coverage
         if: always()
