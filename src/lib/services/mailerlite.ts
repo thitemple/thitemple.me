@@ -1,4 +1,7 @@
-import { MAILER_LITE_TOKEN, MAILER_LITE_GROUP_ID } from "$env/static/private";
+import * as env from "$env/static/private";
+
+const MAILER_LITE_TOKEN = env.MAILER_LITE_TOKEN;
+const MAILER_LITE_GROUP_ID = env.MAILER_LITE_GROUP_ID;
 
 interface SubscriberData {
 	email: string;
