@@ -11,10 +11,11 @@
 	<meta property="og:url" content={config.url} />
 	<meta property="og:image" content={`${config.url}/thiago-temple.jpeg`} />
 	<meta name="og:description" content={config.ogDescription} />
-	<meta property="twitter:title" content={config.title} />
-	<meta property="twitter:image" content={`${config.url}/thiago-temple.jpeg`} />
-	<meta property="twitter:description" content={config.description} />
-	<meta property="twitter:card" content="summary" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
+	<meta name="twitter:title" content={config.title} />
+	<meta name="twitter:description" content={config.description} />
+	<meta name="twitter:image" content={`${config.url}/thiago-temple.jpeg`} />
 </svelte:head>
 
 <!-- About Page Hero -->

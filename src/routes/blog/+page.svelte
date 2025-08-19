@@ -22,9 +22,10 @@
 	<meta property="og:title" content={`Blog - ${config.title}`} />
 	<meta property="og:url" content={`${config.url}/blog`} />
 	<meta name="og:description" content={config.ogDescription} />
-	<meta property="twitter:title" content={`Blog - ${config.title}`} />
-	<meta property="twitter:description" content={config.description} />
-	<meta property="twitter:card" content="summary" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
+	<meta name="twitter:title" content={`Blog - ${config.title}`} />
+	<meta name="twitter:description" content={config.description} />
 </svelte:head>
 
 <!-- Blog Hero Section -->

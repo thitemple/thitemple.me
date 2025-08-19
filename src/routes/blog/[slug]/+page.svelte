@@ -27,21 +27,22 @@
 
 <svelte:head>
 	<title>{data.meta.title} - {config.title}</title>
-	<meta property="description" content={data.meta.summary} />
+	<meta name="description" content={data.meta.summary} />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
 	<meta property="og:url" content={`${config.url}${data.url}`} />
 	<meta property="og:description" content={data.meta.summary} />
 	{#if data.cover}
 		<meta property="og:image" content={`${config.url}${data.cover}`} />
-		<meta property="twitter:image" content={`${config.url}${data.cover}`} />
-		<meta property="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content={`${config.url}${data.cover}`} />
+		<meta name="twitter:card" content="summary_large_image" />
 	{:else}
-		<meta property="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary" />
 	{/if}
-	<meta property="twitter:title" content={data.meta.title} />
-	<meta property="twitter:creator" content={config.twitterHandle} />
-	<meta property="twitter:description" content={data.meta.summary} />
+	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
+	<meta name="twitter:title" content={data.meta.title} />
+	<meta name="twitter:creator" content={`@${config.twitterHandle}`} />
+	<meta name="twitter:description" content={data.meta.summary} />
 </svelte:head>
 
 <!-- Breadcrumb -->

@@ -7,4 +7,4 @@ export const description =
 export const ogDescription =
 	"Join Thiago Temple at The Coding Temple for the latest in web development. Discover insightful tutorials and expert opinions to elevate your coding skills.";
 export const url = dev ? "http://localhost:5173" : "https://thitemple.me";
-export const twitterHandle = "ThiagoTemple";
+export const twitterHandle = "thi_temple";
