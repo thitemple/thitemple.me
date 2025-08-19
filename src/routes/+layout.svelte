@@ -51,7 +51,7 @@
 	<slot />
 
 	<!-- Footer -->
-	<footer id="contact" class="border-t border-white/10 bg-[var(--bg-deep)] py-20">
+	<footer id="contact" class="border-t border-white/10 bg-[var(--bg-deep)] py-8 md:py-20">
 		<div class="mx-auto max-w-7xl px-6">
 			<!-- Newsletter Section -->
 			<div class="mb-12 text-center">

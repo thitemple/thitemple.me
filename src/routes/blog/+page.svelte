@@ -29,7 +29,7 @@
 </svelte:head>
 
 <!-- Blog Hero Section -->
-<section class="relative overflow-hidden py-20 lg:py-24">
+<section class="relative overflow-hidden py-12 md:py-20 lg:py-24">
 	<!-- Background gradients -->
 	<div class="pointer-events-none absolute inset-0">
 		<div
@@ -49,7 +49,7 @@
 </section>
 
 <!-- Blog Posts Section -->
-<section class="pt-8 pb-32">
+<section class="pt-8 pb-8 md:pb-32">
 	<div class="mx-auto max-w-7xl px-6">
 		{#if data.posts.length === 0}
 			<!-- No Posts Message -->
@@ -141,57 +141,104 @@
 
 		<!-- Pagination -->
 		{#if data.posts.length > 0}
-			<nav class="mt-20 flex items-center justify-center gap-3">
-				<!-- Previous Button -->
-				<a
-					href={data.pageInfo.previousPage ? `/blog?page=${data.pageInfo.previousPage}` : "#"}
-					class={`rounded-xl border px-5 py-3 font-medium backdrop-blur-sm transition-all ${
-						data.pageInfo.previousPage
-							? "border-white/20 bg-black/60 text-slate-300 hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
-							: "cursor-not-allowed border-white/10 bg-black/30 text-slate-500"
-					}`}
-					aria-disabled={!data.pageInfo.previousPage}
-				>
-					« Previous
-				</a>
+			<nav class="mt-8 flex flex-col items-center gap-4 md:mt-20">
+				<!-- Mobile Layout: Buttons and Page Numbers -->
+				<div class="flex w-full items-center justify-between gap-2 md:hidden">
+					<!-- Previous Button -->
+					<a
+						href={data.pageInfo.previousPage ? `/blog?page=${data.pageInfo.previousPage}` : "#"}
+						class={`rounded-xl border px-4 py-2.5 text-sm font-medium backdrop-blur-sm transition-all ${
+							data.pageInfo.previousPage
+								? "border-white/20 bg-black/60 text-slate-300 hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
+								: "cursor-not-allowed border-white/10 bg-black/30 text-slate-500"
+						}`}
+						aria-disabled={!data.pageInfo.previousPage}
+					>
+						« Previous
+					</a>
 
-				<!-- Page Numbers -->
-				<div class="hidden items-center gap-2 md:flex">
-					{#each Array(data.pageInfo.totalPages) as _, i}
-						{#if i + 1 === data.pageInfo.currentPage}
-							<span
-								class="rounded-xl bg-gradient-to-r from-[var(--accent)] to-pink-500 px-5 py-3 font-medium text-white"
-							>
-								{i + 1}
-							</span>
-						{:else if Math.abs(i + 1 - data.pageInfo.currentPage) <= 2}
-							<a
-								href={`/blog?page=${i + 1}`}
-								class="rounded-xl border border-white/20 bg-black/60 px-5 py-3 font-medium text-slate-300 backdrop-blur-sm transition-all hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
-							>
-								{i + 1}
-							</a>
-						{/if}
-					{/each}
+					<!-- Page Numbers (Mobile) -->
+					<div class="flex items-center gap-1.5">
+						{#each Array(data.pageInfo.totalPages) as _, i}
+							{#if i + 1 === data.pageInfo.currentPage}
+								<span
+									class="rounded-lg bg-gradient-to-r from-[var(--accent)] to-pink-500 px-3 py-1.5 text-sm font-medium text-white"
+								>
+									{i + 1}
+								</span>
+							{:else if Math.abs(i + 1 - data.pageInfo.currentPage) <= 1 || data.pageInfo.totalPages <= 3}
+								<a
+									href={`/blog?page=${i + 1}`}
+									class="rounded-lg border border-white/20 bg-black/60 px-3 py-1.5 text-sm font-medium text-slate-300 backdrop-blur-sm transition-all hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
+								>
+									{i + 1}
+								</a>
+							{/if}
+						{/each}
+					</div>
+
+					<!-- Next Button -->
+					<a
+						href={data.pageInfo.nextPage ? `/blog?page=${data.pageInfo.nextPage}` : "#"}
+						class={`rounded-xl border px-4 py-2.5 text-sm font-medium backdrop-blur-sm transition-all ${
+							data.pageInfo.nextPage
+								? "border-white/20 bg-black/60 text-slate-300 hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
+								: "cursor-not-allowed border-white/10 bg-black/30 text-slate-500"
+						}`}
+						aria-disabled={!data.pageInfo.nextPage}
+					>
+						Next »
+					</a>
 				</div>
 
-				<!-- Page Info -->
-				<span class="px-4 font-mono text-sm text-slate-400">
-					Page {data.pageInfo.currentPage} of {data.pageInfo.totalPages}
-				</span>
+				<!-- Desktop Layout: All Elements -->
+				<div class="hidden items-center gap-3 md:flex">
+					<!-- Previous Button -->
+					<a
+						href={data.pageInfo.previousPage ? `/blog?page=${data.pageInfo.previousPage}` : "#"}
+						class={`rounded-xl border px-5 py-3 font-medium backdrop-blur-sm transition-all ${
+							data.pageInfo.previousPage
+								? "border-white/20 bg-black/60 text-slate-300 hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
+								: "cursor-not-allowed border-white/10 bg-black/30 text-slate-500"
+						}`}
+						aria-disabled={!data.pageInfo.previousPage}
+					>
+						« Previous
+					</a>
 
-				<!-- Next Button -->
-				<a
-					href={data.pageInfo.nextPage ? `/blog?page=${data.pageInfo.nextPage}` : "#"}
-					class={`rounded-xl border px-5 py-3 font-medium backdrop-blur-sm transition-all ${
-						data.pageInfo.nextPage
-							? "border-white/20 bg-black/60 text-slate-300 hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
-							: "cursor-not-allowed border-white/10 bg-black/30 text-slate-500"
-					}`}
-					aria-disabled={!data.pageInfo.nextPage}
-				>
-					Next »
-				</a>
+					<!-- Page Numbers -->
+					<div class="flex items-center gap-2">
+						{#each Array(data.pageInfo.totalPages) as _, i}
+							{#if i + 1 === data.pageInfo.currentPage}
+								<span
+									class="rounded-xl bg-gradient-to-r from-[var(--accent)] to-pink-500 px-5 py-3 font-medium text-white"
+								>
+									{i + 1}
+								</span>
+							{:else if Math.abs(i + 1 - data.pageInfo.currentPage) <= 2}
+								<a
+									href={`/blog?page=${i + 1}`}
+									class="rounded-xl border border-white/20 bg-black/60 px-5 py-3 font-medium text-slate-300 backdrop-blur-sm transition-all hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
+								>
+									{i + 1}
+								</a>
+							{/if}
+						{/each}
+					</div>
+
+					<!-- Next Button -->
+					<a
+						href={data.pageInfo.nextPage ? `/blog?page=${data.pageInfo.nextPage}` : "#"}
+						class={`rounded-xl border px-5 py-3 font-medium backdrop-blur-sm transition-all ${
+							data.pageInfo.nextPage
+								? "border-white/20 bg-black/60 text-slate-300 hover:border-[var(--accent)]/40 hover:bg-[var(--accent)]/20 hover:text-[var(--accent)]"
+								: "cursor-not-allowed border-white/10 bg-black/30 text-slate-500"
+						}`}
+						aria-disabled={!data.pageInfo.nextPage}
+					>
+						Next »
+					</a>
+				</div>
 			</nav>
 		{/if}
 	</div>
