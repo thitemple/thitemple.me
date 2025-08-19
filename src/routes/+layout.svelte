@@ -40,12 +40,18 @@
 			</button>
 		</nav>
 
-		{#if navOpen}
-			<ul class="flex flex-col gap-6 px-8 pb-6 text-lg font-medium md:hidden">
-				<li><a on:click={() => (navOpen = false)} href="/blog">Blog</a></li>
-				<li><a on:click={() => (navOpen = false)} href="/about">About</a></li>
+		<!-- Mobile menu with slide animation -->
+		<div
+			class="grid transition-all duration-300 ease-in-out md:hidden"
+			style="grid-template-rows: {navOpen ? '1fr' : '0fr'}"
+		>
+			<ul class="overflow-hidden">
+				<div class="flex flex-col gap-6 px-8 pb-6 text-lg font-medium">
+					<li><a on:click={() => (navOpen = false)} href="/blog">Blog</a></li>
+					<li><a on:click={() => (navOpen = false)} href="/about">About</a></li>
+				</div>
 			</ul>
-		{/if}
+		</div>
 	</header>
 
 	<slot />
