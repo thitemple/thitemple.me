@@ -68,7 +68,7 @@ function to parse the date using the Globalize parseDate function:
 ```js
 Globalize.culture("pt-BR");
 $.validator.methods.date = function (value, element) {
-	return this.optional(element) || Globalize.parseDate(value);
+  return this.optional(element) || Globalize.parseDate(value);
 };
 ```
 

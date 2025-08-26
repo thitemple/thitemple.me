@@ -65,12 +65,12 @@ In a new folder, create a new package.json file:
 
 ```json
 {
-	"name": "babeldemo",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {},
-	"author": "Thiago Temple",
-	"devDependencies": {}
+  "name": "babeldemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Thiago Temple",
+  "devDependencies": {}
 }
 ```
 
@@ -88,7 +88,7 @@ var gulp = require("gulp");
 var babel = require("gulp-babel");
 
 gulp.task("default", function () {
-	return gulp.src("src/app.js").pipe(babel()).pipe(sourcemaps.write(".")).pipe(gulp.dest("dist"));
+  return gulp.src("src/app.js").pipe(babel()).pipe(sourcemaps.write(".")).pipe(gulp.dest("dist"));
 });
 ```
 
@@ -100,21 +100,21 @@ Let's say that inside the src\app.js we have the following code:
 
 ```js
 class Person {
-	constructor(name) {
-		this.name = name;
-	}
+  constructor(name) {
+    this.name = name;
+  }
 
-	get name() {
-		return this._name;
-	}
+  get name() {
+    return this._name;
+  }
 
-	set name(name) {
-		this._name = name;
-	}
+  set name(name) {
+    this._name = name;
+  }
 
-	sayHello() {
-		return `Hello, ${this.name}`;
-	}
+  sayHello() {
+    return `Hello, ${this.name}`;
+  }
 }
 ```
 
@@ -130,54 +130,54 @@ Now, inside the directory _dist_ we should see an _app.js_ file such as:
 "use strict";
 
 var _createClass = (function () {
-	function defineProperties(target, props) {
-		for (var i = 0; i < props.length; i++) {
-			var descriptor = props[i];
-			descriptor.enumerable = descriptor.enumerable || false;
-			descriptor.configurable = true;
-			if ("value" in descriptor) descriptor.writable = true;
-			Object.defineProperty(target, descriptor.key, descriptor);
-		}
-	}
-	return function (Constructor, protoProps, staticProps) {
-		if (protoProps) defineProperties(Constructor.prototype, protoProps);
-		if (staticProps) defineProperties(Constructor, staticProps);
-		return Constructor;
-	};
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
 })();
 
 function _classCallCheck(instance, Constructor) {
-	if (!(instance instanceof Constructor)) {
-		throw new TypeError("Cannot call a class as a function");
-	}
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 }
 
 var Person = (function () {
-	function Person(name) {
-		_classCallCheck(this, Person);
+  function Person(name) {
+    _classCallCheck(this, Person);
 
-		this.name = name;
-	}
+    this.name = name;
+  }
 
-	_createClass(Person, [
-		{
-			key: "sayHello",
-			value: function sayHello() {
-				return "Hello, " + this.name;
-			}
-		},
-		{
-			key: "name",
-			set: function set(name) {
-				this._name = name;
-			},
-			get: function get() {
-				return this._name;
-			}
-		}
-	]);
+  _createClass(Person, [
+    {
+      key: "sayHello",
+      value: function sayHello() {
+        return "Hello, " + this.name;
+      }
+    },
+    {
+      key: "name",
+      set: function set(name) {
+        this._name = name;
+      },
+      get: function get() {
+        return this._name;
+      }
+    }
+  ]);
 
-	return Person;
+  return Person;
 })();
 ```
 

@@ -76,10 +76,10 @@ import { describe, it, expect } from "vitest";
 import { myFunction } from "./my-module";
 
 describe("myFunction", () => {
-	it("should return expected value", () => {
-		const result = myFunction("input");
-		expect(result).toBe("expected");
-	});
+  it("should return expected value", () => {
+    const result = myFunction("input");
+    expect(result).toBe("expected");
+  });
 });
 ```
 
@@ -90,13 +90,13 @@ import { render, screen } from "../tests/test-utils";
 import MyComponent from "./MyComponent.svelte";
 
 describe("MyComponent", () => {
-	it("should render correctly", () => {
-		render(MyComponent, {
-			props: { title: "Test Title" }
-		});
+  it("should render correctly", () => {
+    render(MyComponent, {
+      props: { title: "Test Title" }
+    });
 
-		expect(screen.getByText("Test Title")).toBeInTheDocument();
-	});
+    expect(screen.getByText("Test Title")).toBeInTheDocument();
+  });
 });
 ```
 
@@ -105,12 +105,12 @@ describe("MyComponent", () => {
 ```typescript
 // Use .integration.test.ts suffix
 describe("API Integration", () => {
-	it("should handle real requests", async () => {
-		const response = await fetch("/api/endpoint");
-		const data = await response.json();
+  it("should handle real requests", async () => {
+    const response = await fetch("/api/endpoint");
+    const data = await response.json();
 
-		expect(data).toHaveProperty("expected");
-	});
+    expect(data).toHaveProperty("expected");
+  });
 });
 ```
 
@@ -120,14 +120,14 @@ describe("API Integration", () => {
 
 ```typescript
 it("should follow AAA pattern", () => {
-	// Arrange
-	const input = createTestData();
+  // Arrange
+  const input = createTestData();
 
-	// Act
-	const result = processData(input);
+  // Act
+  const result = processData(input);
 
-	// Assert
-	expect(result).toEqual(expectedOutput);
+  // Assert
+  expect(result).toEqual(expectedOutput);
 });
 ```
 
@@ -135,9 +135,9 @@ it("should follow AAA pattern", () => {
 
 ```typescript
 it("should handle async operations", async () => {
-	const promise = fetchData();
+  const promise = fetchData();
 
-	await expect(promise).resolves.toEqual(expectedData);
+  await expect(promise).resolves.toEqual(expectedData);
 });
 ```
 
@@ -145,7 +145,7 @@ it("should handle async operations", async () => {
 
 ```typescript
 vi.mock("$lib/module", () => ({
-	functionToMock: vi.fn().mockReturnValue("mocked")
+  functionToMock: vi.fn().mockReturnValue("mocked")
 }));
 ```
 

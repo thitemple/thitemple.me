@@ -38,8 +38,8 @@ adding a key to the package.json file. Like so:
 
 ```json
 {
-	// ....
-	"typings": "./dist/index.d.ts"
+  // ....
+  "typings": "./dist/index.d.ts"
 }
 ```
 

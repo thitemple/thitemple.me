@@ -20,15 +20,15 @@ example, calling a URL that returns a movie:
 
 ```js
 fetch("http://www.omdbapi.com/?t=The Matrix")
-	.then((response) => {
-		return response.json();
-	})
-	.then((movie) => {
-		console.log("The movie object:", movie.Title);
-	})
-	.catch((reason) => {
-		console.log("The reason for the erro:", reason);
-	});
+  .then((response) => {
+    return response.json();
+  })
+  .then((movie) => {
+    console.log("The movie object:", movie.Title);
+  })
+  .catch((reason) => {
+    console.log("The reason for the erro:", reason);
+  });
 ```
 
 The fact that we are using methods such as then and catch make for a much more
@@ -41,9 +41,9 @@ Now with async/await we can make the code look even more readable.
 
 ```js
 async function getMovieAsync() {
-	let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
-	let movie = await response.json();
-	console.log(movie.Title);
+  let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
+  let movie = await response.json();
+  console.log(movie.Title);
 }
 getMovieAsync();
 ```
@@ -78,9 +78,9 @@ could be called as follows:
 
 ```js
 async function getMovieAsync() {
-	let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
-	let movie = await response.json();
-	return movie;
+  let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
+  let movie = await response.json();
+  return movie;
 }
 getMovieAsync().then((movie) => console.log(movie.Title));
 ```
@@ -94,13 +94,13 @@ We have two choices. First is to use a try/catch:
 
 ```js
 async function getMovieAsync() {
-	try {
-		let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
-		let movie = await response.json();
-		return movie;
-	} catch (err) {
-		console.log(err.message);
-	}
+  try {
+    let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
+    let movie = await response.json();
+    return movie;
+  } catch (err) {
+    console.log(err.message);
+  }
 }
 getMovieAsync();
 ```
@@ -110,13 +110,13 @@ function, like so:
 
 ```js
 async function getMovieAsync() {
-	let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
-	let movie = await response.json();
-	return movie;
+  let response = await fetch("http://www.omdbapi.com/?t=The Matrix");
+  let movie = await response.json();
+  return movie;
 }
 getMovieAsync()
-	.then((movie) => console.log(movie.Title))
-	.catch((reason) => console.log(reason));
+  .then((movie) => console.log(movie.Title))
+  .catch((reason) => console.log(reason));
 ```
 
 ## Using it today with Babel and Webpack
@@ -165,24 +165,24 @@ you to check their [site and documentation](https://webpack.github.io/docs/).
 
 ```js
 module.exports = {
-	entry: "./src/app.js",
-	output: {
-		filename: "dist/bundle.js"
-	},
-	plugins: [
-		new webpack.ProvidePlugin({
-			fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
-		})
-	],
-	module: {
-		loaders: [
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				loader: "babel-loader"
-			}
-		]
-	}
+  entry: "./src/app.js",
+  output: {
+    filename: "dist/bundle.js"
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
+    })
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      }
+    ]
+  }
 };
 ```
 
@@ -256,27 +256,27 @@ Now, let's make some changes to the Webpack config file.
 
 ```js
 module.exports = {
-	entry: "./src/app.ts",
-	output: {
-		filename: "dist/bundle.js"
-	},
-	resolve: {
-		extensions: [".ts", ".tsx", ".js", ".jsx", ""]
-	},
-	plugins: [
-		new webpack.ProvidePlugin({
-			fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
-		})
-	],
-	module: {
-		loaders: [
-			{
-				test: /\.tsx?$/,
-				exclude: /node_modules/,
-				loader: "babel-loader!ts-loader"
-			}
-		]
-	}
+  entry: "./src/app.ts",
+  output: {
+    filename: "dist/bundle.js"
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx", ""]
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      fetch: "imports?this=>global!exports?global.fetch!whatwg-fetch"
+    })
+  ],
+  module: {
+    loaders: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader!ts-loader"
+      }
+    ]
+  }
 };
 ```
 

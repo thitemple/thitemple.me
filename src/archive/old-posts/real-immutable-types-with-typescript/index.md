@@ -18,15 +18,15 @@ TypeScript's `readonly` modifier only provides shallow immutability:
 
 ```typescript
 interface User {
-	readonly name: string;
-	readonly settings: {
-		theme: string;
-	};
+  readonly name: string;
+  readonly settings: {
+    theme: string;
+  };
 }
 
 const user: User = {
-	name: "John",
-	settings: { theme: "dark" }
+  name: "John",
+  settings: { theme: "dark" }
 };
 
 // This won't compile
@@ -42,7 +42,7 @@ We can create a utility type for deep immutability:
 
 ```typescript
 type DeepReadonly<T> = {
-	readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
+  readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
 };
 ```
 
@@ -52,10 +52,10 @@ TypeScript also provides the `const` assertion for literal types:
 
 ```typescript
 const config = {
-	api: {
-		url: "https://api.example.com",
-		timeout: 5000
-	}
+  api: {
+    url: "https://api.example.com",
+    timeout: 5000
+  }
 } as const;
 
 // Type is deeply readonly

@@ -191,9 +191,9 @@ Or I could use type inference and don't specify the type explicitly.
 
 ```js
 getAsync(new Movie()).then((movies) => {
-	movies.forEach((movie) => {
-		console.log(movie.title);
-	});
+  movies.forEach((movie) => {
+    console.log(movie.title);
+  });
 });
 ```
 

@@ -28,21 +28,21 @@ So, imagine you have a code like the following:
 
 ```js
 function fetchMovieData() {
-	return fetch("/movies")
-		.then((res) => {
-			return res.json();
-		})
-		.then((movies) => {
-			return movies;
-		});
+  return fetch("/movies")
+    .then((res) => {
+      return res.json();
+    })
+    .then((movies) => {
+      return movies;
+    });
 }
 
 function printMovies() {
-	fetchMovieData().then((movies) => {
-		movies.forEach((movie) => {
-			console.log(movie);
-		});
-	});
+  fetchMovieData().then((movies) => {
+    movies.forEach((movie) => {
+      console.log(movie);
+    });
+  });
 }
 ```
 
@@ -50,24 +50,24 @@ A test for this code would be something like:
 
 ```js
 describe("printMovies", () => {
-	let stubedFetch;
-	beforeEach(() => {
-		stubedFetch = sinon.stub(window, "fetch");
-	});
-	afterEach(() => {
-		sinon.restore(window.fetch);
-	});
+  let stubedFetch;
+  beforeEach(() => {
+    stubedFetch = sinon.stub(window, "fetch");
+  });
+  afterEach(() => {
+    sinon.restore(window.fetch);
+  });
 
-	it("should work", () => {
-		stubedFetch.returnsPromise().resolves(["Star Wars", "The Matrix", "Forrest Gump"]);
+  it("should work", () => {
+    stubedFetch.returnsPromise().resolves(["Star Wars", "The Matrix", "Forrest Gump"]);
 
-		// do something
-	});
+    // do something
+  });
 
-	it("should handle errors", () => {
-		stubedFetch.returnsPromise().rejects("a reason");
-		// assert that error was handled
-	});
+  it("should handle errors", () => {
+    stubedFetch.returnsPromise().rejects("a reason");
+    // assert that error was handled
+  });
 });
 ```
 

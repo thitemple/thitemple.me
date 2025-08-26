@@ -233,7 +233,7 @@
 
 			<!-- Project Card 2 - Partyay -->
 			<a
-				href="https://www.partyay.app"
+				href="https://www.partyay.com"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"

@@ -89,17 +89,17 @@ Here's how one could write the Maybe Functor:
 
 ```js
 const Maybe = function (val) {
-	this.__value = val;
+  this.__value = val;
 };
 
 Maybe.of = function (val) {
-	return new Maybe(val);
+  return new Maybe(val);
 };
 
 Maybe.prototype.map = function (f) {
-	return this.__value !== null && this.__value !== undefined
-		? Maybe.of(f(this.__value))
-		: Maybe.of(null);
+  return this.__value !== null && this.__value !== undefined
+    ? Maybe.of(f(this.__value))
+    : Maybe.of(null);
 };
 ```
 
@@ -128,19 +128,19 @@ this:
 
 ```js
 class Maybe {
-	constructor(val) {
-		this.__value = val;
-	}
+  constructor(val) {
+    this.__value = val;
+  }
 
-	map(f) {
-		return this.__value !== null && this.__value !== undefined
-			? Maybe.of(f(this.__value))
-			: Maybe.of(null);
-	}
+  map(f) {
+    return this.__value !== null && this.__value !== undefined
+      ? Maybe.of(f(this.__value))
+      : Maybe.of(null);
+  }
 
-	static of(val) {
-		return new Maybe(val);
-	}
+  static of(val) {
+    return new Maybe(val);
+  }
 }
 ```
 
