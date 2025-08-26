@@ -29,11 +29,11 @@ Let's see an example:
 
 ```js
 function demo() {
-	console.log(i); // undefined
-	for (var i = 0; i < 10; i++) {
-		// do something
-	}
-	console.log(i); // 10
+  console.log(i); // undefined
+  for (var i = 0; i < 10; i++) {
+    // do something
+  }
+  console.log(i); // 10
 }
 demo();
 ```
@@ -50,12 +50,12 @@ a function, if it has the same name, it's the same variable.
 
 ```js
 function demo() {
-	var name = "Thiago";
-	if (true) {
-		console.log(name); // Thiago
-		var name = "Temple";
-	}
-	return name;
+  var name = "Thiago";
+  if (true) {
+    console.log(name); // Thiago
+    var name = "Temple";
+  }
+  return name;
 }
 console.log(demo()); // Temple
 ```
@@ -70,10 +70,10 @@ variable is not accessible outside that scope.
 
 ```js
 function demo() {
-	if (true) {
-		let name = "Thiago";
-	}
-	console.log(name); // ReferenceError: name is not defined
+  if (true) {
+    let name = "Thiago";
+  }
+  console.log(name); // ReferenceError: name is not defined
 }
 demo();
 ```
@@ -83,8 +83,8 @@ the _if_. This is the same when using _for loops_.
 
 ```js
 function demo() {
-	for (let i = 0; i < 10; i++) {}
-	console.log(i); // ReferenceError: i is not defined
+  for (let i = 0; i < 10; i++) {}
+  console.log(i); // ReferenceError: i is not defined
 }
 demo();
 ```
@@ -97,12 +97,12 @@ variable _name_ that is outside the _if_ scope.
 
 ```js
 function demo() {
-	let name = "Thiago";
-	if (true) {
-		let name = "Temple";
-		console.log(name); // "Temple"
-	}
-	console.log(name); // Thiago
+  let name = "Thiago";
+  if (true) {
+    let name = "Temple";
+    console.log(name); // "Temple"
+  }
+  console.log(name); // Thiago
 }
 demo();
 ```
@@ -116,19 +116,19 @@ below, it is the same thing as writing the function demo2:
 
 ```js
 function demo1() {
-	console.log(name); // undefined
-	var name = "Thiago";
-	console.log(name); // Thiago
+  console.log(name); // undefined
+  var name = "Thiago";
+  console.log(name); // Thiago
 }
 demo();
 ```
 
 ```js
 function demo2() {
-	var name;
-	console.log(name); // undefined
-	name = "Thiago";
-	console.log(name); // Thiago
+  var name;
+  console.log(name); // undefined
+  name = "Thiago";
+  console.log(name); // Thiago
 }
 demo2();
 ```
@@ -138,8 +138,8 @@ an error.
 
 ```js
 function demo() {
-	console.log(name); // ReferenceError
-	let name = "Thiago";
+  console.log(name); // ReferenceError
+  let name = "Thiago";
 }
 demo();
 ```
@@ -151,9 +151,9 @@ five times.
 
 ```js
 for (var i = 0; i < 5; i++) {
-	setTimeout(function () {
-		console.log(i);
-	}, 100);
+  setTimeout(function () {
+    console.log(i);
+  }, 100);
 }
 ```
 
@@ -163,9 +163,9 @@ variable for each iteration.
 
 ```js
 for (let i = 0; i < 5; i++) {
-	setTimeout(function () {
-		console.log(i);
-	}, 100);
+  setTimeout(function () {
+    console.log(i);
+  }, 100);
 }
 ```
 

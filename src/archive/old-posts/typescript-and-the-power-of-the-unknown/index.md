@@ -33,7 +33,7 @@ parameter, as you can see in the following example.
 let movie: unknown = "";
 
 function printMovie(movie: unknown) {
-	console.log(movie);
+  console.log(movie);
 }
 ```
 
@@ -58,11 +58,11 @@ Let's explore a little more on the example:
 
 ```ts
 function formatMovie(movie: string) {
-	return `The movie title is ${movie}`;
+  return `The movie title is ${movie}`;
 }
 
 function printMovie(movie: unknown) {
-	console.log(formatMovie(movie));
+  console.log(formatMovie(movie));
 }
 ```
 
@@ -79,7 +79,7 @@ Here's another example:
 
 ```ts
 function printMovie(movie: unknown) {
-	console.log(`The movie title is ${movie.title} and its rating is ${movie.rating}`);
+  console.log(`The movie title is ${movie.title} and its rating is ${movie.rating}`);
 }
 ```
 

@@ -84,28 +84,28 @@ The config is very simple:
 
 ```js
 module.exports = {
-	entry: "./src/app.ts",
-	output: {
-		filename: "build/bundle.js"
-	},
-	module: {
-		preLoaders: [
-			{
-				test: /\.ts$/,
-				loader: "tslint"
-			}
-		],
-		loaders: [
-			{
-				test: /\.ts$/,
-				loader: "ts"
-			}
-		]
-	},
-	tslint: {
-		emitErrors: true,
-		failOnHint: true
-	}
+  entry: "./src/app.ts",
+  output: {
+    filename: "build/bundle.js"
+  },
+  module: {
+    preLoaders: [
+      {
+        test: /\.ts$/,
+        loader: "tslint"
+      }
+    ],
+    loaders: [
+      {
+        test: /\.ts$/,
+        loader: "ts"
+      }
+    ]
+  },
+  tslint: {
+    emitErrors: true,
+    failOnHint: true
+  }
 };
 ```
 

@@ -40,26 +40,26 @@ A code that would do that is this:
 
 ```js
 $(document).ready(function () {
-	$(".update_cart").click(function (e) {
-		e.preventDefault();
-		var itemsCount = $(this).closest("td").prev().children(".quantity").val();
-		if (isNaN(itemsCount) || parseInt(itemsCount, 10) < 0 || parseInt(itemsCount, 10) > 10) {
-			showError("Not a valid number");
-			return;
-		}
-		$.ajax({
-			url: "/updatecart",
-			data: {
-				// get the data from the form
-			},
-			success: function (data) {
-				// update table with cart data
-			},
-			error: function (xhr, status, error) {
-				// handle error
-			}
-		});
-	});
+  $(".update_cart").click(function (e) {
+    e.preventDefault();
+    var itemsCount = $(this).closest("td").prev().children(".quantity").val();
+    if (isNaN(itemsCount) || parseInt(itemsCount, 10) < 0 || parseInt(itemsCount, 10) > 10) {
+      showError("Not a valid number");
+      return;
+    }
+    $.ajax({
+      url: "/updatecart",
+      data: {
+        // get the data from the form
+      },
+      success: function (data) {
+        // update table with cart data
+      },
+      error: function (xhr, status, error) {
+        // handle error
+      }
+    });
+  });
 });
 ```
 

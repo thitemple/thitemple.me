@@ -71,18 +71,18 @@ Here's the result of my package.json file:
 
 ```json
 {
-	"version": "1.0.0",
-	"name": "ASP.NET",
-	"private": true,
-	"dependencies": {
-		"react": "0.14.3",
-		"react-dom": "0.14.3"
-	},
-	"devDependencies": {
-		"Webpack": "1.12.9",
-		"ts-loader": "0.7.2",
-		"typescript": "1.7.3"
-	}
+  "version": "1.0.0",
+  "name": "ASP.NET",
+  "private": true,
+  "dependencies": {
+    "react": "0.14.3",
+    "react-dom": "0.14.3"
+  },
+  "devDependencies": {
+    "Webpack": "1.12.9",
+    "ts-loader": "0.7.2",
+    "typescript": "1.7.3"
+  }
 }
 ```
 
@@ -101,22 +101,22 @@ Here's mine:
 
 ```js
 module.exports = {
-	entry: "./Scripts/app/App.tsx",
-	output: {
-		filename: "Scripts/app/bundle.js"
-	},
-	resolve: {
-		extensions: ["", ".Webpack.js", ".web.js", ".ts", ".js", ".tsx"]
-	},
-	module: {
-		loaders: [
-			{
-				test: /\.tsx?$/,
-				exclude: /(node_modules|bower_components)/,
-				loader: "ts-loader"
-			}
-		]
-	}
+  entry: "./Scripts/app/App.tsx",
+  output: {
+    filename: "Scripts/app/bundle.js"
+  },
+  resolve: {
+    extensions: ["", ".Webpack.js", ".web.js", ".ts", ".js", ".tsx"]
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "ts-loader"
+      }
+    ]
+  }
 };
 ```
 
@@ -152,21 +152,21 @@ Here's the package.json modified, notice the scripts section:
 
 ```json
 {
-	"version": "1.0.0",
-	"name": "ASP.NET",
-	"private": true,
-	"scripts": {
-		"webpack": "webpack -w"
-	},
-	"dependencies": {
-		"react": "0.14.3",
-		"react-dom": "0.14.3"
-	},
-	"devDependencies": {
-		"Webpack": "1.12.9",
-		"ts-loader": "0.7.2",
-		"typescript": "1.7.3"
-	}
+  "version": "1.0.0",
+  "name": "ASP.NET",
+  "private": true,
+  "scripts": {
+    "webpack": "webpack -w"
+  },
+  "dependencies": {
+    "react": "0.14.3",
+    "react-dom": "0.14.3"
+  },
+  "devDependencies": {
+    "Webpack": "1.12.9",
+    "ts-loader": "0.7.2",
+    "typescript": "1.7.3"
+  }
 }
 ```
 

@@ -60,7 +60,7 @@ could write it this way:
 
 ```javascript
 function add(x, y) {
-	return x + y;
+  return x + y;
 }
 add(2, 3); // 5
 ```
@@ -69,9 +69,9 @@ Now using currying:
 
 ```javascript
 function add(x) {
-	return function (y) {
-		return x + y;
-	};
+  return function (y) {
+    return x + y;
+  };
 }
 const add2 = add(2);
 add2(3); // 5
@@ -85,9 +85,9 @@ Here's another example a little bit more useful:
 
 ```javascript
 function log(prefix) {
-	return function (text) {
-		console.log(prefix, text);
-	};
+  return function (text) {
+    console.log(prefix, text);
+  };
 }
 
 const logError = log("Error:");
@@ -111,7 +111,7 @@ work like this:
 
 ```javascript
 const log = curry(function (prefix, text) {
-	console.log(prefix, text);
+  console.log(prefix, text);
 });
 const logError = log("Error:");
 logError("....");
@@ -132,7 +132,7 @@ Ramda library), could be written like this:
 
 ```javascript
 const log = R.curry(function (prefix, text) {
-	console.log(prefix, text);
+  console.log(prefix, text);
 });
 const logError = log("Error:");
 logError("....");

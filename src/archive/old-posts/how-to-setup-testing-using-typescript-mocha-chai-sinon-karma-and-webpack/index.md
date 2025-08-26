@@ -38,22 +38,22 @@ Typescript files.
 
 ```js
 module.exports = {
-	entry: "./src/app.ts",
-	output: {
-		filename: "dist/bundle.js"
-	},
-	resolve: {
-		extensions: [".ts", ".js", ".tsx", ".jsx", ""]
-	},
-	module: {
-		loaders: [
-			{
-				test: /\.tsx?$/,
-				exclude: /node_modules/,
-				loader: "ts-loader"
-			}
-		]
-	}
+  entry: "./src/app.ts",
+  output: {
+    filename: "dist/bundle.js"
+  },
+  resolve: {
+    extensions: [".ts", ".js", ".tsx", ".jsx", ""]
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "ts-loader"
+      }
+    ]
+  }
 };
 ```
 
@@ -65,27 +65,27 @@ This is the tricky part: the karma config file.
 var webpackConfig = require("./webpack.config");
 
 module.exports = function (config) {
-	config.set({
-		basePath: "",
-		frameworks: ["mocha", "chai", "sinon"],
-		files: ["test/*.ts"],
-		exclude: [],
-		preprocessors: {
-			"test/**/*.ts": ["webpack"]
-		},
-		webpack: {
-			module: webpackConfig.module,
-			resolve: webpackConfig.resolve
-		},
-		reporters: ["progress"],
-		port: 9876,
-		colors: true,
-		logLevel: config.LOG_INFO,
-		autoWatch: true,
-		browsers: ["PhantomJS"],
-		singleRun: false,
-		concurrency: Infinity
-	});
+  config.set({
+    basePath: "",
+    frameworks: ["mocha", "chai", "sinon"],
+    files: ["test/*.ts"],
+    exclude: [],
+    preprocessors: {
+      "test/**/*.ts": ["webpack"]
+    },
+    webpack: {
+      module: webpackConfig.module,
+      resolve: webpackConfig.resolve
+    },
+    reporters: ["progress"],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ["PhantomJS"],
+    singleRun: false,
+    concurrency: Infinity
+  });
 };
 ```
 
@@ -117,11 +117,11 @@ special to do here.
 
 ```json
 {
-	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs"
-	},
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs"
+  },
+  "exclude": ["node_modules"]
 }
 ```
 
@@ -159,21 +159,21 @@ In any case, here are a few examples I wrote.
 import { Movie, movieDataService } from "./MovieDataService";
 
 export default class MoviesViewModel {
-	movies: Array<Movie>;
-	selectedMovie: Movie;
+  movies: Array<Movie>;
+  selectedMovie: Movie;
 
-	constructor() {
-		this.movies = movieDataService.loadMovies();
-	}
+  constructor() {
+    this.movies = movieDataService.loadMovies();
+  }
 
-	select(movie: Movie) {
-		this.selectedMovie = movie;
-	}
+  select(movie: Movie) {
+    this.selectedMovie = movie;
+  }
 
-	rate(rating: number) {
-		this.selectedMovie.rating = rating;
-		movieDataService.save(this.selectedMovie);
-	}
+  rate(rating: number) {
+    this.selectedMovie.rating = rating;
+    movieDataService.save(this.selectedMovie);
+  }
 }
 ```
 
@@ -185,33 +185,33 @@ import { movieDataService, Movie } from "../src/MovieDataService";
 import { expect } from "chai";
 
 describe("MoviesViewModel", () => {
-	let viewModel: MoviesViewModel;
-	let movieDataServiceStub: Sinon.SinonSpy;
-	beforeEach(() => {
-		sinon.stub(movieDataService, "loadMovies").returns([new Movie("The Matrix", 1998, 5)]);
-		movieDataServiceStub = sinon.spy(movieDataService, "save");
-		viewModel = new MoviesViewModel();
-	});
+  let viewModel: MoviesViewModel;
+  let movieDataServiceStub: Sinon.SinonSpy;
+  beforeEach(() => {
+    sinon.stub(movieDataService, "loadMovies").returns([new Movie("The Matrix", 1998, 5)]);
+    movieDataServiceStub = sinon.spy(movieDataService, "save");
+    viewModel = new MoviesViewModel();
+  });
 
-	afterEach(() => {
-		sinon.restore(movieDataService.loadMovies);
-		sinon.restore(movieDataService.save);
-	});
+  afterEach(() => {
+    sinon.restore(movieDataService.loadMovies);
+    sinon.restore(movieDataService.save);
+  });
 
-	it("should load movies", () => {
-		expect(viewModel.movies.length).to.be.equal(1);
-	});
+  it("should load movies", () => {
+    expect(viewModel.movies.length).to.be.equal(1);
+  });
 
-	it("should be able to select a movie", () => {
-		viewModel.select(viewModel.movies[0]);
-		expect(viewModel.selectedMovie).to.be.equal(viewModel.movies[0]);
-	});
+  it("should be able to select a movie", () => {
+    viewModel.select(viewModel.movies[0]);
+    expect(viewModel.selectedMovie).to.be.equal(viewModel.movies[0]);
+  });
 
-	it("should save rated movie", () => {
-		viewModel.select(viewModel.movies[0]);
-		viewModel.rate(4);
-		expect(movieDataServiceStub.called).to.be.true;
-	});
+  it("should save rated movie", () => {
+    viewModel.select(viewModel.movies[0]);
+    viewModel.rate(4);
+    expect(movieDataServiceStub.called).to.be.true;
+  });
 });
 ```
 

@@ -56,7 +56,7 @@ That's very useful when there's a function that returns multiple values.
 
 ```js
 function demo() {
-	return ["Thiago", "Temple"];
+  return ["Thiago", "Temple"];
 }
 let [firstName, lastName] = demo();
 console.log(firstName); // Thiago
@@ -136,8 +136,8 @@ meaningful.
 
 ```js
 let { firstName: firstName, lastName: lastName } = {
-	firstName: "Thiago",
-	lastName: "Temple"
+  firstName: "Thiago",
+  lastName: "Temple"
 };
 console.log(firstName); // Thiago
 console.log(lastName); // Temple
@@ -160,8 +160,8 @@ We can also have nested assignments when destructuring.
 
 ```js
 let {
-	name: n,
-	contact: { twitter: t }
+  name: n,
+  contact: { twitter: t }
 } = { name: "Thiago", contact: { twitter: "@vintem12" } };
 console.log(n); // Thiago
 console.log(t); // @vintem12
@@ -208,10 +208,10 @@ default values in a function, something like this had to be made:
 
 ```js
 function ajaxCall(options) {
-	var opts = options || {};
-	opts.method = opts.method || "POST";
-	opts.dataType = opts.dataType || "json";
-	// ...
+  var opts = options || {};
+  opts.method = opts.method || "POST";
+  opts.dataType = opts.dataType || "json";
+  // ...
 }
 ajaxCall({ method: "GET" });
 ```
@@ -220,9 +220,9 @@ It's ok, it works, but with ES15 it's lot more ellegant.
 
 ```js
 function ajaxCall(url, { method = "POST", dataType = "json" } = {}) {
-	console.log(url); // http://templecoding.com
-	console.log(method); // GET
-	console.log(dataType); // json
+  console.log(url); // http://templecoding.com
+  console.log(method); // GET
+  console.log(dataType); // json
 }
 
 ajaxCall("http://templecoding.com", { method: "GET" });
@@ -236,9 +236,9 @@ value of the second parameter is an empty object, so to avoid the error.
 
 ```js
 function ajaxCall(url, { method = "POST", dataType = "json" }) {
-	console.log(url);
-	console.log(method);
-	console.log(dataType);
+  console.log(url);
+  console.log(method);
+  console.log(dataType);
 }
 
 ajaxCall("http://templecoding.com"); // TypeError: can't convert undefined to object
@@ -248,9 +248,9 @@ We can also achieve the same results using array destructuring.
 
 ```js
 function ajaxCall(url, [method = "POST", dataType = "json"]) {
-	console.log(url); // http://templecoding.com
-	console.log(method); // GET
-	console.log(dataType); // json
+  console.log(url); // http://templecoding.com
+  console.log(method); // GET
+  console.log(dataType); // json
 }
 
 ajaxCall("http://templecoding.com", ["GET"]);
@@ -301,7 +301,7 @@ That's very useful when there's a function that returns multiple values.
 
 ```js
 function demo() {
-	return ["Thiago", "Temple"];
+  return ["Thiago", "Temple"];
 }
 let [firstName, lastName] = demo();
 console.log(firstName); // Thiago
@@ -381,8 +381,8 @@ meaningful.
 
 ```js
 let { firstName: firstName, lastName: lastName } = {
-	firstName: "Thiago",
-	lastName: "Temple"
+  firstName: "Thiago",
+  lastName: "Temple"
 };
 console.log(firstName); // Thiago
 console.log(lastName); // Temple
@@ -405,8 +405,8 @@ We can also have nested assignments when destructuring.
 
 ```js
 let {
-	name: n,
-	contact: { twitter: t }
+  name: n,
+  contact: { twitter: t }
 } = { name: "Thiago", contact: { twitter: "@vintem12" } };
 console.log(n); // Thiago
 console.log(t); // @vintem12
@@ -453,10 +453,10 @@ default values in a function, something like this had to be made:
 
 ```js
 function ajaxCall(options) {
-	var opts = options || {};
-	opts.method = opts.method || "POST";
-	opts.dataType = opts.dataType || "json";
-	// ...
+  var opts = options || {};
+  opts.method = opts.method || "POST";
+  opts.dataType = opts.dataType || "json";
+  // ...
 }
 ajaxCall({ method: "GET" });
 ```
@@ -465,9 +465,9 @@ It's ok, it works, but with ES15 it's a lot more elegant.
 
 ```js
 function ajaxCall(url, { method = "POST", dataType = "json" } = {}) {
-	console.log(url); // http://templecoding.com
-	console.log(method); // GET
-	console.log(dataType); // json
+  console.log(url); // http://templecoding.com
+  console.log(method); // GET
+  console.log(dataType); // json
 }
 
 ajaxCall("http://templecoding.com", { method: "GET" });
@@ -481,9 +481,9 @@ value of the second parameter is an empty object, so to avoid the error.
 
 ```js
 function ajaxCall(url, { method = "POST", dataType = "json" }) {
-	console.log(url);
-	console.log(method);
-	console.log(dataType);
+  console.log(url);
+  console.log(method);
+  console.log(dataType);
 }
 
 ajaxCall("http://templecoding.com"); // TypeError: can't convert undefined to object
@@ -493,9 +493,9 @@ We can also achieve the same results using array destructuring.
 
 ```js
 function ajaxCall(url, [method = "POST", dataType = "json"]) {
-	console.log(url); // http://templecoding.com
-	console.log(method); // GET
-	console.log(dataType); // json
+  console.log(url); // http://templecoding.com
+  console.log(method); // GET
+  console.log(dataType); // json
 }
 
 ajaxCall("http://templecoding.com", ["GET"]);
@@ -507,22 +507,22 @@ One last use case I want to show is the use of destructuring in a _for of_ loop.
 
 ```js
 let users = [
-	{
-		username: "user1",
-		contact: { twitter: "@user1" }
-	},
-	{
-		username: "user2",
-		contact: { twitter: "@user2" }
-	}
+  {
+    username: "user1",
+    contact: { twitter: "@user1" }
+  },
+  {
+    username: "user2",
+    contact: { twitter: "@user2" }
+  }
 ];
 
 for (let {
-	username,
-	contact: { twitter: t }
+  username,
+  contact: { twitter: t }
 } of users) {
-	console.log(username); // user1, user2
-	console.log(t); // @user1, @user2
+  console.log(username); // user1, user2
+  console.log(t); // @user1, @user2
 }
 ```
 
@@ -532,22 +532,22 @@ use of destructuring in a _for of_ loop.
 
 ```js
 let users = [
-	{
-		username: "user1",
-		contact: { twitter: "@user1" }
-	},
-	{
-		username: "user2",
-		contact: { twitter: "@user2" }
-	}
+  {
+    username: "user1",
+    contact: { twitter: "@user1" }
+  },
+  {
+    username: "user2",
+    contact: { twitter: "@user2" }
+  }
 ];
 
 for (let {
-	username,
-	contact: { twitter: t }
+  username,
+  contact: { twitter: t }
 } of users) {
-	console.log(username); // user1, user2
-	console.log(t); // @user1, @user2
+  console.log(username); // user1, user2
+  console.log(t); // @user1, @user2
 }
 ```
 

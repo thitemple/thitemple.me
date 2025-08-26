@@ -41,9 +41,9 @@ parameter _name_.
 
 ```js
 class Person {
-	constructor(name) {
-		this.name = name;
-	}
+  constructor(name) {
+    this.name = name;
+  }
 }
 let p = new Person("Thiago");
 console.log(p.name);
@@ -54,17 +54,17 @@ have getters and setters for that field.
 
 ```js
 class Person {
-	constructor(name) {
-		this._name = name;
-	}
+  constructor(name) {
+    this._name = name;
+  }
 
-	get name() {
-		return this._name;
-	}
+  get name() {
+    return this._name;
+  }
 
-	set name(value) {
-		this._name = value;
-	}
+  set name(value) {
+    this._name = value;
+  }
 }
 let p = new Person("Thiago");
 console.log(p.name); // Thiago
@@ -93,16 +93,16 @@ methods.
 
 ```js
 class Person {
-	constructor(name) {
-		this.name = name;
-	}
-	sayHello() {
-		console.log(`Hello, ${this.name}`);
-	}
+  constructor(name) {
+    this.name = name;
+  }
+  sayHello() {
+    console.log(`Hello, ${this.name}`);
+  }
 
-	static myMethod() {
-		console.log("I'm a static method");
-	}
+  static myMethod() {
+    console.log("I'm a static method");
+  }
 }
 new Person("Thiago").sayHello(); // Hello, Thiago
 Person.myMethod(); // I'm a static method
@@ -113,19 +113,19 @@ _extends_.
 
 ```js
 class Person {
-	constructor(name) {
-		this.name = name;
-	}
+  constructor(name) {
+    this.name = name;
+  }
 }
 
 class User extends Person {
-	constructor(name) {
-		super(name);
-	}
+  constructor(name) {
+    super(name);
+  }
 
-	sayHello() {
-		console.log(`Hello, ${this.name}`);
-	}
+  sayHello() {
+    console.log(`Hello, ${this.name}`);
+  }
 }
 
 let u = new User("Thiago");
@@ -141,14 +141,14 @@ child class, like so:
 
 ```js
 class Person {
-	declare() {
-		return "I'm a person";
-	}
+  declare() {
+    return "I'm a person";
+  }
 }
 class User extends Person {
-	declare() {
-		return this.super() + " and a User";
-	}
+  declare() {
+    return this.super() + " and a User";
+  }
 }
 let u = new User();
 console.log(u.declare()); // I'm a person and a User
@@ -162,12 +162,12 @@ thrown.
 class Person {}
 
 class User extends Person {
-	// valid
+  // valid
 }
 
 // SyntaxError
 class SpecialPerson extends Person {
-	constructor() {}
+  constructor() {}
 }
 ```
 
@@ -177,16 +177,16 @@ In a derived class, we also have to call _super_ before using _this_.
 class Person {}
 
 class User extends Person {
-	constructor() {
-		super();
-		this.myValue = "a value";
-	}
+  constructor() {
+    super();
+    this.myValue = "a value";
+  }
 }
 
 class SpecialPerson extends Person {
-	constructor() {
-		this.myValue = "a value"; // SyntaxError
-		super();
-	}
+  constructor() {
+    this.myValue = "a value"; // SyntaxError
+    super();
+  }
 }
 ```

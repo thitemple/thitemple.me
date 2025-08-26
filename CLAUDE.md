@@ -160,13 +160,13 @@ import { describe, it, expect } from "vitest";
 import { formatDate } from "./utils";
 
 describe("formatDate", () => {
-	it("should format valid dates correctly", () => {
-		expect(formatDate("2024-01-15")).toMatch(/Jan.*15.*2024/);
-	});
+  it("should format valid dates correctly", () => {
+    expect(formatDate("2024-01-15")).toMatch(/Jan.*15.*2024/);
+  });
 
-	it("should handle invalid dates gracefully", () => {
-		expect(formatDate("invalid")).toBe("Invalid Date");
-	});
+  it("should handle invalid dates gracefully", () => {
+    expect(formatDate("invalid")).toBe("Invalid Date");
+  });
 });
 ```
 
@@ -178,8 +178,8 @@ import { render, screen } from "@testing-library/svelte";
 import MyComponent from "./MyComponent.svelte";
 
 it("should display post title", () => {
-	render(MyComponent, { props: { post: mockPost } });
-	expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Post Title");
+  render(MyComponent, { props: { post: mockPost } });
+  expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Post Title");
 });
 ```
 
@@ -188,11 +188,11 @@ it("should display post title", () => {
 ```typescript
 // Example: Testing complete workflows
 it("should provide consistent data across endpoints", async () => {
-	const posts = await getPosts();
-	const apiResponse = await GET(mockRequest);
-	const apiData = await apiResponse.json();
+  const posts = await getPosts();
+  const apiResponse = await GET(mockRequest);
+  const apiData = await apiResponse.json();
 
-	expect(apiData.data[0].slug).toBe(posts[0].slug);
+  expect(apiData.data[0].slug).toBe(posts[0].slug);
 });
 ```
 
@@ -205,12 +205,12 @@ Use factory functions for consistent test data:
 ```typescript
 // src/tests/factories/post.factory.ts
 export function createPost(overrides?: Partial<Post>): Post {
-	return {
-		title: "Test Post",
-		slug: "test-post",
-		// ... defaults with overrides
-		...overrides
-	};
+  return {
+    title: "Test Post",
+    slug: "test-post",
+    // ... defaults with overrides
+    ...overrides
+  };
 }
 ```
 

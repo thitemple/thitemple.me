@@ -40,11 +40,11 @@ Like this:
 
 ```js
 function head(arr) {
-	return arr[0];
+  return arr[0];
 }
 
 function toUpper(str) {
-	return str.toUpperCase();
+  return str.toUpperCase();
 }
 ```
 
@@ -116,9 +116,9 @@ let's see an implementation of it.
 
 ```javascript
 var compose = function (f, g) {
-	return function (data) {
-		return f(g(data));
-	};
+  return function (data) {
+    return f(g(data));
+  };
 };
 ```
 
@@ -177,18 +177,18 @@ Now let's get a little deeper and say we have an array of movie objects:
 
 ```javascript
 var movies = [
-	{
-		title: "Star Wars",
-		director: "George Lucas"
-	},
-	{
-		title: "The Matrix",
-		director: "Lana Wachowski"
-	},
-	{
-		title: "Forrest Gump",
-		director: "Robert Zemeckis"
-	}
+  {
+    title: "Star Wars",
+    director: "George Lucas"
+  },
+  {
+    title: "The Matrix",
+    director: "Lana Wachowski"
+  },
+  {
+    title: "Forrest Gump",
+    director: "Robert Zemeckis"
+  }
 ];
 ```
 
@@ -263,8 +263,8 @@ Here's how it looks:
 
 ```javascript
 var directorsFirstNames = R.compose(
-	console.log,
-	R.map(R.compose(R.head, R.split(" "), R.prop("director")))
+  console.log,
+  R.map(R.compose(R.head, R.split(" "), R.prop("director")))
 );
 
 directorsFirstNames(movies);
