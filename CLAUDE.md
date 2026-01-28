@@ -2,319 +2,197 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Development Commands
+## Project Overview
+
+This is a personal blog and portfolio site built with SvelteKit (Svelte 5), TypeScript, Tailwind CSS v4, and mdsvex for markdown processing. The site is deployed on Vercel and uses pnpm as the package manager.
+
+**Tech Stack:**
+
+- Framework: SvelteKit + Svelte 5 (with runes)
+- Language: TypeScript (strict mode, `noUncheckedIndexedAccess` enabled)
+- Styling: Tailwind CSS v4 via Vite plugin
+- Content: mdsvex (markdown with frontmatter)
+- Testing: Vitest + Testing Library
+- Deployment: Vercel (adapter-vercel)
+- Node version: >=22 <23
+
+## Essential Commands
+
+**Development:**
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-# Or with browser auto-open
-pnpm dev -- --open
-
-# Build for production (uses increased memory allocation)
-pnpm build
-
-# Preview production build
-pnpm preview
-
-# Type checking
-pnpm check
-# Type checking with watch mode
-pnpm check:watch
-
-# Linting and formatting
-pnpm lint          # Check code style with Prettier and ESLint
-pnpm format        # Auto-format code with Prettier
-
-# Testing
-pnpm test          # Run tests in watch mode
-pnpm test:run      # Run tests once
-pnpm test:coverage # Run tests with coverage report
-pnpm test:integration # Run integration tests
-
-# IMPORTANT: Validation
-pnpm validate      # Run full validation suite (lint, type-check, tests, build)
-                   # This MUST pass before any task is considered complete
+pnpm install              # Install dependencies
+pnpm dev                  # Start dev server
+pnpm build                # Production build (uses 4GB heap)
+pnpm preview              # Preview production build
+pnpm sync                 # Sync SvelteKit types
 ```
 
-## Important Requirements
-
-**Before considering ANY development task complete, you MUST run `pnpm validate` and ensure it passes.**
-
-The validation script runs:
-
-1. **Linting** - Code formatting with Prettier and ESLint rules
-2. **Type checking** - TypeScript and Svelte type validation
-3. **Tests** - All unit and integration tests
-4. **Build** - Production build verification
-
-If validation fails, the task is not complete and issues must be fixed.
-
-## High-Level Architecture
-
-This is a **SvelteKit personal blog/portfolio site** with the following architecture:
-
-### Tech Stack
-
-- **Framework**: SvelteKit with Svelte 5
-- **Styling**: Tailwind CSS v4 with Vite integration
-- **Content**: MDsveX for Markdown processing with syntax highlighting (Shiki)
-- **Type Safety**: TypeScript with strict mode enabled
-- **Deployment**: Vercel adapter with Node.js 20.x runtime
-- **Analytics**: Vercel Analytics integration
-
-### Project Structure
-
-#### Content Management
-
-- **Blog posts** are stored as Markdown files in `/src/posts/` directory
-- Posts are processed by MDsveX with custom layout at `src/mdsvex.svelte`
-- Dynamic post loading via `src/lib/posts.ts` using Vite's glob imports
-- Archived posts in `/src/archive/old-posts/` (not actively displayed)
-
-#### Routing Structure
-
-- `/` - Homepage with latest post preview
-- `/about` - About page
-- `/blog` - Blog listing with pagination
-- `/blog/[slug]` - Individual blog post pages
-- `/api/posts` - JSON API endpoint for posts with pagination
-- `/rss.xml` - RSS feed generation
-- `/sitemap.xml` - Sitemap generation
-
-#### Key Components
-
-- **Layout**: Main layout in `src/routes/+layout.svelte` handles theme switching and analytics
-- **Theme System**: Dark/light mode toggle stored in localStorage via `src/lib/stores/theme.ts`
-- **Navigation**: Header with desktop nav and mobile menu component
-- **Post Processing**: Custom MDsveX configuration with TOC generation, slug creation, and image optimization
-
-#### API Design
-
-- Posts API (`/api/posts`) returns paginated results with Zod validation
-- RSS and Sitemap endpoints generate XML responses server-side
-- Type-safe API responses using TypeScript interfaces
-
-### Configuration Notes
-
-- Vite config uses Tailwind CSS v4 as a Vite plugin
-- SvelteKit configured for Vercel deployment
-- MDsveX handles `.md` files with custom highlighting and plugins:
-  - `remark-toc` for table of contents
-  - `rehype-slug` for heading anchors
-  - `rehype-unwrap-images` for image handling
-  - `mdsvex-relative-images` for relative image paths
-
-## Testing Strategy and Guidelines
-
-This project follows comprehensive testing practices to ensure reliability and maintainability.
-
-### Testing Architecture
-
-#### Test Types
-
-- **Unit Tests** (`*.test.ts`): Test individual functions and components in isolation
-- **Integration Tests** (`*.integration.test.ts`): Test workflows and interactions between components
-- **Component Tests**: Test Svelte components using @testing-library/svelte
-
-#### Test Organization
-
-- **Co-location**: Tests are placed in the same directory as the code they test
-- **Factories**: Reusable test data creation in `/src/tests/factories/`
-- **Test Utils**: Shared testing utilities in `/src/tests/test-utils.ts`
-- **Mocks**: Application-specific mocks in `/src/tests/mocks/`
-
-#### Key Testing Principles
-
-1. **Behavior over Implementation**: Test what the code does, not how it does it
-2. **Arrange-Act-Assert**: Clear test structure with setup, execution, and verification
-3. **Test Pyramid**: More unit tests, fewer integration tests, minimal E2E tests
-4. **Deterministic Tests**: No flaky tests, consistent results every run
-5. **Fast Feedback**: Optimized for quick execution and meaningful error messages
-
-### Testing Tools and Configuration
-
-#### Core Tools
-
-- **Vitest**: Fast test runner with TypeScript support
-- **@testing-library/svelte**: Component testing with user-centric queries
-- **MSW (Mock Service Worker)**: API mocking for integration tests
-- **Happy DOM**: Fast DOM implementation for component tests
-
-#### Coverage Requirements
-
-- **Branches**: 70% minimum
-- **Functions**: 70% minimum
-- **Lines**: 80% minimum
-- **Statements**: 80% minimum
-
-### Writing Tests
-
-#### Unit Tests
-
-```typescript
-// Example: src/lib/utils.test.ts
-import { describe, it, expect } from "vitest";
-import { formatDate } from "./utils";
-
-describe("formatDate", () => {
-  it("should format valid dates correctly", () => {
-    expect(formatDate("2024-01-15")).toMatch(/Jan.*15.*2024/);
-  });
-
-  it("should handle invalid dates gracefully", () => {
-    expect(formatDate("invalid")).toBe("Invalid Date");
-  });
-});
-```
-
-#### Component Tests
-
-```typescript
-// Example: Component testing with semantic queries
-import { render, screen } from "@testing-library/svelte";
-import MyComponent from "./MyComponent.svelte";
-
-it("should display post title", () => {
-  render(MyComponent, { props: { post: mockPost } });
-  expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Post Title");
-});
-```
-
-#### Integration Tests
-
-```typescript
-// Example: Testing complete workflows
-it("should provide consistent data across endpoints", async () => {
-  const posts = await getPosts();
-  const apiResponse = await GET(mockRequest);
-  const apiData = await apiResponse.json();
-
-  expect(apiData.data[0].slug).toBe(posts[0].slug);
-});
-```
-
-### Test Data Management
-
-#### Factories Pattern
-
-Use factory functions for consistent test data:
-
-```typescript
-// src/tests/factories/post.factory.ts
-export function createPost(overrides?: Partial<Post>): Post {
-  return {
-    title: "Test Post",
-    slug: "test-post",
-    // ... defaults with overrides
-    ...overrides
-  };
-}
-```
-
-#### Mock Strategy
-
-- **External APIs**: Mock with MSW
-- **Utility Functions**: Mock only when necessary for isolation
-- **SvelteKit Modules**: Avoid mocking; test real behavior when possible
-- **File System**: Mock import.meta.glob for post loading tests
-
-### Testing Specific Features
-
-#### API Endpoints
-
-- Test success and error cases
-- Validate request/response schemas with Zod
-- Test pagination logic thoroughly
-- Verify error handling and status codes
-
-#### Svelte Components
-
-- Use semantic queries (getByRole, getByLabelText)
-- Test user interactions with userEvent
-- Verify accessibility attributes
-- Test conditional rendering and props
-
-#### Business Logic
-
-- Test edge cases and error conditions
-- Verify data transformations
-- Test sorting and filtering logic
-- Validate reading time calculations
-
-### Performance Testing
-
-#### Guidelines
-
-- Tests should complete under reasonable time limits
-- Use performance.now() for timing critical operations
-- Test large data sets to verify scalability
-- Monitor memory usage in long-running tests
-
-### Best Practices
-
-#### Do's
-
-- Write descriptive test names that explain the scenario
-- Test one concept per test case
-- Use real data when possible, mocked data when necessary
-- Clean up after tests (database, localStorage, etc.)
-- Test error boundaries and edge cases
-- Prefer user-centric queries over implementation details
-
-#### Don'ts
-
-- Don't test implementation details
-- Don't mock everything (aim for realistic scenarios)
-- Don't write tests that duplicate what TypeScript already validates
-- Don't ignore flaky tests (fix them or remove them)
-- Don't test external libraries (trust they work)
-
-#### Test Naming Conventions
-
-- Use descriptive "should" statements: `should return 404 when post not found`
-- Group related tests with `describe` blocks
-- Use nested describes for different scenarios
-- Include edge cases: `should handle empty input gracefully`
-
-### Debugging Tests
-
-#### Common Commands
+**Quality checks:**
 
 ```bash
+pnpm lint                 # Run Prettier check + ESLint
+pnpm format               # Auto-fix formatting with Prettier
+pnpm check                # Type-check with svelte-check
+pnpm validate:posts       # Validate blog post frontmatter
+pnpm validate             # Full validation pipeline (lint, check, validate:posts, test, build)
+```
+
+**Testing:**
+
+```bash
+pnpm test                 # Run tests in watch mode
+pnpm test:run             # Run tests once
+pnpm test:ui              # Open Vitest UI
+pnpm test:coverage        # Generate coverage report
+
 # Run specific test file
-pnpm test posts.test.ts
+pnpm vitest --run src/lib/utils.test.ts
 
-# Run tests in specific directory
-pnpm test src/lib/
+# Run tests by name pattern
+pnpm vitest --run -t "formatDate"
 
-# Run with coverage
-pnpm test:coverage
-
-# Debug with UI
-pnpm test:ui
-
-# Run integration tests
-pnpm test:integration
+# Run integration tests (excluded by default)
+pnpm vitest --run --include "src/**/*.integration.{test,spec}.{js,ts}"
 ```
 
-#### Debugging Tips
+## Architecture
 
-- Use `it.only` to run single test
-- Add `console.log` for debugging (remove before commit)
-- Use `screen.debug()` to see component DOM
-- Check test output for helpful error messages
+**Directory structure:**
 
-### Continuous Integration
+- `src/routes/` - SvelteKit routes (file-based routing)
+  - `+page.svelte` - Page components
+  - `+page.ts` - Page load functions
+  - `+server.ts` - API endpoints
+  - `+layout.svelte` - Layout components
+- `src/lib/` - Shared code (available via `$lib` alias)
+  - `components/` - Reusable Svelte components
+  - `services/` - External service integrations (e.g., MailerLite)
+  - `utils/` - Utility functions
+  - `types.ts` - Shared TypeScript types
+  - `posts.ts` - Blog post loading logic
+  - `config.ts` - Site configuration
+- `src/posts/` - Blog posts (markdown files with frontmatter)
+- `src/archive/` - Old blog posts
+- `src/tests/` - Test utilities and setup
+- `static/` - Static assets
 
-Tests run automatically in CI/CD pipeline:
+**Key patterns:**
 
-1. Lint and format checks
-2. TypeScript compilation
-3. Unit and integration tests
-4. Coverage validation
-5. Build verification
+1. **Post loading**: Posts are loaded using `import.meta.glob("/src/posts/**/*.md", { eager: true })` in `src/lib/posts.ts:11`. Posts must have `published: true` in frontmatter to appear.
 
-**Remember**: All tests must pass before code can be merged.
+2. **Markdown processing**: mdsvex converts `.md` files to Svelte components. Posts use frontmatter for metadata. Cover images are exported from markdown modules using `<script context="module">` blocks.
+
+3. **Type safety**: TypeScript strict mode is enabled. Handle undefined carefully with optional chaining or guards. `noUncheckedIndexedAccess` means array/object access returns `T | undefined`.
+
+4. **Styling**: Uses Tailwind v4 (configured in `vite.config.ts:1`). Utility classes are combined with `cn()` helper (from `clsx` + `tailwind-merge`).
+
+5. **API endpoints**: Located in `src/routes/api/`. Use `json()` from `@sveltejs/kit` for responses. Validate input with Zod. Return `{ success: false, error: "..." }` on errors.
+
+6. **Testing**: Tests use Vitest with happy-dom. Component tests use `@testing-library/svelte`. Test files live alongside source files with `.test.ts` or `.spec.ts` suffix. Integration tests (`.integration.test.ts`) are excluded by default.
+
+## Blog Post Requirements
+
+Posts must be at `src/posts/[slug]/index.md` with the following frontmatter fields (validated by `scripts/validate-posts.js:18`):
+
+- `title` (string)
+- `description` (string)
+- `categories` (array)
+- `date` (YYYY-MM-DD format)
+- `published` (boolean)
+
+**Important:** YAML frontmatter must use spaces, not tabs. Validate with `pnpm validate:posts` before committing.
+
+Example:
+
+```markdown
+---
+title: My Post Title
+description: A brief description
+categories:
+  - web-development
+  - typescript
+date: 2025-01-25
+published: true
+---
+
+<script context="module">
+export { default as cover } from "./cover.png";
+</script>
+
+Content here...
+```
+
+## Code Style
+
+**TypeScript:**
+
+- Use `import type { }` for type-only imports
+- Prefer explicit types for function returns and complex objects
+- Handle array/object access with optional chaining (`posts[0]?.title`)
+
+**Formatting:**
+
+- Tabs for indentation (except markdown uses 2 spaces)
+- Double quotes for strings
+- 100 character print width
+- No trailing commas
+- Run `pnpm format` to auto-fix
+
+**Imports:**
+
+- External packages first
+- `$lib` and `@` aliases next
+- Relative imports last
+- Group type-only imports
+
+**Naming:**
+
+- Components: PascalCase (`NewsletterForm.svelte`)
+- Functions/variables: camelCase
+- Types/interfaces: PascalCase
+- Constants: camelCase or SCREAMING_SNAKE_CASE
+
+## Testing Guidelines
+
+- Tests live in `src/**/*.test.ts` or `src/**/*.spec.ts`
+- Environment: happy-dom with globals enabled
+- Setup files: `src/tests/setup.ts` (standard), `src/tests/setup.integration.ts` (MSW)
+- Coverage thresholds: 70% branches/functions, 80% lines/statements
+- Mocks for SvelteKit's `$app` modules are in `src/tests/mocks/app/`
+
+## Common Tasks
+
+**Add a new blog post:**
+
+1. Create `src/posts/[slug]/index.md` with required frontmatter
+2. Run `pnpm validate:posts` to validate
+3. Add cover image if needed (export in `<script context="module">`)
+
+**Add a new API endpoint:**
+
+1. Create `src/routes/api/[name]/+server.ts`
+2. Export typed handlers: `export const POST: RequestHandler = async ({ request }) => { ... }`
+3. Use `json()` for responses
+4. Validate input with Zod
+5. Add tests in `src/routes/api/[name]/server.test.ts`
+
+**Add a new component:**
+
+1. Create in `src/lib/components/[Name].svelte`
+2. Add tests in `src/lib/components/[Name].test.ts` if complex
+3. Use Testing Library for component tests
+
+**Before committing:**
+
+1. Run `pnpm validate` (runs all checks)
+2. Ensure tests pass and coverage meets thresholds
+3. Check TypeScript errors with `pnpm check`
+
+## Important Notes
+
+- Build requires 4GB heap (`NODE_OPTIONS='--max-old-space-size=4096'` in package.json:8)
+- Posts are sorted by date descending (newest first) in `src/lib/posts.ts:27`
+- Site config (title, author, description) is in `src/lib/config.ts:3-10`
+- Environment-aware URLs: dev uses `http://localhost:5173`, prod uses `https://thitemple.me`
+- Syntax highlighting uses Shiki with Dracula theme (configured in `svelte.config.js:18-32`)
