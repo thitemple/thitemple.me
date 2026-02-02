@@ -6,7 +6,7 @@
 <div class="flex min-h-[calc(100vh-400px)] flex-col justify-center sm:min-h-[calc(100vh-320px)]">
 	<section class="flex flex-1 items-center py-8 sm:py-16">
 		<div class="mx-auto max-w-4xl px-6 text-center">
-			<h1 class="gradient-text font-grotesk mb-8 text-6xl font-extrabold lg:text-8xl">
+			<h1 class="gradient-text font-heading mb-8 text-6xl font-extrabold lg:text-8xl">
 				{page.status}
 			</h1>
 

@@ -41,7 +41,7 @@
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-6 text-center">
-		<h1 class="gradient-text font-grotesk mb-6 text-5xl font-extrabold lg:text-6xl">Blog</h1>
+		<h1 class="gradient-text font-heading mb-6 text-5xl font-extrabold lg:text-6xl">Blog</h1>
 		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
 			Things I'm learning, problems I'm solving, and mistakes I'm making along the way.
 		</p>
@@ -56,7 +56,7 @@
 			<div class="flex min-h-[400px] items-center justify-center">
 				<div class="max-w-2xl text-center">
 					<div class="mb-6 text-6xl">📝</div>
-					<h2 class="font-grotesk mb-4 text-3xl font-bold text-white">Working on it</h2>
+					<h2 class="font-heading mb-4 text-3xl font-bold text-white">Working on it</h2>
 					<p class="text-lg leading-relaxed text-slate-300">
 						Getting ready to share what I'm learning as I build stuff. First post coming soon.
 					</p>
@@ -100,12 +100,13 @@
 									<span class="font-medium text-[var(--accent)]">{getReadTime(post.readTime)}</span>
 								</div>
 
-								<!-- Title -->
-								<h2
-									class="font-grotesk mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
-								>
-									{post.title}
-								</h2>
+						<!-- Title -->
+						<h2
+							class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
+							style={`view-transition-name: post-title-${post.slug}`}
+						>
+							{post.title}
+						</h2>
 
 								<!-- Excerpt -->
 								<p class="mb-5 line-clamp-3 text-base leading-relaxed text-slate-300">

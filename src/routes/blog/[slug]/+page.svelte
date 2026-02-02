@@ -45,19 +45,6 @@
 	<meta name="twitter:description" content={data.meta.summary} />
 </svelte:head>
 
-<!-- Breadcrumb -->
-<section class="py-6">
-	<div class="mx-auto max-w-3xl px-6">
-		<nav class="flex items-center gap-3 font-mono text-sm text-slate-400">
-			<a href="/" class="transition-colors hover:text-[var(--accent)]">Home</a>
-			<span class="text-slate-500">→</span>
-			<a href="/blog" class="transition-colors hover:text-[var(--accent)]">Blog</a>
-			<span class="text-slate-500">→</span>
-			<span class="truncate text-slate-300">{data.meta.title}</span>
-		</nav>
-	</div>
-</section>
-
 <!-- Article Hero -->
 <section class="relative overflow-hidden pt-10 pb-16">
 	<!-- Background gradients -->
@@ -89,7 +76,10 @@
 		</div>
 
 		<!-- Title -->
-		<h1 class="gradient-text font-grotesk mb-6 text-4xl leading-tight font-extrabold lg:text-5xl">
+		<h1
+			class="gradient-text font-heading mb-6 text-4xl leading-tight font-extrabold lg:text-5xl"
+			style={`view-transition-name: post-title-${data.meta.slug}`}
+		>
 			{data.meta.title}
 		</h1>
 
@@ -112,51 +102,11 @@
 	</div>
 </article>
 
-<!-- Author Bio Section -->
-<section class="mx-auto max-w-3xl px-6 pb-20">
-	<div class="rounded-2xl border border-white/10 bg-black/60 p-8 backdrop-blur-sm">
-		<div
-			class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left"
-		>
-			<!-- Avatar -->
-			<img
-				src="/thiago-temple.jpeg"
-				alt="Thiago Temple"
-				class="h-20 w-20 rounded-full border-2 border-[var(--accent)]/20 shadow-xl"
-			/>
-
-			<!-- Details -->
-			<div class="flex-1">
-				<h4 class="font-grotesk mb-2 text-xl font-semibold text-white">Thiago Temple</h4>
-				<p class="mb-4 leading-relaxed text-slate-300">
-					Full-stack developer with 25+ years of experience, father of three, and builder of
-					meaningful solutions. Currently working on family-oriented apps while sharing practical
-					insights for busy developers who want to build side projects without sacrificing work-life
-					balance.
-				</p>
-				<div class="flex flex-wrap justify-center gap-4 text-sm font-medium md:justify-start">
-					<a href="#" class="text-[var(--accent)] transition-colors hover:text-purple-300"
-						>BlueSky</a
-					>
-					<a href="#" class="text-[var(--accent)] transition-colors hover:text-purple-300">GitHub</a
-					>
-					<a href="#" class="text-[var(--accent)] transition-colors hover:text-purple-300"
-						>LinkedIn</a
-					>
-					<a
-						href="mailto:thitemple@gmail.com"
-						class="text-[var(--accent)] transition-colors hover:text-purple-300">Email</a
-					>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 
 <!-- Related Posts Section -->
 <section class="pb-32">
 	<div class="mx-auto max-w-7xl px-6">
-		<h3 class="font-grotesk mb-12 text-center text-3xl font-bold text-white">Related Posts</h3>
+		<h3 class="font-heading mb-12 text-center text-3xl font-bold text-white">Related Posts</h3>
 
 		<!-- For now, we'll add a placeholder. In a real implementation, you'd fetch related posts -->
 		<div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
@@ -164,7 +114,7 @@
 				class="rounded-xl border border-white/10 bg-black/60 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[var(--accent)]/30"
 			>
 				<time class="mb-2 font-mono text-xs text-slate-400">Coming Soon</time>
-				<h4 class="font-grotesk mb-3 text-lg font-semibold">
+				<h4 class="font-heading mb-3 text-lg font-semibold">
 					<a href="#" class="text-white transition-colors hover:text-[var(--accent)]">
 						More articles coming soon
 					</a>

@@ -22,7 +22,7 @@
 <section class="relative isolate py-24">
 	<div class="mx-auto max-w-7xl px-6">
 		<div class="mx-auto max-w-4xl text-center">
-			<h1 class="gradient-text font-grotesk mb-8 text-5xl font-extrabold lg:text-6xl">About Me</h1>
+			<h1 class="gradient-text font-heading mb-8 text-5xl font-extrabold lg:text-6xl">About Me</h1>
 			<p class="text-xl leading-relaxed text-slate-300">
 				The longer version of who I am and why I'm documenting this journey.
 			</p>
@@ -40,7 +40,7 @@
 				alt="Thiago Temple"
 				class="mx-auto mb-8 h-48 w-48 rounded-full border-4 border-[var(--accent)]/20 shadow-2xl"
 			/>
-			<h2 class="font-grotesk mb-4 text-3xl font-bold text-white">Hi, I'm Thiago Temple</h2>
+			<h2 class="font-heading mb-4 text-3xl font-bold text-white">Hi, I'm Thiago Temple</h2>
 			<p class="text-lg text-slate-300">A Brazilian living in Ottawa, Canada with my family.</p>
 		</div>
 
@@ -119,8 +119,7 @@
 						>
 							some TV shows
 						</a>
-						and always have a book going. But mostly I hang out with my family—my wife, three kids, and
-						our two greyhounds who think they're lap dogs.
+						and always have a book going. But mostly I hang out with my family—my wife and three kids.
 					</p>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 /* ── Fonts ────────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&family=Lora:wght@400&display=swap");
 
 /* ── Tailwind v4 core ─────────────────────────────────────────────── */
 @import "tailwindcss";
@@ -7,6 +7,13 @@
 
 /* ── Design-tokens pulled from the prototype ──────────────────────── */
 :root {
+	/* new color palette */
+	--color-primary: #0deff8;
+	--color-secondary: #f52ec0;
+	--color-tertiary: #8a73f8;
+	--color-bg: #002642;
+	--color-text: #c8c8d2;
+
 	/* core gradient (logo / text highlights) */
 	--grad-1: #667eea; /* indigo-400  */
 	--grad-2: #764ba2; /* purple-600  */
@@ -22,12 +29,11 @@
 	--btn-4: #ec4899; /* rose-500    */
 
 	/* backgrounds */
-	--bg-deep: #0f172a; /* slate-950   */
 
 	/* font families */
-	--font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-	--font-grotesk: "Space Grotesk", "Inter", system-ui, sans-serif;
 	--font-mono: "JetBrains Mono", monospace;
+	--font-heading: "Kantumruy Pro", "Inter", system-ui, sans-serif;
+	--font-body: "Lora", Georgia, serif;
 }
 
 /* ── Helpers & small components ───────────────────────────────────── */
@@ -51,19 +57,64 @@
 		);
 		@apply inline-block rounded-xl px-8 py-4 text-lg font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5;
 	}
+
+	.nav-link-gradient {
+		position: relative;
+		padding-bottom: 4px;
+	}
+
+	.nav-link-gradient::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease;
+	}
+
+	.nav-link-gradient:hover::after {
+		transform: scaleX(1);
+	}
 }
 
 /* ── Base styles ──────────────────────────────────────────────────── */
 body {
-	font-family: var(--font-sans);
+	font-family: var(--font-body);
 }
 
-.font-grotesk {
-	font-family: var(--font-grotesk) !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
 }
 
 .font-mono {
 	font-family: var(--font-mono) !important;
+}
+
+.font-heading {
+	font-family: var(--font-heading) !important;
+}
+
+/* ── Prose typography overrides ──────────────────────────────────── */
+.prose {
+	font-family: var(--font-body);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+	font-family: var(--font-heading);
 }
 
 /* ── Prose image overrides ────────────────────────────────────────── */

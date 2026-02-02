@@ -1,268 +1,143 @@
 <script lang="ts">
-	import NewsletterForm from "$lib/components/NewsletterForm.svelte";
-	import bggLogo from "$lib/assets/img/bgg-rankings-logo.png";
-	import partyayLogo from "$lib/assets/img/partyay-logo.png";
-	import { afterNavigate } from "$app/navigation";
+	import type { Post } from "$lib/types";
 	import { formatDate } from "$lib/utils/date-format";
 
-	// Create a key that changes after navigation
-	let componentKey = $state(Date.now());
-
-	afterNavigate(() => {
-		// Force component to remount after navigation
-		componentKey = Date.now();
-	});
-
 	let { data } = $props();
+	const posts: Post[] = data.posts;
+
+	// Newsletter form state
+	let email = $state("");
+	let isLoading = $state(false);
+	let isSuccess = $state(false);
+	let errorMessage = $state("");
+
+	async function handleNewsletterSubmit(event: Event) {
+		event.preventDefault();
+		isLoading = true;
+		errorMessage = "";
+
+		try {
+			const response = await fetch("/api/newsletter", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ email })
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				isSuccess = true;
+				email = "";
+			} else {
+				errorMessage = result.error || "Failed to subscribe. Please try again.";
+			}
+		} catch {
+			errorMessage = "Failed to subscribe. Please try again.";
+		} finally {
+			isLoading = false;
+		}
+	}
 </script>
 
-<!-- ─── Hero ──────────────────────────────────────────────────────── -->
-<section
-	class="relative isolate mx-auto flex max-w-7xl flex-col-reverse items-center gap-20 px-6 py-24 lg:flex-row"
->
-	<!-- Copy (kept exactly as prototype) -->
-	<div class="max-w-xl flex-1 space-y-12 text-center lg:text-left">
-		<p class="text-4xl leading-snug font-medium text-slate-100 lg:text-5xl">
-			I'm figuring out how to build meaningful stuff while juggling work, family, and life. Come
-			along.
-		</p>
-
-		<div class="flex flex-col gap-6 sm:flex-row sm:justify-center lg:justify-start">
-			<a href="/blog" class="btn-primary">Read the blog</a>
-			<a
-				href="#work"
-				class="inline-block rounded-xl border-2 border-[var(--accent)] px-8 py-4 text-lg
-               font-semibold text-[var(--accent)]
-               transition-colors hover:bg-[var(--accent)] hover:text-white"
+<main class="mx-auto max-w-[1000px] px-6 py-12 md:py-16">
+	<!-- Latest Writing Section -->
+	<section class="mb-24 md:mb-32">
+		<div class="mb-10 flex items-center gap-4">
+			<h2
+				class="font-['Kantumruy_Pro'] text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-primary)]"
 			>
-				View Projects
-			</a>
-		</div>
-	</div>
-
-	<!-- Profile card -->
-	<aside class="card-glass w-full max-w-sm flex-1 p-10 text-center">
-		<img
-			src="/thiago-temple.jpeg"
-			alt="Thiago Temple"
-			class="mx-auto mb-6 flex h-28 w-28 items-center justify-center rounded-full border-4 border-white/10
-             bg-[linear-gradient(135deg,var(--grad-1)_0%,var(--grad-2)_25%,var(--grad-3)_50%,#8b5cf6_75%,#ec4899_100%)]
-             text-5xl font-extrabold shadow-md"
-		/>
-
-		<h3 class="font-grotesk text-2xl font-bold">Thiago Temple</h3>
-
-		<blockquote class="mt-5 leading-relaxed text-slate-300 italic">
-			"25+ years in, and I'm still learning something new every project. Turns out that's the best
-			part."
-		</blockquote>
-	</aside>
-
-	<!-- decorative radial blobs -->
-	<div class="pointer-events-none absolute inset-0">
-		<div
-			class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(120,119,198,0.15)_0%,transparent_50%)]"
-		></div>
-		<div
-			class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,119,198,0.15)_0%,transparent_50%)]"
-		></div>
-		<div
-			class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(102,126,234,0.10)_0%,transparent_50%)]"
-		></div>
-	</div>
-</section>
-
-<!-- ─── About Section ──────────────────────────────────────────────── -->
-<section id="about" class="bg-black/30 py-32">
-	<div class="mx-auto max-w-7xl px-6">
-		<h2 class="gradient-text font-grotesk mb-16 text-center text-5xl font-extrabold lg:text-6xl">
-			About Me
-		</h2>
-
-		<div class="mx-auto max-w-4xl text-center">
-			<p class="mb-8 text-xl leading-relaxed text-slate-300">
-				I’m a Canada‑based developer and dad of three. After 25+ years in tech, I’ve learned that <strong
-					class="font-semibold text-white">perfect solutions don’t exist</strong
-				> — but smart trade‑offs do.
-			</p>
-
-			<p class="mb-12 text-xl leading-relaxed text-slate-300">
-				I’m learning in public: AI-assisted development, rapid prototyping, and shipping small,
-				useful things in a few hours a week.
-			</p>
-
-			<div
-				class="rounded-2xl border border-[var(--accent)]/20 bg-gradient-to-br from-purple-600/20 to-blue-600/20 p-8"
-			>
-				<h4 class="mb-4 font-mono text-2xl font-bold text-white">My Mission</h4>
-				<p class="text-lg leading-relaxed text-slate-300">
-					Share what I’m learning from real projects with real constraints—so you can skip a
-					mistake, try an idea sooner, and I can look back proud of the path.
-				</p>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- ─── Blog Section ────────────────────────────────────────────────── -->
-{#if data.post}
-	<section id="blog" class="py-16 md:py-28">
-		<div class="mx-auto max-w-7xl px-6">
-			<h2 class="gradient-text font-grotesk mb-12 text-center text-5xl font-extrabold lg:text-6xl">
-				Latest Post
+				Latest Writing
 			</h2>
+			<div class="h-[1px] max-w-[100px] flex-grow bg-[var(--color-primary)]/30"></div>
+		</div>
 
-			<!-- Blog Card - Fully Clickable -->
-			<a
-				href={`/blog/${data.post.slug}`}
-				class="group mx-auto block max-w-3xl overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl"
-			>
-				<!-- Gradient overlay on hover -->
-				<div
-					class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
-				></div>
-
-				<!-- Post Image or Default Banner -->
-				{#if data.post.cover}
-					<div class="relative h-64 overflow-hidden">
-						<img
-							src={data.post.cover}
-							alt={`Cover for ${data.post.title}`}
-							class="h-full w-full object-cover transition-transform group-hover:scale-105"
-						/>
-					</div>
-				{:else}
-					<div
-						class="relative flex h-64 items-center justify-center bg-gradient-to-br from-purple-600/30 via-[var(--accent)]/30 to-transparent text-6xl"
+		<div class="grid gap-12 sm:gap-16">
+			{#each posts as post}
+				<article class="group relative items-baseline md:grid md:grid-cols-[1fr_auto] md:gap-8">
+					<a
+						href="/blog/{post.slug}"
+						class="block transition-transform duration-300 group-hover:translate-x-2"
 					>
-						🚀
-					</div>
-				{/if}
-
-				<!-- Post Content -->
-				<div class="relative z-10 p-8">
-					<!-- Meta Info -->
-					<div class="mb-4 flex items-center justify-between gap-3 text-sm">
-						<time class="font-mono text-slate-400">{formatDate(data.post.date)}</time>
-						<span class="font-medium text-[var(--accent)]">{data.post.readTime} min read</span>
-					</div>
-
-					<!-- Title -->
-					<h3 class="font-grotesk mb-4 text-3xl leading-tight font-bold text-white">
-						{data.post.title}
+					<h3
+						class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
+						style={`view-transition-name: post-title-${post.slug}`}
+					>
+						{post.title}
 					</h3>
+					</a>
 
-					<!-- Excerpt -->
-					<p class="mb-6 text-lg leading-relaxed text-slate-300">
-						{data.post.summary}
-					</p>
-
-					<!-- Read More Link -->
-					<span
-						class="inline-flex items-center gap-2 text-base font-semibold text-[var(--accent)] transition-colors group-hover:text-purple-300"
+					<!-- Date Line -->
+					<div
+						class="mt-2 flex items-center gap-3 whitespace-nowrap font-['Kantumruy_Pro'] text-sm font-medium text-[var(--color-tertiary)] md:mt-0"
 					>
-						Read full post
-						<span class="transition-transform group-hover:translate-x-1">→</span>
-					</span>
-				</div>
+						<time>{formatDate(post.date)}</time>
+						{#if post.readTime}
+							<span class="opacity-50">•</span>
+							<span>{post.readTime} min</span>
+						{/if}
+					</div>
+				</article>
+			{/each}
+		</div>
+
+		<div class="mt-16">
+			<a
+				href="/blog"
+				class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-white transition-colors hover:text-[var(--color-secondary)]"
+			>
+				View all posts
+				<span class="transition-transform group-hover:translate-x-1">→</span>
 			</a>
 		</div>
 	</section>
-{/if}
 
-<!-- ─── Newsletter Section ─────────────────────────────────────────── -->
-<section id="newsletter" class="py-16 md:py-28">
-	<div class="mx-auto max-w-7xl px-6">
-		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="gradient-text font-grotesk mb-6 text-4xl font-extrabold lg:text-5xl">
-				Stay Connected
-			</h2>
-			<p class="mb-12 text-xl leading-relaxed text-slate-300">
-				A short update every other week with the latest post and what I’m tinkering with. No spam.
-			</p>
+	<!-- Newsletter Section -->
+	<section class="mb-16">
+		<div
+			class="relative overflow-hidden rounded-3xl border border-[var(--color-tertiary)]/25 bg-gradient-to-br from-[var(--color-tertiary)]/15 to-[var(--color-secondary)]/10 p-8 md:p-16"
+		>
+			<!-- Decorative Glow -->
+			<div
+				class="absolute -right-[100px] -top-[100px] h-64 w-64 rounded-full bg-[var(--color-secondary)]/20 blur-[100px] transition-all duration-700 group-hover:bg-[var(--color-secondary)]/30"
+			></div>
 
-			<div class="card-glass mx-auto max-w-md p-4 md:p-8">
-				<!-- MailerLite embedded form -->
-				{#key componentKey}
-					<NewsletterForm />
-				{/key}
+			<div class="relative z-10 max-w-lg">
+				<h2 class="mb-4 font-['Kantumruy_Pro'] text-3xl font-bold text-white md:text-4xl">
+					Words From the Temple
+				</h2>
+				<p class="mb-8 text-lg font-light opacity-80">
+					Get my writing delivered to your inbox. No spam.
+				</p>
+
+				{#if isSuccess}
+					<div
+						class="flex items-center gap-3 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-6 py-4 text-[var(--color-primary)]"
+					>
+						<p class="font-bold">You're in. Thanks for subscribing.</p>
+					</div>
+				{:else}
+					<form onsubmit={handleNewsletterSubmit} class="flex flex-col gap-4 sm:flex-row">
+						<input
+							type="email"
+							bind:value={email}
+							placeholder="your@email.com"
+							required
+							disabled={isLoading}
+							class="flex-grow rounded-xl border border-[var(--color-text)]/20 bg-[var(--color-bg)] px-6 py-4 font-sans text-white transition-all focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] disabled:opacity-50"
+						/>
+						<button
+							type="submit"
+							disabled={isLoading}
+							class="rounded-xl bg-[var(--color-secondary)] px-8 py-4 font-['Kantumruy_Pro'] text-lg font-bold text-white shadow-[0_4px_20px_rgba(245,46,192,0.3)] transition-all hover:scale-105 hover:bg-[#d41da0] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+						>
+							{isLoading ? "..." : "Subscribe"}
+						</button>
+					</form>
+					{#if errorMessage}
+						<p class="mt-3 text-sm text-[var(--color-secondary)]">{errorMessage}</p>
+					{/if}
+				{/if}
 			</div>
 		</div>
-	</div>
-</section>
-
-<!-- ─── Projects Section ───────────────────────────────────────────── -->
-<section id="work" class="py-16 md:py-28">
-	<div class="mx-auto max-w-7xl px-6">
-		<h2 class="gradient-text font-grotesk mb-16 text-center text-5xl font-extrabold lg:text-6xl">
-			Projects
-		</h2>
-
-		<div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-2">
-			<!-- Project Card 1 - BGG Rankings -->
-			<a
-				href="https://www.bggrankings.app"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
-			>
-				<div class="relative flex h-full flex-col overflow-hidden rounded-xl">
-					<div class="relative flex aspect-[16/9] items-center justify-center bg-slate-900/50">
-						<img
-							src={bggLogo}
-							alt="BGG Rankings"
-							class="h-32 w-auto object-contain opacity-90 transition-opacity duration-500 group-hover:opacity-100"
-						/>
-					</div>
-
-					<div class="flex flex-1 flex-col p-6">
-						<h3 class="font-grotesk mb-2 text-2xl font-bold text-white">BGG Rankings</h3>
-						<p class="mb-4 text-slate-300">
-							Explore BoardGameGeek rankings with clean visuals and practical insights.
-						</p>
-
-						<div class="mt-auto flex items-center gap-3">
-							<span
-								class="inline-flex items-center rounded-full bg-[var(--accent)]/10 px-3 py-1 text-sm font-medium text-[var(--accent)]"
-								>Live</span
-							>
-						</div>
-					</div>
-				</div>
-			</a>
-
-			<!-- Project Card 2 - Partyay -->
-			<a
-				href="https://www.partyay.com"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/40 p-1 shadow-xl transition-transform hover:-translate-y-2 hover:border-[var(--accent)]/50 hover:shadow-2xl"
-			>
-				<div class="relative flex h-full flex-col overflow-hidden rounded-xl">
-					<div class="relative flex aspect-[16/9] items-center justify-center bg-slate-900/50">
-						<img
-							src={partyayLogo}
-							alt="Partyay"
-							class="h-32 w-auto object-contain opacity-90 transition-opacity duration-500 group-hover:opacity-100"
-						/>
-					</div>
-
-					<div class="flex flex-1 flex-col p-6">
-						<h3 class="font-grotesk mb-2 text-2xl font-bold text-white">Partyay</h3>
-						<p class="mb-4 text-slate-300">
-							A fun party planning and event management platform. Making celebrations easier and
-							more memorable.
-						</p>
-
-						<div class="mt-auto flex items-center gap-3">
-							<span
-								class="inline-flex items-center rounded-full bg-[var(--accent)]/10 px-3 py-1 text-sm font-medium text-[var(--accent)]"
-								>Live</span
-							>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-	</div>
-</section>
+	</section>
+</main>
