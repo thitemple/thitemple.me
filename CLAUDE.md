@@ -12,7 +12,6 @@ This is a personal blog and portfolio site built with SvelteKit (Svelte 5), Type
 - Language: TypeScript (strict mode, `noUncheckedIndexedAccess` enabled)
 - Styling: Tailwind CSS v4 via Vite plugin
 - Content: mdsvex (markdown with frontmatter)
-- Testing: Vitest + Testing Library
 - Deployment: Vercel (adapter-vercel)
 - Node version: >=22 <23
 
@@ -35,25 +34,7 @@ pnpm lint                 # Run Prettier check + ESLint
 pnpm format               # Auto-fix formatting with Prettier
 pnpm check                # Type-check with svelte-check
 pnpm validate:posts       # Validate blog post frontmatter
-pnpm validate             # Full validation pipeline (lint, check, validate:posts, test, build)
-```
-
-**Testing:**
-
-```bash
-pnpm test                 # Run tests in watch mode
-pnpm test:run             # Run tests once
-pnpm test:ui              # Open Vitest UI
-pnpm test:coverage        # Generate coverage report
-
-# Run specific test file
-pnpm vitest --run src/lib/utils.test.ts
-
-# Run tests by name pattern
-pnpm vitest --run -t "formatDate"
-
-# Run integration tests (excluded by default)
-pnpm vitest --run --include "src/**/*.integration.{test,spec}.{js,ts}"
+pnpm validate             # Full validation pipeline (lint, check, validate:posts, build)
 ```
 
 ## Architecture
@@ -74,7 +55,6 @@ pnpm vitest --run --include "src/**/*.integration.{test,spec}.{js,ts}"
   - `config.ts` - Site configuration
 - `src/posts/` - Blog posts (markdown files with frontmatter)
 - `src/archive/` - Old blog posts
-- `src/tests/` - Test utilities and setup
 - `static/` - Static assets
 
 **Key patterns:**
@@ -88,8 +68,6 @@ pnpm vitest --run --include "src/**/*.integration.{test,spec}.{js,ts}"
 4. **Styling**: Uses Tailwind v4 (configured in `vite.config.ts:1`). Utility classes are combined with `cn()` helper (from `clsx` + `tailwind-merge`).
 
 5. **API endpoints**: Located in `src/routes/api/`. Use `json()` from `@sveltejs/kit` for responses. Validate input with Zod. Return `{ success: false, error: "..." }` on errors.
-
-6. **Testing**: Tests use Vitest with happy-dom. Component tests use `@testing-library/svelte`. Test files live alongside source files with `.test.ts` or `.spec.ts` suffix. Integration tests (`.integration.test.ts`) are excluded by default.
 
 ## Blog Post Requirements
 
@@ -153,14 +131,6 @@ Content here...
 - Types/interfaces: PascalCase
 - Constants: camelCase or SCREAMING_SNAKE_CASE
 
-## Testing Guidelines
-
-- Tests live in `src/**/*.test.ts` or `src/**/*.spec.ts`
-- Environment: happy-dom with globals enabled
-- Setup files: `src/tests/setup.ts` (standard), `src/tests/setup.integration.ts` (MSW)
-- Coverage thresholds: 70% branches/functions, 80% lines/statements
-- Mocks for SvelteKit's `$app` modules are in `src/tests/mocks/app/`
-
 ## Common Tasks
 
 **Add a new blog post:**
@@ -175,19 +145,15 @@ Content here...
 2. Export typed handlers: `export const POST: RequestHandler = async ({ request }) => { ... }`
 3. Use `json()` for responses
 4. Validate input with Zod
-5. Add tests in `src/routes/api/[name]/server.test.ts`
 
 **Add a new component:**
 
 1. Create in `src/lib/components/[Name].svelte`
-2. Add tests in `src/lib/components/[Name].test.ts` if complex
-3. Use Testing Library for component tests
 
 **Before committing:**
 
 1. Run `pnpm validate` (runs all checks)
-2. Ensure tests pass and coverage meets thresholds
-3. Check TypeScript errors with `pnpm check`
+2. Check TypeScript errors with `pnpm check`
 
 ## Important Notes
 
