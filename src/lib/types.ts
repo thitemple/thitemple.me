@@ -1,4 +1,4 @@
-export type ContentType = 'article' | 'newsletter';
+export type ContentType = "article" | "newsletter";
 
 export type Post = {
 	title: string;

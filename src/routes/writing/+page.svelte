@@ -25,14 +25,23 @@
 
 <svelte:head>
 	<title>Words From the Temple - {config.title}</title>
-	<meta name="description" content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth." />
+	<meta
+		name="description"
+		content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth."
+	/>
 	<meta property="og:title" content={`Words From the Temple - ${config.title}`} />
 	<meta property="og:url" content={`${config.url}/writing`} />
-	<meta name="og:description" content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth." />
+	<meta
+		name="og:description"
+		content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth."
+	/>
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
 	<meta name="twitter:title" content={`Words From the Temple - ${config.title}`} />
-	<meta name="twitter:description" content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth." />
+	<meta
+		name="twitter:description"
+		content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth."
+	/>
 </svelte:head>
 
 <!-- Hero Section -->
@@ -48,7 +57,9 @@
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-7xl px-6 text-center">
-		<h1 class="gradient-text font-heading mb-6 text-5xl font-extrabold lg:text-6xl">Words From the Temple</h1>
+		<h1 class="gradient-text font-heading mb-6 text-5xl font-extrabold lg:text-6xl">
+			Words From the Temple
+		</h1>
 		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
 			Articles, newsletters, and lessons from building software on the margins.
 		</p>
@@ -105,7 +116,8 @@
 								<div class="mb-4 flex items-center justify-between gap-3 text-sm">
 									<div class="flex items-center gap-3">
 										<span
-											class="rounded-full px-2.5 py-0.5 text-xs font-semibold {post.type === 'newsletter'
+											class="rounded-full px-2.5 py-0.5 text-xs font-semibold {post.type ===
+											'newsletter'
 												? 'bg-[var(--color-secondary)]/20 text-[var(--color-secondary)]'
 												: 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]'}"
 										>
@@ -116,13 +128,13 @@
 									<span class="font-medium text-[var(--accent)]">{getReadTime(post.readTime)}</span>
 								</div>
 
-						<!-- Title -->
-						<h2
-							class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
-							style={`view-transition-name: post-title-${post.slug}`}
-						>
-							{post.title}
-						</h2>
+								<!-- Title -->
+								<h2
+									class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
+									style={`view-transition-name: post-title-${post.slug}`}
+								>
+									{post.title}
+								</h2>
 
 								<!-- Excerpt -->
 								<p class="mb-5 line-clamp-3 text-base leading-relaxed text-slate-300">
@@ -146,7 +158,7 @@
 								<span
 									class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-colors group-hover:text-purple-300"
 								>
-									{post.type === 'newsletter' ? 'Read this issue' : 'Read full post'}
+									{post.type === "newsletter" ? "Read this issue" : "Read full post"}
 									<span class="transition-transform group-hover:translate-x-1">→</span>
 								</span>
 							</div>
@@ -155,6 +167,5 @@
 				{/each}
 			</div>
 		{/if}
-
 	</div>
 </section>

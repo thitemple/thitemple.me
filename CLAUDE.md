@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal blog and portfolio site built with SvelteKit (Svelte 5), TypeScript, Tailwind CSS v4, and mdsvex for markdown processing. The site is deployed on Vercel and uses pnpm as the package manager.
+This is a personal blog and portfolio site built with SvelteKit (Svelte 5), TypeScript, Tailwind CSS v4, and mdsvex for markdown processing. The site is deployed on Vercel and uses bun as the package manager.
 
 **Tech Stack:**
 
@@ -20,21 +20,21 @@ This is a personal blog and portfolio site built with SvelteKit (Svelte 5), Type
 **Development:**
 
 ```bash
-pnpm install              # Install dependencies
-pnpm dev                  # Start dev server
-pnpm build                # Production build (uses 4GB heap)
-pnpm preview              # Preview production build
-pnpm sync                 # Sync SvelteKit types
+bun install               # Install dependencies
+bun run dev             # Start dev server
+bun run build           # Production build (uses 4GB heap)
+bun run preview         # Preview production build
+bun run sync            # Sync SvelteKit types
 ```
 
 **Quality checks:**
 
 ```bash
-pnpm lint                 # Run Prettier check + ESLint
-pnpm format               # Auto-fix formatting with Prettier
-pnpm check                # Type-check with svelte-check
-pnpm validate:posts       # Validate blog post frontmatter
-pnpm validate             # Full validation pipeline (lint, check, validate:posts, build)
+bun run lint            # Run Prettier check + ESLint
+bun run format          # Auto-fix formatting with Prettier
+bun run check           # Type-check with svelte-check
+bun run validate:posts  # Validate blog post frontmatter
+bun run validate        # Full validation pipeline (lint, check, validate:posts, build)
 ```
 
 ## Architecture
@@ -79,7 +79,7 @@ Posts must be at `src/posts/[slug]/index.md` with the following frontmatter fiel
 - `date` (YYYY-MM-DD format)
 - `published` (boolean)
 
-**Important:** YAML frontmatter must use spaces, not tabs. Validate with `pnpm validate:posts` before committing.
+**Important:** YAML frontmatter must use spaces, not tabs. Validate with `bun run validate:posts` before committing.
 
 Example:
 
@@ -115,7 +115,7 @@ Content here...
 - Double quotes for strings
 - 100 character print width
 - No trailing commas
-- Run `pnpm format` to auto-fix
+- Run `bun run format` to auto-fix
 
 **Imports:**
 
@@ -136,7 +136,7 @@ Content here...
 **Add a new blog post:**
 
 1. Create `src/posts/[slug]/index.md` with required frontmatter
-2. Run `pnpm validate:posts` to validate
+2. Run `bun run validate:posts` to validate
 3. Add cover image if needed (export in `<script context="module">`)
 
 **Add a new API endpoint:**
@@ -152,8 +152,8 @@ Content here...
 
 **Before committing:**
 
-1. Run `pnpm validate` (runs all checks)
-2. Check TypeScript errors with `pnpm check`
+1. Run `bun run validate` (runs all checks)
+2. Check TypeScript errors with `bun run check`
 
 ## Important Notes
 
