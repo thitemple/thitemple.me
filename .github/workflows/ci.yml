@@ -46,14 +46,6 @@ jobs:
           MAILER_LITE_TOKEN: "dummy-token-for-ci"
           MAILER_LITE_GROUP_ID: "dummy-group-id-for-ci"
 
-      - name: Upload test coverage
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/
-          retention-days: 7
-
       - name: Create summary
         if: always()
         run: |

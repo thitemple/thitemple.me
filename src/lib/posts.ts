@@ -1,7 +1,7 @@
-import type { Post } from "./types";
+import type { ContentType, Post } from "./types";
 
 type File = {
-	metadata: Omit<Post, "slug" | "readTime" | "cover">;
+	metadata: Omit<Post, "slug" | "readTime" | "cover" | "type"> & { type?: ContentType };
 	default: { [key: string]: unknown }; // Svelte 5 component
 	cover?: string; // Cover image exported from the markdown module
 };
@@ -15,11 +15,10 @@ export async function getPosts() {
 		const slug = path.split("/").at(-2)?.replace(".md", "");
 
 		if (isFile(file) && slug) {
-			const metadata = file.metadata as Omit<Post, "slug" | "readTime">;
-			// For Svelte 5, we'll use a different approach to get content
-			// Since render() is not available in the same way, we'll estimate based on metadata
+			const metadata = file.metadata as Omit<Post, "slug" | "readTime" | "type"> & { type?: ContentType };
 			const readTime = estimateReadingTime(metadata.description || "");
-			const post = { ...metadata, slug, readTime, cover: file.cover } satisfies Post;
+			const type: ContentType = metadata.type || "article";
+			const post = { ...metadata, slug, readTime, cover: file.cover, type } satisfies Post;
 			post.published && posts.push(post);
 		}
 	}

@@ -55,7 +55,7 @@
 			{#each posts as post}
 				<article class="group relative items-baseline md:grid md:grid-cols-[1fr_auto] md:gap-8">
 					<a
-						href="/blog/{post.slug}"
+						href="/writing/{post.slug}"
 						class="block transition-transform duration-300 group-hover:translate-x-2"
 					>
 					<h3
@@ -82,7 +82,7 @@
 
 		<div class="mt-16">
 			<a
-				href="/blog"
+				href="/writing"
 				class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-white transition-colors hover:text-[var(--color-secondary)]"
 			>
 				View all posts

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as config from "$lib/config";
-	import { Github, Linkedin, Instagram, Rss, BookOpen } from "lucide-svelte";
+	import { Github, Linkedin, Instagram, BookOpen } from "lucide-svelte";
 	import NewsletterForm from "$lib/components/NewsletterForm.svelte";
 </script>
 
@@ -75,9 +75,9 @@
 				</div>
 			</div>
 
-			<!-- Why this blog -->
+			<!-- Why I write -->
 			<div class="rounded-2xl border border-white/10 bg-black/30 p-8">
-				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Why this blog</h3>
+				<h3 class="mb-4 font-mono text-2xl font-bold text-white">Why I write</h3>
 				<div class="space-y-4 text-lg leading-relaxed text-slate-300">
 					<p>
 						Writing things down helps me think. Always has. If I can explain something clearly
@@ -145,20 +145,12 @@
 				<p class="mb-4 text-sm text-slate-400">Find me elsewhere:</p>
 				<div class="flex flex-wrap justify-center gap-4">
 					<a
-						href="/blog"
-						aria-label="Blog"
+						href="/writing"
+						aria-label="Writing"
 						class="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base font-medium transition-all hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]"
 					>
 						<BookOpen size={20} class="transition-transform group-hover:scale-110" />
-						<span>Blog</span>
-					</a>
-					<a
-						href="/rss.xml"
-						aria-label="RSS Feed"
-						class="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base font-medium transition-all hover:border-orange-500 hover:bg-orange-500/10 hover:text-orange-500"
-					>
-						<Rss size={20} class="transition-transform group-hover:scale-110" />
-						<span>RSS Feed</span>
+						<span>Writing</span>
 					</a>
 					<a
 						href="https://bsky.app/profile/thitemple.me"
