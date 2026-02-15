@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { POST } from "./+server";
-import * as mailerliteModule from "$lib/services/mailerlite";
+import * as loopsModule from "$lib/services/loops";
 
-// Mock the mailerlite service
-vi.mock("$lib/services/mailerlite");
+// Mock the loops service
+vi.mock("$lib/services/loops");
 
 describe("Newsletter API Endpoint", () => {
-	const mockSubscribeToNewsletter = vi.mocked(mailerliteModule.subscribeToNewsletter);
+	const mockSubscribeToNewsletter = vi.mocked(loopsModule.subscribeToNewsletter);
 
 	beforeEach(() => {
 		vi.clearAllMocks();
@@ -14,7 +14,7 @@ describe("Newsletter API Endpoint", () => {
 
 	describe("POST /api/newsletter", () => {
 		it("should successfully subscribe a new user with valid email", async () => {
-			mockSubscribeToNewsletter.mockResolvedValueOnce({ isNew: true });
+			mockSubscribeToNewsletter.mockResolvedValueOnce(undefined);
 
 			const mockRequest = {
 				json: async () => ({ email: "test@example.com" })
@@ -28,7 +28,6 @@ describe("Newsletter API Endpoint", () => {
 			expect(response.status).toBe(200);
 			expect(data).toEqual({
 				success: true,
-				isNew: true,
 				email: "test@example.com"
 			});
 
@@ -36,7 +35,7 @@ describe("Newsletter API Endpoint", () => {
 		});
 
 		it("should successfully handle existing subscriber", async () => {
-			mockSubscribeToNewsletter.mockResolvedValueOnce({ isNew: false });
+			mockSubscribeToNewsletter.mockResolvedValueOnce(undefined);
 
 			const mockRequest = {
 				json: async () => ({ email: "existing@example.com" })
@@ -50,7 +49,6 @@ describe("Newsletter API Endpoint", () => {
 			expect(response.status).toBe(200);
 			expect(data).toEqual({
 				success: true,
-				isNew: false,
 				email: "existing@example.com"
 			});
 		});
@@ -94,7 +92,7 @@ describe("Newsletter API Endpoint", () => {
 
 		it("should handle service errors gracefully", async () => {
 			mockSubscribeToNewsletter.mockRejectedValueOnce(
-				new Error("Failed to create subscriber: Invalid API key")
+				new Error("Failed to update contact: Invalid API key")
 			);
 
 			const mockRequest = {

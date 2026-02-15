@@ -13,7 +13,7 @@ describe("NewsletterForm Component Logic", () => {
 			const mockFetch = global.fetch as ReturnType<typeof vi.fn>;
 			mockFetch.mockResolvedValueOnce({
 				ok: true,
-				json: async () => ({ success: true, isNew: true })
+				json: async () => ({ success: true })
 			} as Response);
 
 			// Simulate the component's handleSubmit logic
@@ -37,7 +37,6 @@ describe("NewsletterForm Component Logic", () => {
 			});
 
 			expect(data.success).toBe(true);
-			expect(data.isNew).toBe(true);
 		});
 
 		it("should handle subscription error", async () => {
@@ -208,11 +207,7 @@ describe("NewsletterForm Component Logic", () => {
 			const mockFetch = global.fetch as ReturnType<typeof vi.fn>;
 
 			// Test different response scenarios
-			const responses = [
-				{ success: true, isNew: true },
-				{ success: true, isNew: false },
-				{ success: false, error: "Invalid email" }
-			];
+			const responses = [{ success: true }, { success: false, error: "Invalid email" }];
 
 			for (const mockResponse of responses) {
 				mockFetch.mockResolvedValueOnce({
