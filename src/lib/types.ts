@@ -1,3 +1,5 @@
+export type ContentType = 'article' | 'newsletter';
+
 export type Post = {
 	title: string;
 	slug: string;
@@ -8,4 +10,6 @@ export type Post = {
 	published: boolean;
 	cover?: string;
 	readTime: number;
+	type: ContentType;
+	issue?: number;
 };

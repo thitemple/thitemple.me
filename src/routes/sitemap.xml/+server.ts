@@ -4,7 +4,7 @@ export const prerender = true;
 
 const BASE_URL = "https://thitemple.me";
 const navbar = [
-	{ to: "/blog", text: "Blog" },
+	{ to: "/writing", text: "Words From the Temple" },
 	{ to: "/about", text: "About" }
 ];
 
@@ -13,7 +13,7 @@ export async function GET() {
 
 	const allPaths = [
 		...navbar,
-		...posts.map((post) => ({ to: `/blog/${post.slug}`, text: post.title }))
+		...posts.map((post) => ({ to: `/writing/${post.slug}`, text: post.title }))
 	];
 
 	return new Response(

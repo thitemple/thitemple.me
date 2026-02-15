@@ -6,6 +6,7 @@ categories:
   - side-projects
 date: 2025-08-13
 published: true
+type: article
 ---
 
 <script context="module">

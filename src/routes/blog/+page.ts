@@ -1,11 +1,7 @@
-import type { PaginatedPosts } from "../api/posts/types";
+import { redirect } from "@sveltejs/kit";
 
-export async function load({ url, fetch }) {
-	const response = await fetch(`/api/posts?page=${url.searchParams.get("page")}`);
-	const { data, pageInfo } = (await response.json()) as PaginatedPosts;
-
-	return {
-		posts: data,
-		pageInfo
-	};
+export async function load({ url }) {
+	const page = url.searchParams.get("page");
+	const target = page ? `/writing?page=${page}` : "/writing";
+	redirect(301, target);
 }

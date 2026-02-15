@@ -7,6 +7,7 @@ categories:
   - parenting
 date: 2025-08-26
 published: true
+type: article
 ---
 
 <script context="module">
