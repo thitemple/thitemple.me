@@ -14,6 +14,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      loops:
+        specifier: ^6.2.0
+        version: 6.2.0
       lucide-svelte:
         specifier: ^0.536.0
         version: 0.536.0(svelte@5.48.5)
@@ -1616,6 +1619,10 @@ packages:
 
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+
+  loops@6.2.0:
+    resolution: {integrity: sha512-POMOdaktMpF8VSeKnTjdh9A1a02MFDOL3fyl6/VVxROSltVzgkRB9CSKVspgQ6cLVFzm/Wd27opNN3wHs0YKaw==}
+    engines: {node: '>=18'}
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
@@ -3563,6 +3570,8 @@ snapshots:
       p-locate: 5.0.0
 
   lodash.merge@4.6.2: {}
+
+  loops@6.2.0: {}
 
   lru-cache@10.4.3: {}
 

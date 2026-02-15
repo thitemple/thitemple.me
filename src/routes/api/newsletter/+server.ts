@@ -1,7 +1,7 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import { z } from "zod";
-import { subscribeToNewsletter } from "$lib/services/mailerlite";
+import { subscribeToNewsletter } from "$lib/services/loops";
 
 const emailSchema = z.object({
 	email: z.string().email("Please enter a valid email address")
@@ -22,11 +22,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			);
 		}
 
-		const { isNew } = await subscribeToNewsletter(result.data.email);
+		await subscribeToNewsletter(result.data.email);
 
 		return json({
 			success: true,
-			isNew,
 			email: result.data.email
 		});
 	} catch (error) {
