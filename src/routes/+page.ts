@@ -1,7 +1,6 @@
-import type { PaginatedPosts } from "./api/posts/types.js";
+import { getPosts } from "$lib/posts";
 
-export async function load({ fetch }) {
-	const response = await fetch("/api/posts?page=1");
-	const { data } = (await response.json()) as PaginatedPosts;
-	return { posts: data.slice(0, 4) };
+export async function load() {
+	const posts = await getPosts();
+	return { posts: posts.slice(0, 4) };
 }
