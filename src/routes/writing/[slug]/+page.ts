@@ -1,6 +1,7 @@
+import { getPosts } from "$lib/posts";
 import type { ContentType, Post } from "$lib/types";
 import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types";
+import type { EntryGenerator, PageLoad } from "./$types";
 import type { Component } from "svelte";
 
 interface PostModule {
@@ -8,6 +9,11 @@ interface PostModule {
 	default: Component;
 	cover?: string;
 }
+
+export const entries: EntryGenerator = async () => {
+	const posts = await getPosts();
+	return posts.map(({ slug }) => ({ slug }));
+};
 
 export const load: PageLoad = async ({ params, url }) => {
 	try {

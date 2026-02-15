@@ -4,6 +4,8 @@ import type { LayoutLoad } from "./$types";
 
 injectAnalytics({ mode: dev ? "development" : "production" });
 
+export const prerender = true;
+
 export const load: LayoutLoad = async ({ url }) => {
 	return {
 		url: url.pathname
