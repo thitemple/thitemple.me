@@ -3,7 +3,7 @@ version = 1
 name = "thitemple.me"
 
 [setup]
-script = ""
+script = "bun install"
 
 [[actions]]
 name = "Run"
