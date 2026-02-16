@@ -21,6 +21,7 @@
 
 	/* accent (borders / secondary button / hover) */
 	--accent: #a855f7; /* purple-500 */
+	--nav-link-hover-gradient: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 
 	/* button rainbow stops */
 	--btn-1: #7c3aed; /* violet-600  */
@@ -70,7 +71,7 @@
 		bottom: 0;
 		width: 100%;
 		height: 2px;
-		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		background: var(--nav-link-hover-gradient);
 		transform: scaleX(0);
 		transform-origin: left;
 		transition: transform 0.3s ease;
