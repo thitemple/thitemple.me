@@ -25,18 +25,18 @@
 					<span>Go Home</span>
 				</a>
 				<a
-					href="/blog"
+					href="/writing"
 					class="flex items-center justify-center gap-2 rounded-xl border-2 border-[var(--accent)] px-8 py-4 text-lg font-semibold text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-white"
 				>
 					<Coffee size={20} aria-hidden="true" />
-					<span>Read the Blog</span>
+					<span>Read the Writing</span>
 				</a>
 			</div>
 
 			<div class="mt-16 rounded-2xl border border-white/10 bg-black/30 p-8">
 				<p class="text-lg text-slate-300">
 					<span class="font-mono text-[var(--accent)]">Pro tip:</span> If you were looking for something
-					specific and it's gone, it probably wasn't that important anyway. But if it was, try the blog—that's
+					specific and it's gone, it probably wasn't that important anyway. But if it was, try the writing—that's
 					where the good stuff lives.
 				</p>
 			</div>
