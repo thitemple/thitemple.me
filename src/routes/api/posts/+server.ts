@@ -1,7 +1,7 @@
 import { json } from "@sveltejs/kit";
 import type { PaginatedPosts } from "./types.js";
 import type { Paginated } from "../types.js";
-import { getPosts } from "$lib/posts.js";
+import { getBlogPosts } from "$lib/posts.js";
 import { z } from "zod";
 
 const paramsSchema = z.object({
@@ -18,7 +18,7 @@ const paramsSchema = z.object({
 export async function GET({ url: { searchParams } }) {
 	const { page, pageSize } = paramsSchema.parse(Object.fromEntries(searchParams));
 
-	const posts = await getPosts();
+	const posts = await getBlogPosts();
 	const hasNextPage = posts.length > page * pageSize;
 	const hasPreviousPage = page > 1;
 	const pageInfo: Paginated<unknown>["pageInfo"] = {

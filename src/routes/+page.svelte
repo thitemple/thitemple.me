@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { resolve } from "$app/paths";
 	import type { Post } from "$lib/types";
 	import { formatDate } from "$lib/utils/date-format";
 
 	let { data } = $props();
-	const posts: Post[] = data.posts;
 
 	// Newsletter form state
 	let email = $state("");
@@ -37,57 +37,97 @@
 			isLoading = false;
 		}
 	}
+
+	function getContentLabel(post: Post): string {
+		return post.type === "newsletter" ? "Newsletter" : "Blog";
+	}
+
+	function getBadgeClasses(post: Post): string {
+		return post.type === "newsletter"
+			? "bg-[var(--color-secondary)]/20 text-[var(--color-secondary)]"
+			: "bg-[var(--color-primary)]/20 text-[var(--color-primary)]";
+	}
 </script>
 
-<main class="mx-auto max-w-[1000px] px-6 py-12 md:py-16">
+<main class="mx-auto max-w-250 px-6 py-12 md:py-16">
 	<!-- Latest Writing Section -->
 	<section class="mb-24 md:mb-32">
 		<div class="mb-10 flex items-center gap-4">
 			<h2
-				class="font-['Kantumruy_Pro'] text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-primary)]"
+				class="font-['Kantumruy_Pro'] text-sm font-bold uppercase tracking-[0.2em] text-(--color-primary)"
 			>
 				Latest Writing
 			</h2>
-			<div class="h-[1px] max-w-[100px] flex-grow bg-[var(--color-primary)]/30"></div>
+			<div class="h-px max-w-25 grow bg-(--color-primary)/30"></div>
 		</div>
 
 		<div class="grid gap-12 sm:gap-16">
-			{#each posts as post}
+			{#each data.posts as post (post.slug)}
 				<article class="group relative items-baseline md:grid md:grid-cols-[1fr_auto] md:gap-8">
-					<a
-						href="/writing/{post.slug}"
-						class="block transition-transform duration-300 group-hover:translate-x-2"
-					>
-						<h3
-							class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
-							style={`view-transition-name: post-title-${post.slug}`}
+					{#if post.type === "newsletter"}
+						<a
+							href={resolve("/from-the-temple/[slug]", { slug: post.slug })}
+							class="block transition-transform duration-300 group-hover:translate-x-2"
 						>
-							{post.title}
-						</h3>
-					</a>
+							<h3
+								class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
+								style={`view-transition-name: post-title-${post.slug}`}
+							>
+								{post.title}
+							</h3>
+						</a>
+					{:else}
+						<a
+							href={resolve("/blog/[slug]", { slug: post.slug })}
+							class="block transition-transform duration-300 group-hover:translate-x-2"
+						>
+							<h3
+								class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
+								style={`view-transition-name: post-title-${post.slug}`}
+							>
+								{post.title}
+							</h3>
+						</a>
+					{/if}
 
 					<!-- Date Line -->
 					<div
-						class="mt-2 flex items-center gap-3 whitespace-nowrap font-['Kantumruy_Pro'] text-sm font-medium text-[var(--color-tertiary)] md:mt-0"
+						class="mt-2 flex flex-col items-start gap-2 font-['Kantumruy_Pro'] text-sm font-medium text-[var(--color-tertiary)] md:mt-0 md:items-end"
 					>
-						<time>{formatDate(post.date)}</time>
-						{#if post.readTime}
-							<span class="opacity-50">•</span>
-							<span>{post.readTime} min</span>
-						{/if}
+						<div class="flex items-center gap-3 whitespace-nowrap">
+							<time>{formatDate(post.date)}</time>
+							{#if post.readTime}
+								<span class="opacity-50">•</span>
+								<span>{post.readTime} min</span>
+							{/if}
+						</div>
+						<span
+							class={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${getBadgeClasses(post)}`}
+						>
+							{getContentLabel(post)}
+						</span>
 					</div>
 				</article>
 			{/each}
 		</div>
 
 		<div class="mt-16">
-			<a
-				href="/writing"
-				class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-white transition-colors hover:text-[var(--color-secondary)]"
-			>
-				View all posts
-				<span class="transition-transform group-hover:translate-x-1">→</span>
-			</a>
+			<div class="flex flex-wrap items-center gap-6">
+				<a
+					href={resolve("/blog")}
+					class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-white transition-colors hover:text-[var(--color-secondary)]"
+				>
+					View all blog posts
+					<span class="transition-transform group-hover:translate-x-1">→</span>
+				</a>
+				<a
+					href={resolve("/from-the-temple")}
+					class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-[var(--color-primary)] transition-colors hover:text-white"
+				>
+					View newsletter issues
+					<span class="transition-transform group-hover:translate-x-1">→</span>
+				</a>
+			</div>
 		</div>
 	</section>
 
@@ -103,7 +143,7 @@
 
 			<div class="relative z-10 max-w-lg">
 				<h2 class="mb-4 font-['Kantumruy_Pro'] text-3xl font-bold text-white md:text-4xl">
-					Words From the Temple
+					From the Temple
 				</h2>
 				<p class="mb-8 text-lg font-light opacity-80">
 					Get my writing delivered to your inbox. No spam.
