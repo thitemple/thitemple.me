@@ -1,27 +1,27 @@
 # Agent Guide for thitemple.me
 
 This repo is a SvelteKit (Svelte 5) site using TypeScript, Tailwind (v4), and mdsvex.
-Use pnpm and Node 22.x.
+Use bun and Node 22.x.
 
 ## Environment
 
-- Package manager: pnpm (see package.json, pnpm-lock.yaml)
+- Package manager: bun (see package.json, bun.lock)
 - Node: >=22 <23 (see package.json engines, .tool-versions)
 - Module system: ESM ("type": "module")
 - Framework: SvelteKit + Vite
 
 ## Commands
 
-- Install deps: `pnpm install`
-- Dev server: `pnpm dev`
-- Build: `pnpm build`
-- Preview build: `pnpm preview`
-- Svelte sync: `pnpm sync`
-- Type check: `pnpm check`
-- Lint (prettier + eslint): `pnpm lint`
-- Format (prettier write): `pnpm format`
-- Validate posts frontmatter: `pnpm validate:posts`
-- Full validation: `pnpm validate`
+- Install deps: `bun install`
+- Dev server: `bun run dev`
+- Build: `bun run build`
+- Preview build: `bun run preview`
+- Svelte sync: `bun run sync`
+- Type check: `bun run check`
+- Lint (prettier + eslint): `bun run lint`
+- Format (prettier write): `bun run format`
+- Validate posts frontmatter: `bun run validate:posts`
+- Full validation: `bun run validate`
 
 ## Repository structure
 
@@ -62,9 +62,8 @@ Use pnpm and Node 22.x.
 
 ## Tailwind and CSS
 
-- Tailwind is integrated via Vite and PostCSS (see `vite.config.ts`,
-  `postcss.config.cjs`).
-- Prettier uses `prettier-plugin-tailwindcss` with `src/app.css`.
+- Tailwind is integrated via Vite (see `vite.config.ts`).
+- Prettier uses `prettier-plugin-svelte` for Svelte formatting.
 - Prefer utility classes and `clsx` + `tailwind-merge` via `cn()`.
 
 ## Types and validation
@@ -105,9 +104,9 @@ Use pnpm and Node 22.x.
 
 ## Linting and formatting workflow
 
-- Run `pnpm lint` before PRs (runs `svelte-kit sync`, Prettier check, ESLint).
-- Use `pnpm format` to fix formatting.
-- Run `pnpm check` for type-checking via `svelte-check`.
+- Run `bun run lint` before PRs (runs `svelte-kit sync`, Prettier check, ESLint).
+- Use `bun run format` to fix formatting.
+- Run `bun run check` for type-checking via `svelte-check`.
 
 ## Agent-specific rules
 
@@ -116,8 +115,8 @@ Use pnpm and Node 22.x.
 
 ## Practical tips
 
-- Run `pnpm sync` after adding/removing routes or types.
-- `pnpm validate` is the full local gate: lint, type-check, validate posts,
+- Run `bun run sync` after adding/removing routes or types.
+- `bun run validate` is the full local gate: lint, type-check, validate posts,
   and build.
 - Use `import.meta.glob("/src/posts/**/*.md", { eager: true })` for posts.
 - When in doubt, follow existing patterns in `src/routes` and `src/lib`.

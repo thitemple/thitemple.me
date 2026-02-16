@@ -116,7 +116,6 @@
 	</div>
 </article>
 
-
 <!-- Related Posts Section -->
 <section class="pb-32">
 	<div class="mx-auto max-w-7xl px-6">

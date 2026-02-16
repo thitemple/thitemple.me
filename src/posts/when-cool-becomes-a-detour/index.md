@@ -54,7 +54,7 @@ ChatGPT saved me hours by comparing providers in a structured way. The key is gi
 - What are you familiar with?
 - What are you trying to avoid?
 
-I asked GPT to produce comparison tables of free vs. paid tiers, list pros/cons, and recommend a winner and runner-up. Then I **_read the report_**. That was much faster than combing through docs myself.
+I asked GPT to produce comparison tables of free vs. paid tiers, list pros/cons, and recommend a winner and runner-up. Then I ***read the report***. That was much faster than combing through docs myself.
 
 ## Only detour if you’re genuinely curious and willing to invest the time
 

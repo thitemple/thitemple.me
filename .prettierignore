@@ -12,3 +12,4 @@ old_src
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+bun.lock

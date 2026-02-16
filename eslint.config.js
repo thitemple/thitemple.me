@@ -21,7 +21,7 @@ export default [
 			".env.*",
 			"!.env.example",
 			"old_src/",
-			"pnpm-lock.yaml",
+			"bun.lock",
 			"package-lock.json",
 			"yarn.lock",
 			"dist/",

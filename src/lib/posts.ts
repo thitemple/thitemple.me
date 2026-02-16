@@ -15,7 +15,9 @@ export async function getPosts() {
 		const slug = path.split("/").at(-2)?.replace(".md", "");
 
 		if (isFile(file) && slug) {
-			const metadata = file.metadata as Omit<Post, "slug" | "readTime" | "type"> & { type?: ContentType };
+			const metadata = file.metadata as Omit<Post, "slug" | "readTime" | "type"> & {
+				type?: ContentType;
+			};
 			const readTime = estimateReadingTime(metadata.description || "");
 			const type: ContentType = metadata.type || "article";
 			const post = { ...metadata, slug, readTime, cover: file.cover, type } satisfies Post;

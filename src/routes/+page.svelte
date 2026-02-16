@@ -58,12 +58,12 @@
 						href="/writing/{post.slug}"
 						class="block transition-transform duration-300 group-hover:translate-x-2"
 					>
-					<h3
-						class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
-						style={`view-transition-name: post-title-${post.slug}`}
-					>
-						{post.title}
-					</h3>
+						<h3
+							class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
+							style={`view-transition-name: post-title-${post.slug}`}
+						>
+							{post.title}
+						</h3>
 					</a>
 
 					<!-- Date Line -->
