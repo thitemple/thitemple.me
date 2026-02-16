@@ -66,10 +66,10 @@ Study these references for the vibe:
 
 ### Newsletter CTA
 
-- Newsletter name: **"Words From the Temple"**
+- Newsletter name: **"From the Temple"**
 - Placement: **Your choice** (inline section or footer)
 - Copy: Keep it direct, no hype
-- Example: "Get Words From the Temple in your inbox" or similar
+- Example: "Get From the Temple in your inbox" or similar
 
 ### Footer
 

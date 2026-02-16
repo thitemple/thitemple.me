@@ -4,13 +4,6 @@
 
 	let { data } = $props();
 
-	// Array of emojis to use as fallbacks when no cover image exists
-	const postEmojis = ["🚀", "⚡", "🎲", "⚙️", "👨‍👩‍👧‍👦", "🧠", "💡", "🔧", "📱", "🎯"];
-
-	function getPostEmoji(index: number): string {
-		return postEmojis[index % postEmojis.length] || "📝";
-	}
-
 	function getReadTime(readTime: number): string {
 		return `${readTime} min read`;
 	}
@@ -24,12 +17,12 @@
 </script>
 
 <svelte:head>
-	<title>Words From the Temple - {config.title}</title>
+	<title>From the Temple - {config.title}</title>
 	<meta
 		name="description"
 		content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth."
 	/>
-	<meta property="og:title" content={`Words From the Temple - ${config.title}`} />
+	<meta property="og:title" content={`From the Temple - ${config.title}`} />
 	<meta property="og:url" content={`${config.url}/writing`} />
 	<meta
 		name="og:description"
@@ -37,7 +30,7 @@
 	/>
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
-	<meta name="twitter:title" content={`Words From the Temple - ${config.title}`} />
+	<meta name="twitter:title" content={`From the Temple - ${config.title}`} />
 	<meta
 		name="twitter:description"
 		content="Articles, newsletters, and insights from Thiago Temple on software development, side projects, and growth."
@@ -58,7 +51,7 @@
 
 	<div class="relative z-10 mx-auto max-w-7xl px-6 text-center">
 		<h1 class="gradient-text font-heading mb-6 text-5xl font-extrabold lg:text-6xl">
-			Words From the Temple
+			From the Temple
 		</h1>
 		<p class="mx-auto max-w-2xl text-xl leading-relaxed text-slate-300 lg:text-2xl">
 			Articles, newsletters, and lessons from building software on the margins.
@@ -83,17 +76,19 @@
 		{:else}
 			<!-- Posts Grid -->
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{#each data.posts as post, idx}
+				{#each data.posts as post (post.slug)}
 					<a href={`/writing/${post.slug}`} class="group block">
 						<article
-							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl"
+							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl {post.cover
+								? ''
+								: 'mx-auto max-w-md'}"
 						>
 							<!-- Gradient overlay on hover -->
 							<div
 								class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
 							></div>
 
-							<!-- Post Image or Emoji -->
+							<!-- Post Image -->
 							{#if post.cover}
 								<div class="relative h-48 overflow-hidden">
 									<img
@@ -102,16 +97,10 @@
 										class="h-full w-full object-cover transition-transform group-hover:scale-105"
 									/>
 								</div>
-							{:else}
-								<div
-									class="relative flex h-48 items-center justify-center bg-gradient-to-br from-purple-600/30 via-[var(--accent)]/30 to-transparent text-6xl"
-								>
-									{getPostEmoji(idx)}
-								</div>
 							{/if}
 
 							<!-- Post Content -->
-							<div class="relative z-10 p-6">
+							<div class="relative z-10 {post.cover ? 'p-6' : 'px-6 py-8'}">
 								<!-- Type Badge + Meta Info -->
 								<div class="mb-4 flex items-center justify-between gap-3 text-sm">
 									<div class="flex items-center gap-3">
@@ -144,7 +133,7 @@
 								<!-- Tags -->
 								{#if post.categories && post.categories.length > 0}
 									<div class="mb-5 flex flex-wrap gap-2">
-										{#each post.categories.slice(0, 3) as category}
+										{#each post.categories.slice(0, 3) as category (category)}
 											<span
 												class="rounded-full bg-[var(--accent)]/20 px-3 py-1 text-xs font-medium text-purple-300"
 											>

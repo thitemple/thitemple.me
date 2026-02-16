@@ -1,4 +1,4 @@
-# Words From the Temple — Content Strategy
+# From the Temple — Content Strategy
 
 ## The Problem
 
@@ -6,9 +6,9 @@ Two content streams (blog + newsletter) create maintenance overhead that kills c
 
 ## The Model: One Brand, Two Formats, One Feed
 
-**Brand name:** Words From the Temple
+**Brand name:** From the Temple
 
-**Website label:** Replace "Blog" with "Writing" (or "Words From the Temple") in navigation and throughout the site.
+**Website label:** Replace "Blog" with "Writing" (or "From the Temple") in navigation and throughout the site.
 
 **One feed:** Everything lives in a single reverse-chronological feed on the website. No separate "blog" and "newsletter" sections.
 
@@ -75,7 +75,7 @@ The current articles stay exactly where they are in the feed. They become the fi
 
 - Sees one feed: newsletter issues + articles, reverse-chronological
 - Can read everything without subscribing
-- Encounters newsletter signup CTA ("Words From the Temple") prompting them to get issues delivered to their inbox
+- Encounters newsletter signup CTA ("From the Temple") prompting them to get issues delivered to their inbox
 - Full newsletter content is on the site (not gated)
 
 ## YouTube Integration
@@ -92,7 +92,7 @@ YouTube videos get the same treatment as articles in the "From me lately" sectio
 
 ## Implementation Checklist
 
-- [ ] Rename "Blog" to "Writing" (or "Words From the Temple") in site navigation
+- [ ] Rename "Blog" to "Writing" (or "From the Temple") in site navigation
 - [ ] Set up email service for newsletter delivery (e.g., Buttondown, ConvertKit, Resend)
 - [ ] Create a newsletter issue content type alongside existing article content type
 - [ ] Build unified feed that interleaves both content types by date

@@ -4,7 +4,7 @@ export const prerender = true;
 
 const BASE_URL = "https://thitemple.me";
 const navbar = [
-	{ to: "/writing", text: "Words From the Temple" },
+	{ to: "/writing", text: "From the Temple" },
 	{ to: "/about", text: "About" }
 ];
 

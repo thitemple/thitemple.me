@@ -21,7 +21,12 @@ export const load: PageLoad = async ({ params, url }) => {
 
 		let matchedPost: PostModule | null = null;
 		for (const path in modules) {
-			if (path.includes(`/${params.slug}/`) || path.endsWith(`/${params.slug}.md`)) {
+			const postSlug = path.split("/").at(-2)?.replace(/\.md$/, "");
+			const matchesSlug =
+				postSlug === params.slug ||
+				path.endsWith(`/${params.slug}.md`) ||
+				path.endsWith(`/${params.slug}/index.md`);
+			if (matchesSlug) {
 				const module = modules[path];
 				if (module) {
 					matchedPost = (await module()) as PostModule;

@@ -46,7 +46,7 @@
 				<li>
 					<a
 						class="nav-link-gradient text-[var(--color-text)] transition-colors hover:text-white"
-						href={resolve("/writing")}>Words From the Temple</a
+						href={resolve("/writing")}>From the Temple</a
 					>
 				</li>
 				<li>
@@ -146,8 +146,7 @@
 			<ul class="overflow-hidden">
 				<div class="flex flex-col gap-6 px-8 pb-6 pt-4 font-['Kantumruy_Pro'] text-lg font-medium">
 					<li>
-						<a onclick={() => (navOpen = false)} href={resolve("/writing")}>Words From the Temple</a
-						>
+						<a onclick={() => (navOpen = false)} href={resolve("/writing")}>From the Temple</a>
 					</li>
 					<li><a onclick={() => (navOpen = false)} href={resolve("/about")}>About</a></li>
 					<li>

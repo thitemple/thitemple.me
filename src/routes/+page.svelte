@@ -39,16 +39,16 @@
 	}
 </script>
 
-<main class="mx-auto max-w-[1000px] px-6 py-12 md:py-16">
+<main class="mx-auto max-w-250 px-6 py-12 md:py-16">
 	<!-- Latest Writing Section -->
 	<section class="mb-24 md:mb-32">
 		<div class="mb-10 flex items-center gap-4">
 			<h2
-				class="font-['Kantumruy_Pro'] text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-primary)]"
+				class="font-['Kantumruy_Pro'] text-sm font-bold uppercase tracking-[0.2em] text-(--color-primary)"
 			>
 				Latest Writing
 			</h2>
-			<div class="h-[1px] max-w-[100px] flex-grow bg-[var(--color-primary)]/30"></div>
+			<div class="h-px max-w-25 grow bg-(--color-primary)/30"></div>
 		</div>
 
 		<div class="grid gap-12 sm:gap-16">
@@ -103,7 +103,7 @@
 
 			<div class="relative z-10 max-w-lg">
 				<h2 class="mb-4 font-['Kantumruy_Pro'] text-3xl font-bold text-white md:text-4xl">
-					Words From the Temple
+					From the Temple
 				</h2>
 				<p class="mb-8 text-lg font-light opacity-80">
 					Get my writing delivered to your inbox. No spam.

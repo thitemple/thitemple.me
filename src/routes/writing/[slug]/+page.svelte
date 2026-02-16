@@ -5,6 +5,10 @@
 	import mediumZoom from "medium-zoom";
 
 	let { data } = $props();
+	let email = $state("");
+	let isLoading = $state(false);
+	let isSuccess = $state(false);
+	let errorMessage = $state("");
 
 	function getReadTime(readTime: number): string {
 		return `${readTime} min read`;
@@ -15,6 +19,42 @@
 			return meta.issue ? `Newsletter #${meta.issue}` : "Newsletter";
 		}
 		return "Article";
+	}
+
+	function isNewsletterEdition(meta: { type?: string; categories?: string[] }): boolean {
+		const hasNewsletterType = meta.type === "newsletter";
+		const hasNewsletterCategory =
+			meta.categories?.some((category) => category.toLowerCase() === "newsletter") ?? false;
+
+		return hasNewsletterType || hasNewsletterCategory;
+	}
+
+	async function handleNewsletterSubmit(event: Event): Promise<void> {
+		event.preventDefault();
+		isLoading = true;
+		errorMessage = "";
+
+		try {
+			const response = await fetch("/api/newsletter", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ email })
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				isSuccess = true;
+				email = "";
+				return;
+			}
+
+			errorMessage = result.error || "Failed to subscribe. Please try again.";
+		} catch {
+			errorMessage = "Failed to subscribe. Please try again.";
+		} finally {
+			isLoading = false;
+		}
 	}
 
 	onMount(() => {
@@ -78,7 +118,7 @@
 			<span class="font-medium text-[var(--accent)]">{getReadTime(data.meta.readTime)}</span>
 			{#if data.meta.categories && data.meta.categories.length > 0}
 				<div class="flex flex-wrap gap-2">
-					{#each data.meta.categories as category}
+					{#each data.meta.categories as category (category)}
 						<span
 							class="rounded-full bg-[var(--accent)]/20 px-3 py-1 text-xs font-medium text-purple-300"
 						>
@@ -116,26 +156,78 @@
 	</div>
 </article>
 
-<!-- Related Posts Section -->
-<section class="pb-32">
-	<div class="mx-auto max-w-7xl px-6">
-		<h3 class="font-heading mb-12 text-center text-3xl font-bold text-white">Related Posts</h3>
-
-		<!-- For now, we'll add a placeholder. In a real implementation, you'd fetch related posts -->
-		<div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
+{#if isNewsletterEdition(data.meta)}
+	<section class="pb-32">
+		<div class="mx-auto max-w-3xl px-6">
 			<div
-				class="rounded-xl border border-white/10 bg-black/60 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[var(--accent)]/30"
+				class="relative overflow-hidden rounded-3xl border border-[var(--color-tertiary)]/25 bg-gradient-to-br from-[var(--color-tertiary)]/15 to-[var(--color-secondary)]/10 p-8 md:p-16"
 			>
-				<time class="mb-2 font-mono text-xs text-slate-400">Coming Soon</time>
-				<h4 class="font-heading mb-3 text-lg font-semibold">
-					<a href="#" class="text-white transition-colors hover:text-[var(--accent)]">
-						More articles coming soon
-					</a>
-				</h4>
-				<p class="text-sm leading-relaxed text-slate-300">
-					Stay tuned for more practical insights on development and building meaningful solutions.
-				</p>
+				<div
+					class="absolute -right-[100px] -top-[100px] h-64 w-64 rounded-full bg-[var(--color-secondary)]/20 blur-[100px]"
+				></div>
+
+				<div class="relative z-10 max-w-lg">
+					<h3 class="mb-4 font-['Kantumruy_Pro'] text-3xl font-bold text-white md:text-4xl">
+						Get the next issue in your inbox
+					</h3>
+					<p class="mb-8 text-lg font-light opacity-80">
+						Subscribe and receive future newsletter editions directly by email.
+					</p>
+
+					{#if isSuccess}
+						<div
+							class="flex items-center gap-3 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-6 py-4 text-[var(--color-primary)]"
+						>
+							<p class="font-bold">You're in. Thanks for subscribing.</p>
+						</div>
+					{:else}
+						<form onsubmit={handleNewsletterSubmit} class="flex flex-col gap-4 sm:flex-row">
+							<input
+								type="email"
+								bind:value={email}
+								placeholder="your@email.com"
+								required
+								disabled={isLoading}
+								class="flex-grow rounded-xl border border-[var(--color-text)]/20 bg-[var(--color-bg)] px-6 py-4 font-sans text-white transition-all focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] disabled:opacity-50"
+							/>
+							<button
+								type="submit"
+								disabled={isLoading}
+								class="rounded-xl bg-[var(--color-secondary)] px-8 py-4 font-['Kantumruy_Pro'] text-lg font-bold text-white shadow-[0_4px_20px_rgba(245,46,192,0.3)] transition-all hover:scale-105 hover:bg-[#d41da0] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+							>
+								{isLoading ? "..." : "Subscribe"}
+							</button>
+						</form>
+						{#if errorMessage}
+							<p class="mt-3 text-sm text-[var(--color-secondary)]">{errorMessage}</p>
+						{/if}
+					{/if}
+				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{:else}
+	<!-- Related Posts Section -->
+	<section class="pb-32">
+		<div class="mx-auto max-w-7xl px-6">
+			<h3 class="font-heading mb-12 text-center text-3xl font-bold text-white">Related Posts</h3>
+
+			<!-- For now, we'll add a placeholder. In a real implementation, you'd fetch related posts -->
+			<div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
+				<div
+					class="rounded-xl border border-white/10 bg-black/60 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[var(--accent)]/30"
+				>
+					<time class="mb-2 font-mono text-xs text-slate-400">Coming Soon</time>
+					<h4 class="font-heading mb-3 text-lg font-semibold">
+						<a href="/writing" class="text-white transition-colors hover:text-[var(--accent)]">
+							More articles coming soon
+						</a>
+					</h4>
+					<p class="text-sm leading-relaxed text-slate-300">
+						Stay tuned for more practical insights on development and building meaningful solutions.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+{/if}
