@@ -1,5 +1,6 @@
-import { redirect } from "@sveltejs/kit";
+import { getBlogPosts } from "$lib/posts";
 
 export async function load() {
-	redirect(301, "/writing");
+	const posts = await getBlogPosts();
+	return { posts };
 }

@@ -1,19 +1,24 @@
-import { getPosts } from "$lib/posts";
+import { getBlogPosts, getNewsletterPosts } from "$lib/posts";
 
 export const prerender = true;
 
 const BASE_URL = "https://thitemple.me";
 const navbar = [
-	{ to: "/writing", text: "From the Temple" },
+	{ to: "/blog", text: "Blog" },
+	{ to: "/from-the-temple", text: "From the Temple" },
 	{ to: "/about", text: "About" }
 ];
 
 export async function GET() {
-	const posts = await getPosts();
+	const [blogPosts, newsletterPosts] = await Promise.all([getBlogPosts(), getNewsletterPosts()]);
 
 	const allPaths = [
 		...navbar,
-		...posts.map((post) => ({ to: `/writing/${post.slug}`, text: post.title }))
+		...blogPosts.map((post) => ({ to: `/blog/${post.slug}`, text: post.title })),
+		...newsletterPosts.map((post) => ({
+			to: `/from-the-temple/${post.slug}`,
+			text: post.title
+		}))
 	];
 
 	return new Response(
