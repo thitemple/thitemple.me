@@ -2,11 +2,17 @@
 	import "../app.css";
 	import { onNavigate } from "$app/navigation";
 	import { resolve } from "$app/paths";
+	import { page } from "$app/state";
+	import ReadingProgressBar from "$lib/components/ReadingProgressBar.svelte";
 
 	let { children } = $props();
 	let navOpen = $state(false);
 
 	const currentYear = new Date().getFullYear();
+
+	function isReadingRoute(routeId: string | null): boolean {
+		return routeId === "/blog/[slug]" || routeId === "/from-the-temple/[slug]";
+	}
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) {
@@ -143,6 +149,10 @@
 				{#if navOpen}✕{:else}☰{/if}
 			</button>
 		</nav>
+
+		{#key page.route.id}
+			<ReadingProgressBar enabled={isReadingRoute(page.route.id)} />
+		{/key}
 
 		<!-- Mobile menu -->
 		<div
