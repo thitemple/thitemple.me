@@ -4,9 +4,9 @@ import matter from "gray-matter";
 import { resolve } from "path";
 
 async function validatePosts() {
-	console.log("🔍 Validating blog posts...");
+	console.log("🔍 Validating content posts...");
 
-	const postFiles = await glob("src/posts/**/index.md");
+	const postFiles = await glob("src/content/**/index.md");
 	let hasErrors = false;
 
 	for (const file of postFiles) {

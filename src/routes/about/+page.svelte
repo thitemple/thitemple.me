@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from "$app/paths";
 	import * as config from "$lib/config";
 	import { Github, Linkedin, Instagram, BookOpen } from "lucide-svelte";
 	import NewsletterForm from "$lib/components/NewsletterForm.svelte";
@@ -145,7 +146,7 @@
 				<p class="mb-4 text-sm text-slate-400">Find me elsewhere:</p>
 				<div class="flex flex-wrap justify-center gap-4">
 					<a
-						href="/writing"
+						href={resolve("/blog")}
 						aria-label="Writing"
 						class="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base font-medium transition-all hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]"
 					>

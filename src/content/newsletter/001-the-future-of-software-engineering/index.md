@@ -48,7 +48,6 @@ Here's the thing — many developers are wired to think "coding is what we do." 
 
 ## Worth your time
 
-
 - **[Harness engineering: leveraging Codex in an agent-first world](https://ttemp.link/Vv8bgO3)** — If AI is writing all the code, what does the engineering team actually do? This piece lays out the system and structure needed to ship products in that world.
 - **[Something Big Is Happening](https://ttemp.link/DYd7vtQ)** — Alarmist tone aside, the core argument is hard to ignore: the window to get ahead of this shift is closing fast. Worth reading if you're still on the fence about when to act.
 
