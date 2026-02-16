@@ -20,24 +20,24 @@
 			</p>
 
 			<div class="flex flex-col gap-4 sm:flex-row sm:justify-center">
-				<a href="/" class="btn-primary !flex items-center justify-center gap-2">
+				<a href="/" class="btn-primary flex! items-center justify-center gap-2">
 					<House size={20} aria-hidden="true" />
 					<span>Go Home</span>
 				</a>
 				<a
 					href="/writing"
-					class="flex items-center justify-center gap-2 rounded-xl border-2 border-[var(--accent)] px-8 py-4 text-lg font-semibold text-[var(--accent)] transition-colors hover:bg-[var(--accent)] hover:text-white"
+					class="flex items-center justify-center gap-2 rounded-xl border-2 border-(--accent) px-8 py-4 text-lg font-semibold text-(--accent) transition-colors hover:bg-(--accent) hover:text-white"
 				>
 					<Coffee size={20} aria-hidden="true" />
-					<span>Read the Writing</span>
+					<span>From the Temple</span>
 				</a>
 			</div>
 
 			<div class="mt-16 rounded-2xl border border-white/10 bg-black/30 p-8">
 				<p class="text-lg text-slate-300">
-					<span class="font-mono text-[var(--accent)]">Pro tip:</span> If you were looking for something
-					specific and it's gone, it probably wasn't that important anyway. But if it was, try the writing—that's
-					where the good stuff lives.
+					<span class="font-mono text-(--accent)">Pro tip:</span> If you were looking for something specific
+					and it's gone, it probably wasn't that important anyway. But if it was, try the looking in From
+					the Temple—that's where the good stuff lives.
 				</p>
 			</div>
 		</div>
