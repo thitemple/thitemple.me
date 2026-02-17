@@ -1,6 +1,7 @@
 ---
 title: Plan With Intent, Drop The Guilt...
 description: "Plan with intent, drop the guilt: time‑block the week, forgive the day, and count small wins for steady progress as a parent."
+summary: "Ninety minutes before the kids wake up isn't much — but plan the week, forgive the day, and count small wins, and it's enough to ship."
 categories:
   - side-projects
   - productivity

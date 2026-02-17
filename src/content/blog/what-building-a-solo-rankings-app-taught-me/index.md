@@ -1,6 +1,7 @@
 ---
 title: What Building a Solo Rankings App Taught Me
 description: How building a tiny app kept a solo board-gaming ritual alive—and helped me rediscover the confidence to ship for my own community.
+summary: "A board-gaming community needed a tool, I built one, 1,700 people used it — and I rediscovered the confidence to ship on my own."
 categories:
   - community
   - side-projects

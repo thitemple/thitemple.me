@@ -1,6 +1,7 @@
 ---
 title: Reliable AI Pair-Programming with Tests
 description: How I learned to stop trusting AI-generated tests and built a reliable testing strategy. Write gold-standard reference tests, treat AI like a junior dev, and keep e2e minimal for faster, more confident development.
+summary: "I let AI write my tests and paid for it. Here's how a few gold-standard references turned AI from liability into a reliable pair."
 categories:
   - side-projects
   - ai-coding

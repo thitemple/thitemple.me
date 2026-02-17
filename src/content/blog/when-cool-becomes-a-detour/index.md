@@ -1,6 +1,7 @@
 ---
 title: When Cool Becomes a Detour
 description: I learned to avoid shiny tool distractions and focus on shipping with familiar tools—saving exploration for when I have time, not when building.
+summary: "I almost burned my side-project hours on a VPS I didn't need. Now I have a simple checklist to tell exploration from progress."
 categories:
   - side-projects
 date: 2025-08-19
