@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { afterNavigate } from "$app/navigation";
 	import { base } from "$app/paths";
 	import WritingList from "$lib/components/WritingList.svelte";
 	import * as config from "$lib/config";
 	import type { WritingListItem } from "$lib/types";
 	import { formatDate } from "$lib/utils/date-format";
 	import { onMount } from "svelte";
+	import type { PageData } from "./$types";
+
+	let { data }: { data: PageData } = $props();
 
 	type PagefindResultData = {
 		url?: string;
@@ -33,17 +35,14 @@
 	let isLoading = $state(false);
 	let searchError = $state<string | null>(null);
 	let searchResults = $state<SearchResult[]>([]);
+	let lastCompletedQuery = $state<string | null>(null);
 	let pagefindSearch = $state<((term: string) => Promise<PagefindSearchResponse>) | null>(null);
-	let query = $state("");
+	const query = $derived(data.query);
 
 	const pagefindModuleUrl = `${base}/pagefind/pagefind.js`;
 	const pageTitle = $derived(
 		query ? `Results for "${query}" - ${config.title}` : `Search - ${config.title}`
 	);
-
-	function syncQueryFromLocation() {
-		query = new URL(window.location.href).searchParams.get("q")?.trim() ?? "";
-	}
 
 	function decodeSlug(slug: string) {
 		return decodeURIComponent(slug)
@@ -164,8 +163,6 @@
 
 	onMount(() => {
 		let active = true;
-		syncQueryFromLocation();
-		afterNavigate(syncQueryFromLocation);
 
 		void (async () => {
 			try {
@@ -178,6 +175,7 @@
 			} catch (error) {
 				console.error("Failed to load search index", error);
 				searchError = "Search is temporarily unavailable.";
+				isLoading = false;
 			}
 		})();
 
@@ -191,6 +189,7 @@
 		const currentQuery = query;
 
 		if (!search) {
+			isLoading = currentQuery.length > 0 && searchError === null;
 			return;
 		}
 
@@ -198,6 +197,7 @@
 			searchResults = [];
 			searchError = null;
 			isLoading = false;
+			lastCompletedQuery = null;
 			return;
 		}
 
@@ -212,11 +212,13 @@
 				}
 
 				searchResults = results;
+				lastCompletedQuery = currentQuery;
 			})
 			.catch((error) => {
 				console.error("Search failed", error);
 				if (!cancelled) {
 					searchError = "Search failed. Please try again.";
+					lastCompletedQuery = currentQuery;
 				}
 			})
 			.finally(() => {
@@ -289,13 +291,43 @@
 					</p>
 				{/if}
 			</div>
-		{:else if isLoading}
-			<p class="text-center text-slate-300/90">Searching...</p>
+		{:else if query.length > 0 && (isLoading || lastCompletedQuery !== query)}
+			<div
+				role="status"
+				aria-live="polite"
+				aria-label="Searching posts"
+				class="mx-auto max-w-3xl rounded-2xl border border-white/12 bg-white/5 p-6 md:p-8"
+			>
+				<div class="mb-4 flex items-center justify-center gap-2.5" aria-hidden="true">
+					<span
+						class="h-2.5 w-2.5 animate-bounce rounded-full bg-[var(--color-primary)] [animation-delay:0ms]"
+					></span>
+					<span
+						class="h-2.5 w-2.5 animate-bounce rounded-full bg-[var(--color-secondary)] [animation-delay:150ms]"
+					></span>
+					<span
+						class="h-2.5 w-2.5 animate-bounce rounded-full bg-[var(--color-tertiary)] [animation-delay:300ms]"
+					></span>
+				</div>
+				<p class="text-center text-lg font-medium text-slate-200">Searching...</p>
+				<div class="mt-6 space-y-4" aria-hidden="true">
+					<div class="space-y-2 rounded-xl border border-white/10 bg-black/10 p-4">
+						<div class="h-4 w-2/3 animate-pulse rounded bg-white/20"></div>
+						<div class="h-3 w-1/3 animate-pulse rounded bg-white/12"></div>
+						<div class="h-3 w-full animate-pulse rounded bg-white/10"></div>
+					</div>
+					<div class="space-y-2 rounded-xl border border-white/10 bg-black/10 p-4">
+						<div class="h-4 w-1/2 animate-pulse rounded bg-white/20"></div>
+						<div class="h-3 w-1/4 animate-pulse rounded bg-white/12"></div>
+						<div class="h-3 w-11/12 animate-pulse rounded bg-white/10"></div>
+					</div>
+				</div>
+			</div>
 		{:else if query.length === 0}
 			<p class="text-center text-slate-300/90">
 				Use the search icon in the header to run a search.
 			</p>
-		{:else if searchResults.length === 0}
+		{:else if searchResults.length === 0 && lastCompletedQuery === query}
 			<p class="text-center text-slate-300/90">
 				No results found. Try different terms or fewer words.
 			</p>
