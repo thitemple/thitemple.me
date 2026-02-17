@@ -126,15 +126,21 @@
 	</div>
 </section>
 
-<article class="pt-8 pb-20">
+<article data-pagefind-body class="pt-8 pb-20">
 	<div class="mx-auto max-w-3xl px-6">
+		<div class="sr-only" aria-hidden="true">
+			<span data-pagefind-meta="content_type:Newsletter"></span>
+			<span data-pagefind-meta={`date:${data.meta.date}`}></span>
+			<span data-pagefind-meta={`summary:${data.meta.summary}`}></span>
+			<span data-pagefind-meta={`read_time:${data.meta.readTime}`}></span>
+		</div>
 		<div class="mx-auto prose prose-lg max-w-none prose-invert">
 			<data.content />
 		</div>
 	</div>
 </article>
 
-<section class="pb-32">
+<section data-pagefind-ignore class="pb-32">
 	<div class="mx-auto max-w-3xl px-6">
 		<div
 			class="relative overflow-hidden rounded-3xl border border-[var(--color-tertiary)]/25 bg-gradient-to-br from-[var(--color-tertiary)]/15 to-[var(--color-secondary)]/10 p-8 md:p-16"

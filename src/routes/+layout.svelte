@@ -4,9 +4,16 @@
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
 	import ReadingProgressBar from "$lib/components/ReadingProgressBar.svelte";
+	import { Search, X } from "lucide-svelte";
+	import { cubicOut } from "svelte/easing";
+	import { scale, fade } from "svelte/transition";
+	import { tick } from "svelte";
 
 	let { children } = $props();
 	let navOpen = $state(false);
+	let searchDialogOpen = $state(false);
+	let searchDialogQuery = $state("");
+	let searchInput = $state<HTMLInputElement | null>(null);
 
 	const currentYear = new Date().getFullYear();
 
@@ -14,7 +21,45 @@
 		return routeId === "/blog/[slug]" || routeId === "/from-the-temple/[slug]";
 	}
 
+	function buildSearchUrl(query: string) {
+		const trimmedQuery = query.trim();
+		const searchBasePath = resolve("/search");
+
+		if (!trimmedQuery) {
+			return searchBasePath;
+		}
+
+		const params = new URLSearchParams({ q: trimmedQuery });
+		return `${searchBasePath}?${params.toString()}`;
+	}
+
+	async function openSearchDialog() {
+		navOpen = false;
+		searchDialogOpen = true;
+		await tick();
+		searchInput?.focus();
+	}
+
+	function closeSearchDialog() {
+		searchDialogOpen = false;
+	}
+
+	async function handleSearchSubmit(event: SubmitEvent) {
+		event.preventDefault();
+		const destination = buildSearchUrl(searchDialogQuery);
+		closeSearchDialog();
+		window.location.assign(destination);
+	}
+
+	function handleSearchDialogKeydown(event: KeyboardEvent) {
+		if (event.key === "Escape") {
+			closeSearchDialog();
+		}
+	}
+
 	onNavigate((navigation) => {
+		searchDialogOpen = false;
+
 		if (!document.startViewTransition) {
 			return;
 		}
@@ -51,13 +96,13 @@
 			>
 				<li>
 					<a
-						class="nav-link-gradient text-[var(--color-text)] transition-colors hover:text-white"
+						class="nav-link-gradient text-(--color-text) transition-colors hover:text-white"
 						href={resolve("/from-the-temple")}>From the Temple</a
 					>
 				</li>
 				<li>
 					<a
-						class="nav-link-gradient text-[var(--color-text)] transition-colors hover:text-white"
+						class="nav-link-gradient text-(--color-text) transition-colors hover:text-white"
 						href={resolve("/blog")}>Blog</a
 					>
 				</li>
@@ -66,6 +111,16 @@
 						class="nav-link-gradient text-[var(--color-text)] transition-colors hover:text-white"
 						href={resolve("/about")}>About</a
 					>
+				</li>
+				<li>
+					<button
+						type="button"
+						onclick={openSearchDialog}
+						aria-label="Open search"
+						class="flex items-center p-1.5 text-[var(--color-text)] opacity-70 transition-all hover:-translate-y-0.5 hover:text-[var(--color-primary)] hover:opacity-100"
+					>
+						<Search class="h-[18px] w-[18px]" />
+					</button>
 				</li>
 				<li>
 					<a
@@ -169,6 +224,16 @@
 					<li><a onclick={() => (navOpen = false)} href={resolve("/blog")}>Blog</a></li>
 					<li><a onclick={() => (navOpen = false)} href={resolve("/about")}>About</a></li>
 					<li>
+						<button
+							type="button"
+							onclick={openSearchDialog}
+							aria-label="Open search"
+							class="text-[var(--color-text)] transition-colors hover:text-[var(--color-primary)]"
+						>
+							Search
+						</button>
+					</li>
+					<li>
 						<a
 							onclick={() => (navOpen = false)}
 							href="https://www.youtube.com/@thitemple"
@@ -232,6 +297,68 @@
 			</ul>
 		</div>
 	</header>
+
+	{#if searchDialogOpen}
+		<dialog
+			open
+			aria-label="Search site content"
+			class="fixed inset-0 z-[80] m-0 h-full w-full max-h-none max-w-none border-0 bg-transparent p-0"
+			onkeydown={handleSearchDialogKeydown}
+			transition:fade={{ duration: 160 }}
+		>
+			<button
+				type="button"
+				aria-label="Close search"
+				class="fixed inset-0 bg-[var(--color-bg)]/75 backdrop-blur-sm"
+				onclick={closeSearchDialog}
+			></button>
+			<div class="fixed inset-x-0 top-24 flex justify-center px-6 md:top-28">
+				<div
+					class="w-full max-w-2xl overflow-hidden rounded-2xl border border-white/15 bg-[#061b31]/95 p-6 shadow-2xl"
+					transition:scale={{ duration: 220, start: 0.96, easing: cubicOut }}
+				>
+					<div class="mb-5 flex items-center justify-between gap-4">
+						<h2 class="font-heading text-2xl font-bold text-white">Search</h2>
+						<button
+							type="button"
+							aria-label="Close search"
+							class="rounded-lg border border-white/20 p-2 text-slate-300 transition-colors hover:border-white/35 hover:text-white"
+							onclick={closeSearchDialog}
+						>
+							<X class="h-5 w-5" />
+						</button>
+					</div>
+
+					<form onsubmit={handleSearchSubmit} class="space-y-4">
+						<input
+							bind:this={searchInput}
+							bind:value={searchDialogQuery}
+							type="search"
+							name="q"
+							autocomplete="off"
+							placeholder="Search blog posts and newsletter issues"
+							class="w-full rounded-xl border border-white/20 bg-slate-950/60 px-5 py-3.5 text-white outline-none transition-colors placeholder:text-slate-400 focus:border-[var(--accent)]"
+						/>
+						<div class="flex items-center justify-end gap-3">
+							<button
+								type="button"
+								class="font-heading rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-white/35 hover:text-white"
+								onclick={closeSearchDialog}
+							>
+								Cancel
+							</button>
+							<button
+								type="submit"
+								class="font-heading rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+							>
+								Show Results
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</dialog>
+	{/if}
 
 	{@render children()}
 

@@ -6,7 +6,8 @@ const BASE_URL = "https://thitemple.me";
 const navbar = [
 	{ to: "/blog", text: "Blog" },
 	{ to: "/from-the-temple", text: "From the Temple" },
-	{ to: "/about", text: "About" }
+	{ to: "/about", text: "About" },
+	{ to: "/search", text: "Search" }
 ];
 
 export async function GET() {

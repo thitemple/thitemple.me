@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import type { Post } from "$lib/types";
+	import WritingList from "$lib/components/WritingList.svelte";
+	import type { Post, WritingListItem } from "$lib/types";
 	import { formatDate } from "$lib/utils/date-format";
 
 	let { data } = $props();
@@ -42,11 +43,25 @@
 		return post.type === "newsletter" ? "Newsletter" : "Blog";
 	}
 
-	function getBadgeClasses(post: Post): string {
+	function getPostUrl(post: Post): string {
 		return post.type === "newsletter"
-			? "bg-[var(--color-secondary)]/20 text-[var(--color-secondary)]"
-			: "bg-[var(--color-primary)]/20 text-[var(--color-primary)]";
+			? resolve("/from-the-temple/[slug]", { slug: post.slug })
+			: resolve("/blog/[slug]", { slug: post.slug });
 	}
+
+	const latestWritingItems = $derived.by(
+		() =>
+			data.posts.map((post: Post) => ({
+				id: post.slug,
+				title: post.title,
+				url: getPostUrl(post),
+				summary: post.summary,
+				dateLabel: formatDate(post.date),
+				readTimeLabel: post.readTime ? `${post.readTime} min` : null,
+				typeLabel: getContentLabel(post),
+				viewTransitionName: `post-title-${post.slug}`
+			})) satisfies WritingListItem[]
+	);
 </script>
 
 <main class="mx-auto max-w-250 px-6 py-12 md:py-16">
@@ -61,55 +76,7 @@
 			<div class="h-px max-w-25 grow bg-(--color-primary)/30"></div>
 		</div>
 
-		<div class="grid gap-12 sm:gap-16">
-			{#each data.posts as post (post.slug)}
-				<article class="group relative items-baseline md:grid md:grid-cols-[1fr_auto] md:gap-8">
-					{#if post.type === "newsletter"}
-						<a
-							href={resolve("/from-the-temple/[slug]", { slug: post.slug })}
-							class="block transition-transform duration-300 group-hover:translate-x-2"
-						>
-							<h3
-								class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
-								style={`view-transition-name: post-title-${post.slug}`}
-							>
-								{post.title}
-							</h3>
-						</a>
-					{:else}
-						<a
-							href={resolve("/blog/[slug]", { slug: post.slug })}
-							class="block transition-transform duration-300 group-hover:translate-x-2"
-						>
-							<h3
-								class="mb-3 font-['Kantumruy_Pro'] text-3xl font-bold leading-tight text-white transition-colors group-hover:text-[var(--color-primary)] md:text-5xl"
-								style={`view-transition-name: post-title-${post.slug}`}
-							>
-								{post.title}
-							</h3>
-						</a>
-					{/if}
-
-					<!-- Date Line -->
-					<div
-						class="mt-2 flex flex-col items-start gap-2 font-['Kantumruy_Pro'] text-sm font-medium text-[var(--color-tertiary)] md:mt-0 md:items-end"
-					>
-						<div class="flex items-center gap-3 whitespace-nowrap">
-							<time>{formatDate(post.date)}</time>
-							{#if post.readTime}
-								<span class="opacity-50">•</span>
-								<span>{post.readTime} min</span>
-							{/if}
-						</div>
-						<span
-							class={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${getBadgeClasses(post)}`}
-						>
-							{getContentLabel(post)}
-						</span>
-					</div>
-				</article>
-			{/each}
-		</div>
+		<WritingList items={latestWritingItems} />
 
 		<div class="mt-16">
 			<div class="flex flex-wrap items-center gap-6">
