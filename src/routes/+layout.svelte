@@ -156,7 +156,7 @@
 
 		<!-- Mobile menu -->
 		<div
-			class="grid transition-all duration-300 ease-in-out md:hidden"
+			class="grid bg-[var(--color-bg)] transition-all duration-300 ease-in-out md:hidden"
 			style="grid-template-rows: {navOpen ? '1fr' : '0fr'}"
 		>
 			<ul class="overflow-hidden">
