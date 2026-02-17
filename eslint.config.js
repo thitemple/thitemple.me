@@ -26,6 +26,7 @@ export default [
 			"yarn.lock",
 			"dist/",
 			"coverage/",
+			"static/pagefind/",
 			"**/*.timestamp-*.mjs" // Vite temp files
 		]
 	},

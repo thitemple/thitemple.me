@@ -13,3 +13,14 @@ export type Post = {
 	type: ContentType;
 	issue?: number;
 };
+
+export type WritingListItem = {
+	id: string;
+	title: string;
+	url: string;
+	summary?: string | null;
+	dateLabel?: string | null;
+	readTimeLabel?: string | null;
+	typeLabel: string;
+	viewTransitionName?: string;
+};
