@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from "$app/paths";
 	import OutlineLink from "$lib/components/outline-link.svelte";
 	import PostMeta from "$lib/components/post-meta.svelte";
 	import type { Post } from "$lib/types";
@@ -12,9 +13,8 @@
 
 	let { post, featured = false }: Props = $props();
 
-	const shouldShowBanner = post.cover && !featured;
-	const hasFeaturedBanner = post.cover && featured;
-	const postUrl = `/blog/${post.slug}`;
+	const shouldShowBanner = $derived(Boolean(post.cover) && !featured);
+	const hasFeaturedBanner = $derived(Boolean(post.cover) && featured);
 </script>
 
 <div
@@ -26,7 +26,7 @@
 	)}
 >
 	<div>
-		<a href={postUrl} class=" lg:mt-4">
+		<a href={resolve(`/blog/${post.slug}`)} class=" lg:mt-4">
 			<h2 class="font-heading text-2xl text-slate-700 dark:text-slate-200">
 				{post.title}
 			</h2>
@@ -53,7 +53,7 @@
 		{post.summary}
 	</p>
 	<p class="md:self-center lg:self-start">
-		<OutlineLink href={postUrl}>
+		<OutlineLink href={resolve(`/blog/${post.slug}`)}>
 			Read more
 			{#snippet icon()}
 				<ArrowRight />

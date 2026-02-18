@@ -3,6 +3,7 @@
 	import { onNavigate } from "$app/navigation";
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
+	import * as config from "$lib/config";
 	import ReadingProgressBar from "$lib/components/ReadingProgressBar.svelte";
 	import { Search, X } from "lucide-svelte";
 	import { cubicOut } from "svelte/easing";
@@ -76,6 +77,8 @@
 <svelte:head>
 	<title>Thiago Temple — Full-Stack Developer</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="alternate" type="application/rss+xml" title="The Coding Temple" href="/rss.xml" />
+	<link rel="canonical" href={`${config.url}${page.url.pathname}`} />
 </svelte:head>
 
 <div class="min-h-screen bg-[var(--color-bg)] font-['Lora'] text-[var(--color-text)]">

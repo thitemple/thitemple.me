@@ -7,15 +7,24 @@
 
 <svelte:head>
 	<title>About - {config.title}</title>
-	<meta name="description" content={config.description} />
-	<meta property="og:title" content={config.title} />
-	<meta property="og:url" content={config.url} />
+	<meta
+		name="description"
+		content="Staff developer at Shopify with 25+ years of experience, writing about AI-assisted coding, side projects, and shipping software as a working parent."
+	/>
+	<meta property="og:title" content="About Thiago Temple" />
+	<meta property="og:url" content={`${config.url}/about`} />
 	<meta property="og:image" content={`${config.url}/thiago-temple.jpeg`} />
-	<meta name="og:description" content={config.ogDescription} />
+	<meta
+		property="og:description"
+		content="Staff developer at Shopify with 25+ years of experience, writing about AI-assisted coding, side projects, and shipping software as a working parent."
+	/>
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
-	<meta name="twitter:title" content={config.title} />
-	<meta name="twitter:description" content={config.description} />
+	<meta name="twitter:title" content="About Thiago Temple" />
+	<meta
+		name="twitter:description"
+		content="Staff developer at Shopify with 25+ years of experience, writing about AI-assisted coding, side projects, and shipping software as a working parent."
+	/>
 	<meta name="twitter:image" content={`${config.url}/thiago-temple.jpeg`} />
 </svelte:head>
 

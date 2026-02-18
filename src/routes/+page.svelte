@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
+	import * as config from "$lib/config";
 	import WritingList from "$lib/components/WritingList.svelte";
 	import type { Post, WritingListItem } from "$lib/types";
 	import { formatDate } from "$lib/utils/date-format";
@@ -62,7 +63,26 @@
 				viewTransitionName: `post-title-${post.slug}`
 			})) satisfies WritingListItem[]
 	);
+
+	const pageTitle = "Thiago Temple — AI Coding, Side Projects & Developer Productivity";
+	const pageDescription =
+		"Staff dev at Shopify writing about AI-assisted coding, shipping side projects as a working parent, and developer productivity. Join the newsletter.";
 </script>
+
+<svelte:head>
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:url" content={config.url} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:image" content={`${config.url}/thiago-temple.jpeg`} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
+	<meta name="twitter:title" content={pageTitle} />
+	<meta name="twitter:description" content={pageDescription} />
+	<meta name="twitter:image" content={`${config.url}/thiago-temple.jpeg`} />
+</svelte:head>
 
 <main class="mx-auto max-w-250 px-6 py-12 md:py-16">
 	<!-- Latest Writing Section -->

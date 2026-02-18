@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from "$app/paths";
 	import { ArrowRight } from "lucide-svelte";
 	import PostMeta from "$lib/components/post-meta.svelte";
 	import type { Post } from "$lib/types";
@@ -9,14 +10,12 @@
 	}
 
 	let { post }: Props = $props();
-
-	let postLink = `/blog/${post.slug}`;
 </script>
 
 <section
 	class="grid gap-6 overflow-hidden lg:grid-cols-2 lg:grid-rows-[auto_auto_1fr_auto_auto] lg:gap-0"
 >
-	<a href={postLink} class="lg:col-start-2">
+	<a href={resolve(`/blog/${post.slug}`)} class="lg:col-start-2">
 		<h2 class="font-heading text-2xl text-slate-700 dark:text-slate-200">{post.title}</h2>
 	</a>
 	{#if post.cover}
@@ -32,7 +31,7 @@
 	<p class="text-sm text-slate-600 lg:col-start-2 lg:mt-2 dark:text-slate-300">
 		<PostMeta date={post.date} readTime={post.readTime} />
 	</p>
-	<OutlineLink href={postLink}>
+	<OutlineLink href={resolve(`/blog/${post.slug}`)}>
 		Read more
 		{#snippet icon()}
 			<ArrowRight />

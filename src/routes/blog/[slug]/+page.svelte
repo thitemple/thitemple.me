@@ -11,6 +11,30 @@
 		return `${readTime} min read`;
 	}
 
+	const seoDescription = $derived(data.meta.description || data.meta.summary);
+	const jsonLd = $derived(
+		JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Article",
+			headline: data.meta.title,
+			description: seoDescription,
+			datePublished: data.meta.date,
+			dateModified: data.meta.date,
+			author: {
+				"@type": "Person",
+				name: config.author,
+				url: config.url
+			},
+			publisher: {
+				"@type": "Person",
+				name: config.author,
+				url: config.url
+			},
+			url: `${config.url}${data.url}`,
+			...(data.cover ? { image: `${config.url}${data.cover}` } : {})
+		})
+	);
+
 	onMount(() => {
 		const zoom = mediumZoom("[data-zoomable]", {
 			margin: 24,
@@ -26,11 +50,11 @@
 
 <svelte:head>
 	<title>{data.meta.title} - {config.title}</title>
-	<meta name="description" content={data.meta.summary} />
+	<meta name="description" content={seoDescription} />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content={data.meta.title} />
 	<meta property="og:url" content={`${config.url}${data.url}`} />
-	<meta property="og:description" content={data.meta.summary} />
+	<meta property="og:description" content={seoDescription} />
 	{#if data.cover}
 		<meta property="og:image" content={`${config.url}${data.cover}`} />
 		<meta name="twitter:image" content={`${config.url}${data.cover}`} />
@@ -41,7 +65,8 @@
 	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
 	<meta name="twitter:title" content={data.meta.title} />
 	<meta name="twitter:creator" content={`@${config.twitterHandle}`} />
-	<meta name="twitter:description" content={data.meta.summary} />
+	<meta name="twitter:description" content={seoDescription} />
+	<svelte:element this={"script"} type="application/ld+json">{jsonLd}</svelte:element>
 </svelte:head>
 
 <section class="relative overflow-hidden pt-10 pb-16">
