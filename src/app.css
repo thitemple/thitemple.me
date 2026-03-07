@@ -40,7 +40,7 @@
 /* ── Helpers & small components ───────────────────────────────────── */
 @layer utilities {
 	.gradient-text {
-		@apply bg-gradient-to-r from-[var(--grad-1)] via-[var(--grad-2)] to-[var(--grad-3)] bg-clip-text text-transparent;
+		@apply bg-linear-to-r from-(--grad-1) via-(--grad-2) to-(--grad-3) bg-clip-text text-transparent;
 	}
 
 	.card-glass {
