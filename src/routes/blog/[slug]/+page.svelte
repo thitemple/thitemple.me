@@ -134,7 +134,7 @@
 	</div>
 </article>
 
-<section data-pagefind-ignore class="pb-32">
+<!-- <section data-pagefind-ignore class="pb-32">
 	<div class="mx-auto max-w-7xl px-6">
 		<h3 class="font-heading mb-12 text-center text-3xl font-bold text-white">Related Posts</h3>
 
@@ -154,4 +154,4 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
