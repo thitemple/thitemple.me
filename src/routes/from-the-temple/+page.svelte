@@ -89,7 +89,7 @@
 <section class="pt-8 pb-8 md:pb-32">
 	<div class="mx-auto max-w-7xl px-6">
 		{#if data.posts.length === 0}
-			<div class="flex min-h-[400px] items-center justify-center">
+			<div class="flex min-h-100 items-center justify-center">
 				<div class="max-w-2xl text-center">
 					<div class="mb-6 text-6xl">📬</div>
 					<h2 class="font-heading mb-4 text-3xl font-bold text-white">First issue coming soon</h2>
@@ -103,12 +103,12 @@
 				{#each data.posts as post (post.slug)}
 					<a href={resolve(`/from-the-temple/${post.slug}`)} class="group block">
 						<article
-							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl {post.cover
+							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-(--accent)/30 hover:shadow-2xl {post.cover
 								? ''
 								: 'mx-auto max-w-md'}"
 						>
 							<div
-								class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+								class="absolute inset-0 bg-linear-to-br from-purple-600/8 via-(--accent)/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
 							></div>
 
 							{#if post.cover}
@@ -125,17 +125,17 @@
 								<div class="mb-4 flex items-center justify-between gap-3 text-sm">
 									<div class="flex items-center gap-3">
 										<span
-											class="rounded-full bg-[var(--color-secondary)]/20 px-2.5 py-0.5 text-xs font-semibold text-[var(--color-secondary)]"
+											class="rounded-full bg-(--color-secondary)/20 px-2.5 py-0.5 text-xs font-semibold text-(--color-secondary)"
 										>
 											{getIssueLabel(post.issue)}
 										</span>
 										<time class="font-mono text-slate-400">{formatDate(post.date)}</time>
 									</div>
-									<span class="font-medium text-[var(--accent)]">{getReadTime(post.readTime)}</span>
+									<span class="font-medium text-(--accent)">{getReadTime(post.readTime)}</span>
 								</div>
 
 								<h2
-									class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
+									class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-(--accent)"
 									style={`view-transition-name: post-title-${post.slug}`}
 								>
 									{post.title}
@@ -146,7 +146,7 @@
 								</p>
 
 								<span
-									class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-colors group-hover:text-purple-300"
+									class="inline-flex items-center gap-2 text-sm font-semibold text-(--accent) transition-colors group-hover:text-purple-300"
 								>
 									Read this issue
 									<span class="transition-transform group-hover:translate-x-1">→</span>
@@ -163,10 +163,10 @@
 <section class="mb-16">
 	<div class="mx-auto max-w-250 px-6">
 		<div
-			class="relative overflow-hidden rounded-3xl border border-[var(--color-tertiary)]/25 bg-gradient-to-br from-[var(--color-tertiary)]/15 to-[var(--color-secondary)]/10 p-8 md:p-16"
+			class="relative overflow-hidden rounded-3xl border border-(--color-tertiary)/25 bg-linear-to-br from-(--color-tertiary)/15 to-(--color-secondary)/10 p-8 md:p-16"
 		>
 			<div
-				class="absolute -right-[100px] -top-[100px] h-64 w-64 rounded-full bg-[var(--color-secondary)]/20 blur-[100px] transition-all duration-700 group-hover:bg-[var(--color-secondary)]/30"
+				class="absolute -right-25 -top-25 h-64 w-64 rounded-full bg-(--color-secondary)/20 blur-[100px] transition-all duration-700 group-hover:bg-(--color-secondary)/30"
 			></div>
 
 			<div class="relative z-10 max-w-lg">
@@ -179,7 +179,7 @@
 
 				{#if isSuccess}
 					<div
-						class="flex items-center gap-3 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-6 py-4 text-[var(--color-primary)]"
+						class="flex items-center gap-3 rounded-xl border border-(--color-primary)/20 bg-(--color-primary)/10 px-6 py-4 text-(--color-primary)"
 					>
 						<p class="font-bold">You're in. Thanks for subscribing.</p>
 					</div>
@@ -191,18 +191,18 @@
 							placeholder="your@email.com"
 							required
 							disabled={isLoading}
-							class="flex-grow rounded-xl border border-[var(--color-text)]/20 bg-[var(--color-bg)] px-6 py-4 font-sans text-white transition-all focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] disabled:opacity-50"
+							class="grow rounded-xl border border-(--color-text)/20 bg-(--color-bg) px-6 py-4 font-sans text-white transition-all focus:border-(--color-primary) focus:outline-none focus:ring-1 focus:ring-(--color-primary) disabled:opacity-50"
 						/>
 						<button
 							type="submit"
 							disabled={isLoading}
-							class="rounded-xl bg-[var(--color-secondary)] px-8 py-4 font-['Kantumruy_Pro'] text-lg font-bold text-white shadow-[0_4px_20px_rgba(245,46,192,0.3)] transition-all hover:scale-105 hover:bg-[#d41da0] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+							class="rounded-xl bg-(--color-secondary) px-8 py-4 font-['Kantumruy_Pro'] text-lg font-bold text-white shadow-[0_4px_20px_rgba(245,46,192,0.3)] transition-all hover:scale-105 hover:bg-[#d41da0] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
 						>
 							{isLoading ? "..." : "Subscribe"}
 						</button>
 					</form>
 					{#if errorMessage}
-						<p class="mt-3 text-sm text-[var(--color-secondary)]">{errorMessage}</p>
+						<p class="mt-3 text-sm text-(--color-secondary)">{errorMessage}</p>
 					{/if}
 				{/if}
 			</div>

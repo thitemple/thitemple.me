@@ -3,6 +3,8 @@
 	import * as config from "$lib/config";
 	import { Github, Linkedin, Instagram, BookOpen } from "lucide-svelte";
 	import NewsletterForm from "$lib/components/NewsletterForm.svelte";
+	import ThiagoTempleFigure from "$lib/assets/img/thiago-temple.jpeg?enhanced";
+	import ThiagoTempleImg from "$lib/assets/img/thiago-temple.jpeg";
 </script>
 
 <svelte:head>
@@ -13,7 +15,7 @@
 	/>
 	<meta property="og:title" content="About Thiago Temple" />
 	<meta property="og:url" content={`${config.url}/about`} />
-	<meta property="og:image" content={`${config.url}/thiago-temple.jpeg`} />
+	<meta property="og:image" content={ThiagoTempleImg} />
 	<meta
 		property="og:description"
 		content="Staff developer at Shopify with 25+ years of experience, writing about AI-assisted coding, side projects, and shipping software as a working parent."
@@ -25,7 +27,7 @@
 		name="twitter:description"
 		content="Staff developer at Shopify with 25+ years of experience, writing about AI-assisted coding, side projects, and shipping software as a working parent."
 	/>
-	<meta name="twitter:image" content={`${config.url}/thiago-temple.jpeg`} />
+	<meta name="twitter:image" content={ThiagoTempleImg} />
 </svelte:head>
 
 <!-- About Page Hero -->
@@ -45,11 +47,16 @@
 	<div class="mx-auto max-w-4xl px-6">
 		<!-- Profile Section -->
 		<div class="mb-16 text-center">
-			<img
+			<enhanced:img
+				src={ThiagoTempleFigure}
+				alt="Thiago Temple"
+				class="mx-auto mb-8 h-48 w-48 rounded-full border-4 border-(--accent)/20 shadow-2xl"
+			/>
+			<!-- <img
 				src="/thiago-temple.jpeg"
 				alt="Thiago Temple"
 				class="mx-auto mb-8 h-48 w-48 rounded-full border-4 border-[var(--accent)]/20 shadow-2xl"
-			/>
+			/> -->
 			<h2 class="font-heading mb-4 text-3xl font-bold text-white">Hi, I'm Thiago Temple</h2>
 			<p class="text-lg text-slate-300">A Brazilian living in Ottawa, Canada with my family.</p>
 		</div>
@@ -62,7 +69,7 @@
 				<p class="text-lg leading-relaxed text-slate-300">
 					I'm a staff developer at <a
 						href="http://shopify.com"
-						class="text-[var(--accent)] hover:underline">Shopify</a
+						class="text-(--accent) hover:underline">Shopify</a
 					>, building web things during the day. After 25+ years of writing code, I'm still finding
 					new ways to break things and (hopefully) fix them better the second time around.
 				</p>
@@ -108,7 +115,7 @@
 					<p>
 						Canadian winters got me into board games. Who knew? My <a
 							href="https://boardgamegeek.com/user/vintem"
-							class="text-[var(--accent)] hover:underline">collection</a
+							class="text-(--accent) hover:underline">collection</a
 						> keeps growing, and I'm okay with that.
 					</p>
 
@@ -125,7 +132,7 @@
 					<p>
 						I watch <a
 							href="https://www.tvtime.com/en/user/13947508/profile"
-							class="text-[var(--accent)] hover:underline"
+							class="text-(--accent) hover:underline"
 						>
 							some TV shows
 						</a>
@@ -137,7 +144,7 @@
 
 		<!-- Call to Action -->
 		<div
-			class="mt-16 rounded-2xl border border-[var(--accent)]/20 bg-gradient-to-br from-purple-600/20 to-blue-600/20 p-8"
+			class="mt-16 rounded-2xl border border-(--accent)/20 bg-linear-to-br from-purple-600/20 to-blue-600/20 p-8"
 		>
 			<!-- Newsletter Section - Primary -->
 			<div class="mb-8 text-center">
@@ -157,7 +164,7 @@
 					<a
 						href={resolve("/blog")}
 						aria-label="Writing"
-						class="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base font-medium transition-all hover:border-[var(--accent)] hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]"
+						class="group inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-base font-medium transition-all hover:border-(--accent) hover:bg-(--accent)/10 hover:text-(--accent)"
 					>
 						<BookOpen size={20} class="transition-transform group-hover:scale-110" />
 						<span>Writing</span>

@@ -7,9 +7,7 @@
 	let { src = "", alt = "" }: Props = $props();
 </script>
 
-<div
-	class="relative mx-auto max-h-[300px] w-[50%] overflow-hidden rounded-lg md:max-h-[400px] lg:max-h-[500px]"
->
+<div class="relative mx-auto max-h-75 w-[50%] overflow-hidden rounded-lg md:max-h-100 lg:max-h-125">
 	<img
 		{src}
 		{alt}

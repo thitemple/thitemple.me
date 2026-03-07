@@ -11,7 +11,7 @@ type: article
 ---
 
 <script context="module">
-export { default as cover } from "./banner.png";
+export { default as cover } from "./banner.png?enhanced";
 </script>
 
 I fell back in love with automated tests after a short, chaotic fling with YOLO, vibe-coded, AI-written everything. The fix wasn’t fancy: stop trusting AI’s tests, write a few gold-standard references, keep e2e minimal, and point the model at my examples. The payoff was immediate—I shipped new features instead of re-testing old ones on every change.

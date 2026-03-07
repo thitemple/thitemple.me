@@ -52,7 +52,7 @@
 <section class="pt-8 pb-8 md:pb-32">
 	<div class="mx-auto max-w-7xl px-6">
 		{#if data.posts.length === 0}
-			<div class="flex min-h-[400px] items-center justify-center">
+			<div class="flex min-h-100 items-center justify-center">
 				<div class="max-w-2xl text-center">
 					<div class="mb-6 text-6xl">📝</div>
 					<h2 class="font-heading mb-4 text-3xl font-bold text-white">Working on it</h2>
@@ -66,17 +66,17 @@
 				{#each data.posts as post (post.slug)}
 					<a href={resolve(`/blog/${post.slug}`)} class="group block">
 						<article
-							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-[var(--accent)]/30 hover:shadow-2xl {post.cover
+							class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm transition-all hover:-translate-y-2 hover:border-(--accent)/30 hover:shadow-2xl {post.cover
 								? ''
 								: 'mx-auto max-w-md'}"
 						>
 							<div
-								class="absolute inset-0 bg-gradient-to-br from-purple-600/8 via-[var(--accent)]/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+								class="absolute inset-0 bg-linear-to-br from-purple-600/8 via-(--accent)/8 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
 							></div>
 
 							{#if post.cover}
 								<div class="relative h-48 overflow-hidden">
-									<img
+									<enhanced:img
 										src={post.cover}
 										alt={`Cover for ${post.title}`}
 										class="h-full w-full object-cover transition-transform group-hover:scale-105"
@@ -87,11 +87,11 @@
 							<div class="relative z-10 {post.cover ? 'p-6' : 'px-6 py-8'}">
 								<div class="mb-4 flex items-center justify-between gap-3 text-sm">
 									<time class="font-mono text-slate-400">{formatDate(post.date)}</time>
-									<span class="font-medium text-[var(--accent)]">{getReadTime(post.readTime)}</span>
+									<span class="font-medium text-(--accent)">{getReadTime(post.readTime)}</span>
 								</div>
 
 								<h2
-									class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-[var(--accent)]"
+									class="font-heading mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-(--accent)"
 									style={`view-transition-name: post-title-${post.slug}`}
 								>
 									{post.title}
@@ -105,7 +105,7 @@
 									<div class="mb-5 flex flex-wrap gap-2">
 										{#each post.categories.slice(0, 3) as category (category)}
 											<span
-												class="rounded-full bg-[var(--accent)]/20 px-3 py-1 text-xs font-medium text-purple-300"
+												class="rounded-full bg-(--accent)/20 px-3 py-1 text-xs font-medium text-purple-300"
 											>
 												{category}
 											</span>
@@ -114,7 +114,7 @@
 								{/if}
 
 								<span
-									class="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition-colors group-hover:text-purple-300"
+									class="inline-flex items-center gap-2 text-sm font-semibold text-(--accent) transition-colors group-hover:text-purple-300"
 								>
 									Read full post
 									<span class="transition-transform group-hover:translate-x-1">→</span>

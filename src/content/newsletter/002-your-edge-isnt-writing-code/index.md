@@ -5,7 +5,7 @@ summary: "The edge isn't writing code. Here's what it actually is — and how to
 categories:
   - newsletter
 date: 2026-03-02
-published: false
+published: true
 type: newsletter
 issue: 2
 ---

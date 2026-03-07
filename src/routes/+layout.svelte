@@ -9,6 +9,8 @@
 	import { cubicOut } from "svelte/easing";
 	import { scale, fade } from "svelte/transition";
 	import { tick } from "svelte";
+	import ThiTempleLogo from "$lib/assets/img/thitemple-logo.svg?enhanced";
+	import ThiTempleIcon from "$lib/assets/img/thitemple-icon.svg?enhanced";
 
 	let { children } = $props();
 	let navOpen = $state(false);
@@ -81,16 +83,16 @@
 	<link rel="canonical" href={`${config.url}${page.url.pathname}`} />
 </svelte:head>
 
-<div class="min-h-screen bg-[var(--color-bg)] font-['Lora'] text-[var(--color-text)]">
+<div class="min-h-screen bg-(--color-bg) font-['Lora'] text-(--color-text)">
 	<!-- Header -->
 	<header
-		class="sticky top-0 z-50 bg-gradient-to-b from-[var(--color-bg)] from-60% to-transparent pb-8 pt-4"
+		class="sticky top-0 z-50 bg-linear-to-b from-(--color-bg) from-60% to-transparent pb-8 pt-4"
 	>
-		<nav class="mx-auto flex max-w-[72rem] items-center justify-between gap-6 px-6">
+		<nav class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6">
 			<!-- Logo -->
-			<a href={resolve("/")} class="flex items-center">
-				<img src="/thitemple-icon.svg" alt="Thiago Temple" class="block h-10 w-auto md:hidden" />
-				<img src="/thitemple-logo.svg" alt="Thiago Temple" class="hidden h-8 w-auto md:block" />
+			<a href={resolve("/")} class="flex items-center" aria-label="Home page">
+				<enhanced:img src={ThiTempleIcon} alt="Thiago Temple" class="block h-10 w-auto md:hidden" />
+				<enhanced:img src={ThiTempleLogo} alt="Thiago Temple" class="hidden h-8 w-auto md:block" />
 			</a>
 
 			<!-- Desktop nav links -->
@@ -111,7 +113,7 @@
 				</li>
 				<li>
 					<a
-						class="nav-link-gradient text-[var(--color-text)] transition-colors hover:text-white"
+						class="nav-link-gradient text-(--color-text) transition-colors hover:text-white"
 						href={resolve("/about")}>About</a
 					>
 				</li>
@@ -120,9 +122,9 @@
 						type="button"
 						onclick={openSearchDialog}
 						aria-label="Open search"
-						class="flex items-center p-1.5 text-[var(--color-text)] opacity-70 transition-all hover:-translate-y-0.5 hover:text-[var(--color-primary)] hover:opacity-100"
+						class="flex items-center p-1.5 text-(--color-text) opacity-70 transition-all hover:-translate-y-0.5 hover:text-(--color-primary) hover:opacity-100"
 					>
-						<Search class="h-[18px] w-[18px]" />
+						<Search class="h-4.5 w-4.5" />
 					</button>
 				</li>
 				<li>
@@ -131,7 +133,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="YouTube"
-						class="flex items-center text-[var(--color-text)] transition-all hover:-translate-y-0.5 hover:text-[var(--color-primary)]"
+						class="flex items-center text-(--color-text) transition-all hover:-translate-y-0.5 hover:text-(--color-primary)"
 					>
 						<svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
 							<path
@@ -149,9 +151,9 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="BlueSky"
-					class="flex items-center p-1.5 text-[var(--color-text)] opacity-70 transition-all hover:-translate-y-0.5 hover:text-[var(--color-primary)] hover:opacity-100"
+					class="flex items-center p-1.5 text-(--color-text) opacity-70 transition-all hover:-translate-y-0.5 hover:text-(--color-primary) hover:opacity-100"
 				>
-					<svg viewBox="0 0 24 24" fill="currentColor" class="h-[18px] w-[18px]">
+					<svg viewBox="0 0 24 24" fill="currentColor" class="h-4.5 w-4.5">
 						<path
 							d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"
 						/>

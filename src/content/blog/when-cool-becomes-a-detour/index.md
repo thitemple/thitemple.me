@@ -10,7 +10,7 @@ type: article
 ---
 
 <script context="module">
-export { default as cover } from "./banner.png";
+export { default as cover } from "./banner.png?enhanced";
 </script>
 
 I learned the hard way that scarce energy should go into core work, not into tools or infrastructure you don’t really need.

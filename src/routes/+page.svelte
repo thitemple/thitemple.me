@@ -4,6 +4,7 @@
 	import WritingList from "$lib/components/WritingList.svelte";
 	import type { Post, WritingListItem } from "$lib/types";
 	import { formatDate } from "$lib/utils/date-format";
+	import ThiagoTemple from "$lib/assets/img/thiago-temple.jpeg";
 
 	let { data } = $props();
 
@@ -76,12 +77,12 @@
 	<meta property="og:title" content={pageTitle} />
 	<meta property="og:url" content={config.url} />
 	<meta property="og:description" content={pageDescription} />
-	<meta property="og:image" content={`${config.url}/thiago-temple.jpeg`} />
+	<meta property="og:image" content={ThiagoTemple} />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content={`@${config.twitterHandle}`} />
 	<meta name="twitter:title" content={pageTitle} />
 	<meta name="twitter:description" content={pageDescription} />
-	<meta name="twitter:image" content={`${config.url}/thiago-temple.jpeg`} />
+	<meta name="twitter:image" content={ThiagoTemple} />
 </svelte:head>
 
 <main class="mx-auto max-w-250 px-6 py-12 md:py-16">
@@ -102,14 +103,14 @@
 			<div class="flex flex-wrap items-center gap-6">
 				<a
 					href={resolve("/blog")}
-					class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-white transition-colors hover:text-[var(--color-secondary)]"
+					class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-white transition-colors hover:text-(--color-secondary)"
 				>
 					View all blog posts
 					<span class="transition-transform group-hover:translate-x-1">→</span>
 				</a>
 				<a
 					href={resolve("/from-the-temple")}
-					class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-[var(--color-primary)] transition-colors hover:text-white"
+					class="group inline-flex items-center gap-2 font-['Kantumruy_Pro'] font-bold text-(--color-primary) transition-colors hover:text-white"
 				>
 					View newsletter issues
 					<span class="transition-transform group-hover:translate-x-1">→</span>
@@ -121,11 +122,11 @@
 	<!-- Newsletter Section -->
 	<section class="mb-16">
 		<div
-			class="relative overflow-hidden rounded-3xl border border-[var(--color-tertiary)]/25 bg-gradient-to-br from-[var(--color-tertiary)]/15 to-[var(--color-secondary)]/10 p-8 md:p-16"
+			class="relative overflow-hidden rounded-3xl border border-(--color-tertiary)/25 bg-linear-to-br from-(--color-tertiary)/15 to-(--color-secondary)/10 p-8 md:p-16"
 		>
 			<!-- Decorative Glow -->
 			<div
-				class="absolute -right-[100px] -top-[100px] h-64 w-64 rounded-full bg-[var(--color-secondary)]/20 blur-[100px] transition-all duration-700 group-hover:bg-[var(--color-secondary)]/30"
+				class="absolute -right-25 -top-25 h-64 w-64 rounded-full bg-(--color-secondary)/20 blur-[100px] transition-all duration-700 group-hover:bg-(--color-secondary)/30"
 			></div>
 
 			<div class="relative z-10 max-w-lg">
@@ -138,7 +139,7 @@
 
 				{#if isSuccess}
 					<div
-						class="flex items-center gap-3 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-6 py-4 text-[var(--color-primary)]"
+						class="flex items-center gap-3 rounded-xl border border-(--color-primary)/20 bg-(--color-primary)/10 px-6 py-4 text-(--color-primary)"
 					>
 						<p class="font-bold">You're in. Thanks for subscribing.</p>
 					</div>
@@ -150,18 +151,18 @@
 							placeholder="your@email.com"
 							required
 							disabled={isLoading}
-							class="flex-grow rounded-xl border border-[var(--color-text)]/20 bg-[var(--color-bg)] px-6 py-4 font-sans text-white transition-all focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] disabled:opacity-50"
+							class="grow rounded-xl border border-(--color-text)/20 bg-(--color-bg) px-6 py-4 font-sans text-white transition-all focus:border-(--color-primary) focus:outline-none focus:ring-1 focus:ring-(--color-primary) disabled:opacity-50"
 						/>
 						<button
 							type="submit"
 							disabled={isLoading}
-							class="rounded-xl bg-[var(--color-secondary)] px-8 py-4 font-['Kantumruy_Pro'] text-lg font-bold text-white shadow-[0_4px_20px_rgba(245,46,192,0.3)] transition-all hover:scale-105 hover:bg-[#d41da0] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+							class="rounded-xl bg-(--color-secondary) px-8 py-4 font-['Kantumruy_Pro'] text-lg font-bold text-white shadow-[0_4px_20px_rgba(245,46,192,0.3)] transition-all hover:scale-105 hover:bg-[#d41da0] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
 						>
 							{isLoading ? "..." : "Subscribe"}
 						</button>
 					</form>
 					{#if errorMessage}
-						<p class="mt-3 text-sm text-[var(--color-secondary)]">{errorMessage}</p>
+						<p class="mt-3 text-sm text-(--color-secondary)">{errorMessage}</p>
 					{/if}
 				{/if}
 			</div>

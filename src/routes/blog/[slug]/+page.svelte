@@ -82,17 +82,17 @@
 	<div class="relative z-10 mx-auto max-w-3xl px-6">
 		<div class="mb-8 flex flex-wrap items-center gap-4 text-sm">
 			<span
-				class="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-xs font-semibold text-[var(--color-primary)]"
+				class="rounded-full bg-(--color-primary)/20 px-3 py-1 text-xs font-semibold text-(--color-primary)"
 			>
 				Article
 			</span>
 			<time class="font-mono text-slate-400">{formatDate(data.meta.date)}</time>
-			<span class="font-medium text-[var(--accent)]">{getReadTime(data.meta.readTime)}</span>
+			<span class="font-medium text-(--accent)">{getReadTime(data.meta.readTime)}</span>
 			{#if data.meta.categories && data.meta.categories.length > 0}
 				<div class="flex flex-wrap gap-2">
 					{#each data.meta.categories as category (category)}
 						<span
-							class="rounded-full bg-[var(--accent)]/20 px-3 py-1 text-xs font-medium text-purple-300"
+							class="rounded-full bg-(--accent)/20 px-3 py-1 text-xs font-medium text-purple-300"
 						>
 							{category}
 						</span>
@@ -110,7 +110,11 @@
 
 		{#if data.cover}
 			<div class="mt-8 overflow-hidden rounded-2xl shadow-2xl">
-				<img src={data.cover} alt={`Cover for ${data.meta.title}`} class="w-full object-cover" />
+				<enhanced:img
+					src={data.cover}
+					alt={`Cover for ${data.meta.title}`}
+					class="w-full object-cover"
+				/>
 			</div>
 		{/if}
 	</div>
@@ -136,14 +140,11 @@
 
 		<div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
 			<div
-				class="rounded-xl border border-white/10 bg-black/60 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[var(--accent)]/30"
+				class="rounded-xl border border-white/10 bg-black/60 p-6 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-(--accent)/30"
 			>
 				<time class="mb-2 font-mono text-xs text-slate-400">Coming Soon</time>
 				<h4 class="font-heading mb-3 text-lg font-semibold">
-					<a
-						href={resolve("/blog")}
-						class="text-white transition-colors hover:text-[var(--accent)]"
-					>
+					<a href={resolve("/blog")} class="text-white transition-colors hover:text-(--accent)">
 						More articles coming soon
 					</a>
 				</h4>

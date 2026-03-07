@@ -11,7 +11,7 @@ type: article
 ---
 
 <script context="module">
-export { default as cover } from "./banner.png";
+export { default as cover } from "./banner.png?enhanced";
 </script>
 
 I’m a developer and a solo board gamer. For years, the BoardGameGeek (BGG) solo rankings ran on care and elbow grease—thousands of votes handled by hand. Eventually the volume caught up with the process; it was simply too much to keep doing manually. I built a small web app so the ritual could continue. This isn’t a framework comparison; it’s a note to anyone like me: you can help your communities by shipping a tiny tool.
@@ -39,7 +39,7 @@ Here’s what I focused on:
 
 After years of managing thousands of votes by hand, the process finally caught up with the volunteers. I was already part of the solo community, so I offered a small replacement instead of letting the tradition stall. If your community’s need isn’t as clear, a short “What tiny tool would help?” thread can surface it, and a few vocal testers are enough to keep you honest.
 
-![Landing page](./landing.png)
+![Landing page](./landing.png?format=webp)
 
 ## Ship with a stack I can actually ship with
 
@@ -53,13 +53,13 @@ The goal is to have fun building a list of favorite games; the ritual is partici
 - **Canonical IDs:** search through the BGG API so each pick maps to an exact game ID. No more guessing which “edition” someone meant.  
    That combination sped up voting and reduced cleanup while keeping the spirit of the rankings intact.
 
-![Ranking games](./voting.png)
+![Ranking games](./voting.png?format=webp)
 
 ## Make collaboration cheap
 
 Other people were willing to help; they just needed a way in. I added a small admin area so moderators could **relate games together**—for example, reissues or near‑duplicates—so results stayed tidy without a pile of manual messages. Be the first to move, then lower the bar so volunteers can handle the edge cases alongside you.
 
-![Grouped games admin](./groupings.png)
+![Grouped games admin](./groupings.png?format=webp)
 
 ## Design for trust
 

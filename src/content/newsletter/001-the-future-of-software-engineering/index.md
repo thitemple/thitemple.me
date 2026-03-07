@@ -26,7 +26,7 @@ On X, people are spawning new products in minutes and claiming to make tons of m
 
 The job market is slowing down:
 
-![Job postings on Indeed](./fredgraph.png)
+![Job postings on Indeed](./fredgraph.png?format=webp)
 
 Jobs haven't disappeared — I still get the occasional recruiter email. But as tools get better, more code is being shipped [without anyone reviewing it](https://youtu.be/G-ycOHGNoRc?si=bWCJeyO-tw_YI1gT&t=1249). That trend means three things: we ship faster, there's an overload of new products and features, and companies need fewer people to build them.
 
