@@ -12,7 +12,7 @@ type: article
 ---
 
 <script context="module">
-export { default as cover } from "./banner.png?enhanced";
+export { default as cover } from "./banner.png?format=webp";
 </script>
 
 At 6:00 a.m., I sat down at my desk to work on [PartYay](https://partyay.com), hoping for a quiet morning of coding. At 6:20 a.m., my three‑year‑old woke up. “Blip,” I thought. The next day I set 5:30 a.m.; he was up at 5:50 a.m. Fine—5:00 a.m.; at 5:30 a.m. he yelled, “Daddy!” Eventually it settled: I’m up at 5:00 a.m., he’s up around 6:30 a.m., and I get about 90 minutes. Not hero hours. Just holding the intent and finding the window reality allows.

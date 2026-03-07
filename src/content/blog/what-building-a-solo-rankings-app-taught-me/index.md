@@ -11,7 +11,7 @@ type: article
 ---
 
 <script context="module">
-export { default as cover } from "./banner.png?enhanced";
+export { default as cover } from "./banner.png?format=webp";
 </script>
 
 I’m a developer and a solo board gamer. For years, the BoardGameGeek (BGG) solo rankings ran on care and elbow grease—thousands of votes handled by hand. Eventually the volume caught up with the process; it was simply too much to keep doing manually. I built a small web app so the ritual could continue. This isn’t a framework comparison; it’s a note to anyone like me: you can help your communities by shipping a tiny tool.
