@@ -14,7 +14,7 @@ The site reuses the Mr. Food Programmer "Purple" design system verbatim (see Des
 - Language: TypeScript (strict mode, `noUncheckedIndexedAccess` enabled)
 - Styling: Tailwind CSS v4 via Vite plugin, plus a scoped `<style>` block on the homepage
 - Deployment: Vercel (`adapter-vercel`), fully prerendered
-- Node version: >=22 <23
+- Node version: >=24 <25
 
 ## Essential Commands
 

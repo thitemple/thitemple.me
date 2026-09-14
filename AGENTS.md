@@ -2,12 +2,12 @@
 
 This repo is a SvelteKit (Svelte 5) single-page link hub using TypeScript and Tailwind (v4).
 No markdown/CMS pipeline — the entire site is `src/routes/+page.svelte` plus build-time
-generated data. Use bun and Node 22.x.
+generated data. Use bun and Node 24.x.
 
 ## Environment
 
 - Package manager: bun (see package.json, bun.lock)
-- Node: >=22 <23 (see package.json engines)
+- Node: >=24 <25 (see package.json engines, .tool-versions)
 - Module system: ESM ("type": "module")
 - Framework: SvelteKit + Vite, `@sveltejs/adapter-vercel`, fully prerendered
 
