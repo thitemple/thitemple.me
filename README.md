@@ -1,38 +1,67 @@
-# create-svelte
+# thitemple.me
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A single-page link hub for Thiago Temple. Mr. Food Programmer (the cooking brand) leads;
+the software-developer identity lives in a dark panel below the fold, anchored at `#developer`.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Visual Identity
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The page reuses the Mr. Food Programmer "Purple" identity verbatim — a light, warm, calm
+identity built around a single purple accent on a warm off-white ground — so the two sites
+read as one brand. The canonical source of truth is `mrfoodprogrammer/src/routes/layout.css`
+in the sibling `mrfoodprogrammer` repo; don't invent new values here.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+| Role                   | Typeface    | Weights | Used for                     |
+| ---------------------- | ----------- | ------- | ---------------------------- |
+| **Display / headings** | **Bitter**  | 600–700 | H1/H2, card titles, wordmark |
+| **Body / UI**          | **Manrope** | 400–700 | Everything else              |
+
+| Role            | Hex       | Where it lives                           |
+| --------------- | --------- | ---------------------------------------- |
+| Page background | `#FBF8F4` | The whole site                           |
+| Ink             | `#2B2440` | Headings, wordmark, dark developer panel |
+| Purple          | `#5C4099` | Links, kickers, icons                    |
+| Lilac           | `#EFE9F9` | Icon tile backgrounds                    |
+
+## What's on the page
+
+1. Header — small portrait logo tile + `thitemple.me` wordmark, anchor to the developer section
+2. Hero — portrait + name + tagline
+3. Four primary Mr. Food Programmer links (site, YouTube, Instagram, Substack)
+4. "Fresh out of the kitchen" — the newest item from each of those three sources
+5. Developer section — dark panel, short bio, GitHub / LinkedIn / Bluesky
+6. Footer
+
+The "Fresh out of the kitchen" data is fetched at build time (see `scripts/sync-latest.mjs`)
+and committed to `src/lib/content/latest.generated.json`, since `thitemple.me` and
+`mrfoodprogrammer` are separate repos with no shared filesystem access.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `bun install`, start a development server:
+Install dependencies with `bun install`, then start a dev server:
 
 ```bash
 bun run dev
-
-# or start the server and open the app in a new browser tab
-bun run dev -- --open
 ```
 
 ## Building
-
-To create a production version of your app:
 
 ```bash
 bun run build
 ```
 
-You can preview the production build with `bun run preview`.
+This refreshes `src/lib/content/latest.generated.json` (`bun run sync:latest`) before running
+the Vite build. Preview the production build with `bun run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Other useful commands
+
+```bash
+bun run sync:latest   # Refresh the "latest" video/recipe/newsletter data on its own
+bun run lint          # Prettier check + ESLint
+bun run format        # Auto-fix formatting
+bun run check         # Type-check with svelte-check
+bun run validate      # Full gate: lint, check, build
+```
+
+Deployed on Vercel via `@sveltejs/adapter-vercel`, fully prerendered.

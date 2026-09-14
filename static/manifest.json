@@ -1,11 +1,11 @@
 {
-	"name": "Thiago Temple - Full-Stack Developer",
+	"name": "Thiago Temple - Mr. Food Programmer",
 	"short_name": "Thiago Temple",
-	"description": "Building meaningful stuff while juggling work, family, and life. 25+ years in tech, learning in public.",
+	"description": "Practical family recipes, meal prep and kitchen notes from a software engineer's home kitchen.",
 	"start_url": "/",
 	"display": "standalone",
-	"background_color": "#002642",
-	"theme_color": "#002642",
+	"background_color": "#FBF8F4",
+	"theme_color": "#FBF8F4",
 	"orientation": "portrait-primary",
 	"icons": [
 		{
