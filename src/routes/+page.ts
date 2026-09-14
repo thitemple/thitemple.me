@@ -1,6 +1,6 @@
-import { getPosts } from "$lib/posts";
+import latest from "$lib/content/latest.generated.json";
+import type { Latest } from "$lib/types";
 
-export async function load() {
-	const posts = await getPosts();
-	return { posts: posts.slice(0, 4) };
+export function load() {
+	return { latest: latest as Latest };
 }

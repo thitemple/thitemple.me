@@ -8,6 +8,12 @@ node_modules
 !.env.example
 old_src
 
+# Old blog/newsletter content, disconnected from any route — kept for reference,
+# left exactly as it was rather than reformatted (see AGENTS.md).
+src/posts
+src/content
+src/archive
+
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 package-lock.json

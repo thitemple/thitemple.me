@@ -1,0 +1,17 @@
+{
+	"video": {
+		"kicker": "Newest video",
+		"title": "the best and easiest sandwich bread   4K",
+		"meta": "YouTube",
+		"url": "https://www.youtube.com/watch?v=XY_SVqKE-dw",
+		"image": "https://i1.ytimg.com/vi/XY_SVqKE-dw/hqdefault.jpg"
+	},
+	"recipe": {
+		"kicker": "Latest recipe",
+		"title": "Beet Green Salad with Feta, Pistachios, and Balsamic",
+		"meta": "mrfoodprogrammer.com",
+		"url": "https://mrfoodprogrammer.com/recipes/beet-green-salad-with-feta-pistachios-and-balsamic",
+		"image": "https://mrfoodprogrammer.com/_app/immutable/assets/hero.CWxYDQ44.jpeg"
+	},
+	"newsletter": null
+}
