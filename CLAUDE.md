@@ -91,19 +91,19 @@ Each fetch is wrapped in try/catch and resolves to `null` on failure rather than
 
 Source of truth: `mrfoodprogrammer/src/routes/layout.css`. Do not invent new values — pull from that file if something's missing here.
 
-| Token | Hex | Used for |
-| --- | --- | --- |
-| `--bg` | `#FBF8F4` | Page background |
-| `--ink` | `#2B2440` | Headings, wordmark, dark panel background |
-| `--body-text` | `#3E3654` | Default body text |
-| `--text-secondary` | `#544C6B` | Hero tagline |
-| `--text-muted` | `#7B7392` | Card subtitles, meta, footer note |
-| `--text-faint` | `#9A8FB8` | Chevrons, placeholder labels |
-| `--purple` | `#5C4099` | Kickers, icons, links |
-| `--purple-hover` | `#432D75` | Link hover |
-| `--lilac` | `#EFE9F9` | Icon tile backgrounds |
-| `--lilac-tile` | `#E2D8F3` | Photo tile background, placeholder stripes |
-| `--lilac-accent` | `#C9B6EF` | Kicker + icons inside the dark panel |
+| Token              | Hex       | Used for                                   |
+| ------------------ | --------- | ------------------------------------------ |
+| `--bg`             | `#FBF8F4` | Page background                            |
+| `--ink`            | `#2B2440` | Headings, wordmark, dark panel background  |
+| `--body-text`      | `#3E3654` | Default body text                          |
+| `--text-secondary` | `#544C6B` | Hero tagline                               |
+| `--text-muted`     | `#7B7392` | Card subtitles, meta, footer note          |
+| `--text-faint`     | `#9A8FB8` | Chevrons, placeholder labels               |
+| `--purple`         | `#5C4099` | Kickers, icons, links                      |
+| `--purple-hover`   | `#432D75` | Link hover                                 |
+| `--lilac`          | `#EFE9F9` | Icon tile backgrounds                      |
+| `--lilac-tile`     | `#E2D8F3` | Photo tile background, placeholder stripes |
+| `--lilac-accent`   | `#C9B6EF` | Kicker + icons inside the dark panel       |
 
 **Type**: Bitter 600 (Google Fonts) for headings/wordmark; Manrope 400–700 for everything else.
 
