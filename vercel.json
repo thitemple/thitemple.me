@@ -1,0 +1,12 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"redirects": [
+		{ "source": "/blog", "destination": "/", "permanent": true },
+		{ "source": "/blog/:slug", "destination": "/", "permanent": true },
+		{ "source": "/from-the-temple", "destination": "/", "permanent": true },
+		{ "source": "/from-the-temple/:slug", "destination": "/", "permanent": true },
+		{ "source": "/about", "destination": "/", "permanent": true },
+		{ "source": "/search", "destination": "/", "permanent": true },
+		{ "source": "/rss.xml", "destination": "/", "permanent": true }
+	]
+}
