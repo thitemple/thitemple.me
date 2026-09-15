@@ -1,5 +1,8 @@
 /* ── Fonts ────────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap");
+/* Loaded via <link rel="stylesheet"> + preconnect in app.html instead of an
+   @import here — a CSS @import serializes behind this stylesheet's own
+   fetch/parse before the font CSS (and then the font files) can even start
+   loading; a <link> lets the browser discover and fetch it in parallel. */
 
 /* ── Tailwind v4 core ─────────────────────────────────────────────── */
 @import "tailwindcss";
