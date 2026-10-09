@@ -15,9 +15,8 @@ generated data. Use bun and Node 24.x.
 
 - Install deps: `bun install`
 - Dev server: `bun run dev`
-- Build: `bun run build` (runs `sync:latest`, then `vite build`)
+- Build: `bun run build`
 - Preview build: `bun run preview`
-- Refresh "latest" data only: `bun run sync:latest`
 - Svelte sync: `bun run sync`
 - Type check: `bun run check`
 - Lint (prettier + eslint): `bun run lint`

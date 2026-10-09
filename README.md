@@ -33,9 +33,10 @@ in the sibling `mrfoodprogrammer` repo; don't invent new values here.
 5. Developer section — dark panel, short bio, GitHub / LinkedIn / Bluesky
 6. Footer
 
-The "Fresh out of the kitchen" data is fetched at build time (see `scripts/sync-latest.mjs`)
-and committed to `src/lib/content/latest.generated.json`, since `thitemple.me` and
-`mrfoodprogrammer` are separate repos with no shared filesystem access.
+The "Fresh out of the kitchen" data is fetched live by `src/routes/+page.server.ts` (logic in
+`src/lib/server/latest.ts`). Vercel ISR caches the page and regenerates it in the background at
+most once an hour, so new videos, recipes, and posts appear without a redeploy.
+`src/lib/content/latest.generated.json` is a committed snapshot used only when a source is down.
 
 ## Developing
 
@@ -51,13 +52,11 @@ bun run dev
 bun run build
 ```
 
-This refreshes `src/lib/content/latest.generated.json` (`bun run sync:latest`) before running
-the Vite build. Preview the production build with `bun run preview`.
+Preview the production build with `bun run preview`.
 
 ## Other useful commands
 
 ```bash
-bun run sync:latest   # Refresh the "latest" video/recipe/newsletter data on its own
 bun run lint          # Prettier check + ESLint
 bun run format        # Auto-fix formatting
 bun run check         # Type-check with svelte-check
